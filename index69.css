@@ -1,0 +1,57 @@
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: sans-serif;
+}
+
+span{
+    color: rgb(42, 44, 165);
+}
+nav{
+    padding: 15px 10px;
+    /* 15 top bottom/10 left right */
+    display: flex; 
+    justify-content: space-between; /*puts a space between your items*/
+    align-items: center;
+    background-color: rgb(164, 38, 101);
+
+
+}
+a{
+    text-decoration: none ;
+    color: wheat;
+    font-weight: bolder;
+    font-size: 17px;
+    margin: 8px;
+}
+a:hover{
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

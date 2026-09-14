@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration:none ;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+
+}
+nav  .links a {
+    margin: 10px;
+    font-size: 22px;
+color: white;
+}
+main{
+    padding: 110px 250px;
+}
+nav h1{
+    color: white;
+}
+span{
+    color: aqua;
+}
+p{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    color: white;
+}
+main h1{
+    font-size: 20px;
+    color: white;
+}
+main .mode a {
+    margin: 12px;
+    font-size: 20px;
+    border: 2px solid;
+    padding: 5px 10px;
+    border-radius: 10px;
+
+}
+main .mode #dark{
+ color: white;
+}
+main .mode #dark:hover{
+    color: black;
+    background: white;
+}
+main .mode #light{
+ color: #00bbff;
+}
+main .mode #light:hover{
+    color: black;
+    background-color: #00bbff;
+}
+body{
+    background-color: black;
+}
+nav .links a:hover{
+    border-bottom: 2px solid;
+}

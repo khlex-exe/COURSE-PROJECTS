@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+h1{
+    color: brown;
+    margin-top: 20px;
+}
+body{
+    background-image: url(Thousand\ clone\ stare.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+hr{
+    margin: 20px;
+    background-color: brown;
+    height: 3px;
+}
+a{
+    text-decoration: none;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: brown;
+    color: wheat;
+    padding: 5px 15px;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px black;
+}
+a:hover{
+    background-color: transparent;
+    color: brown;
+}
+img{
+    width: 450px;
+    height: 500px;
+    margin: 13px 0;
+}
+h2{
+    font-size: 25px;
+    color: brown;
+
+}
+p{
+    font-weight: bold;
+    width: 450px;
+}
+
+
+
+
+
+
+
+

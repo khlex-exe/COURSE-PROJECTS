@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+header{
+    padding: 20px 40px;
+    background-color: #2f2e41;
+}
+header nav h1{
+    color: white;
+    font-size: 30px;
+} 
+header h4{
+    text-align: center;
+    color: #6320d6;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul li a{
+    font-size: 18px;
+    color: #ff4b4b;
+}
+ul{
+    list-style-type: square;
+    display: flex;
+    margin: 10px;
+}
+li{
+    margin: 10px;
+}
+img{
+    height: 300px;
+    width: 400px;
+}
+main{
+    padding: 50px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main .left{
+    width: 40%;
+}
+main .left p{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+main .left h1{
+    color: #ba2121;
+}
+main .left a{
+    color: #ff4b4b;
+    font-weight: bolder;
+    border: 1px solid;
+    border-radius:30px;
+    padding: 5px;
+    font-size: 20px;
+    position: relative;   /* the ::before fill is positioned against this */
+    overflow: hidden;
+    z-index: 1;
+}
+main .left a::before{
+    content: '';
+    background-color: #ff4b4b;
+    top:0;
+    position: absolute;
+    left:0;
+    width: 0%;
+    /* height:0%; */
+    transition: width 0.4s ease-out;
+    z-index: -1;
+}
+main .left a:hover::before{
+    width: 100%;
+    height: 100%;
+}
+main .left a:hover{
+    color: white;
+    border: 2px solid;
+}

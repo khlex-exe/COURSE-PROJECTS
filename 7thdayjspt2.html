@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 700;
+        }
+
+        body {
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .links a {
+            color: #333;
+            margin: 0 10px;
+        }
+
+        .links a:hover {
+            color: #555;
+        }
+
+        .color {
+            display: flex;
+        }
+
+        .color div {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            margin-right: 7px;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .color #wheat {
+            background-color: wheat;
+        }
+
+        .color #pink {
+            background-color: pink;
+        }
+
+        .color #lightblue {
+            background-color: lightblue;
+        }
+
+        .color #lightgreen {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Brand</h1>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Products</a>
+            <a href="#">AboutUs</a>
+        </div>
+        <div class="color">
+            <div id="wheat"></div>
+            <div id="pink"></div>
+            <div id="lightblue"></div>
+            <div id="lightgreen"></div>
+        </div>
+    </header>
+
+    <script>
+        const colorDots = document.querySelectorAll('.color div');
+
+        colorDots.forEach((dot) => {
+            dot.onclick = function() {
+                document.body.style.backgroundColor = dot.id;
+            };
+        });
+    </script>
+</body>
+</html>

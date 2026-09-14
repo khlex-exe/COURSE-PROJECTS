@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+    --teal_dark: #0B4F5C;
+    --teal_bright: #1E9AA6;
+    --sand: #E8A97A;
+    --cream: #F7F3EC;
+    --navy_dark: #0A2E36;
+}
+
+nav {
+    background: transparent;
+    position: fixed;   /* was: absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;        /* bumped up so it stays above everything, including images */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--cream);
+}
+
+.logo-icon {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 3px var(--cream) solid;
+    border-radius: 50%;
+}
+
+.nav-links a {
+    color: var(--cream);
+    margin: 0 12px;
+}
+
+.nav-links a:hover {
+    border-bottom: 2px solid var(--teal_bright);
+}
+
+.nav-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-icons div {
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    background: red;
+}
+
+main {
+    position: relative;
+    background-image: url('beach.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;   /* new line */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 40px 40px;
+}
+
+.left {
+    width: 45%;
+}
+
+.left p {
+    color: var(--cream);
+}
+
+.left h1 {
+    color: var(--cream);
+    font-size: 3rem;
+    margin: 15px 0;
+}
+
+.left a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: var(--teal_bright);
+    color: var(--cream);
+    border-radius: 30px;
+}
+
+.right {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.right img {
+    width: 100px;   /* fixed smaller size instead of 100% */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+}

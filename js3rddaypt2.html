@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="txt"></h1>
+    <p class="par"> </p>
+    <img src="" alt="">
+    <!-- <script src="js3rddaypt2.js"></script> -->
+    <script>
+       let txt = document.getElementById("txt")
+       txt.innerHTML="WELCOME"
+       txt.style.color="green"
+    
+       let paragraph= document.getElementsByClassName("par")[0]
+       paragraph.innerHTML=Date()
+       paragraph.style.fontSize="20px"
+       paragraph.style.color="red"
+
+        let image=document.getElementsByTagName("img")[0]
+        image.src="hotel.jpg"
+        image.style.height="200px"
+        image.style.width="200px"
+
+
+    </script>
+</body>
+</html>

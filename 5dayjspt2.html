@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* colors the first p after the first h1 */
+        /* h1+p{
+            color: maroon;
+        } */
+        h1~p{
+            /* any p after the first h1 */
+            /* has to be a sibling */
+            color: maroon;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>welcome</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</body>
+</html>

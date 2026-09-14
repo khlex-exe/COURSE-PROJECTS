@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-4.0.0.min.js"></script>
+    <style>
+        p{
+            background-color: blueviolet;
+            font-size: larger;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="hide()">hide</button>
+    <button onclick="show()">show</button>
+    <button onclick="fadein()">in</button>
+    <button onclick="fadeout()">out</button>
+    <button onclick="fadetoggle()">fadetoggle</button>
+    <button onclick="slideUp()">up</button>
+    <button onclick="slideDown()">down</button>
+    <button onclick="slideToggle()">slide</button>
+    <button onclick="chain()">chain</button>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum illo dolor, corrupti perferendis aliquam facere sed sint non veniam temporibus quibusdam architecto eum sunt iusto eligendi adipisci et deserunt blanditiis voluptatum quae modi. Consequuntur quasi minima dolore quam ab at inventore, ad assumenda quas dolores ut expedita fugiat nulla vel officia labore porro explicabo numquam praesentium quis qui fuga recusandae eligendi! Amet officiis natus exercitationem aliquid minima delectus atque pariatur.</p>
+
+
+
+
+
+    <script>
+        // let p = document.querySelector("p")
+        function hide(){
+            // p.style.display="none"
+            $("p").hide(500)
+        }
+        function show(){
+            // p.style.display="block"
+            $("p").show(500)
+        }
+        function toggle(){
+            $("p").toggle()
+        }
+        function fadein(){
+            $("p").fadeIn()
+        }
+        function fadeout(){
+            $("p").fadeOut()
+        }
+        function fadetoggle(){
+            $("p").fadeToggle()
+        }
+        function slideUp(){
+            $("p").slideUp()
+        }
+        function slideDown(){
+            $("p").slideDown()
+        }
+        function slideToggle(){
+            $("p").slideToggle()
+        }
+        function chain(){
+            $("p").show(500).fadeIn(500).slideUp(500).slideDown(500).css("color","red")
+        }
+    </script>
+</body>
+</html>

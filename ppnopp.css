@@ -1,0 +1,204 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-weight: 500;
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    text-decoration: none;
+}
+
+:root {
+    --teal_dark: #16615F;
+    --teal_bright: #679FA1;
+    --sand: #AA765E;
+    --cream: #C5BAB3;
+    --navy_dark: #2E2019;
+}
+
+nav{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    margin: 4px;
+    border-radius: 50px;
+    padding: 12px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+nav .logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 1px 1px 2px var(--navy_dark);
+    color: var(--cream);
+}
+
+nav .logo_icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px var(--teal_bright) solid;
+    border-radius: 50%;
+}
+/* nav .logo_icon svg{
+    width: 20px;
+    height: 20px;
+    color: var(--teal_bright);
+} */
+.nav_links {
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+    gap: 20px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.nav_links a{
+    color: var(--cream);
+}
+
+.nav_links a:hover{
+    border-bottom: 2px solid var(--teal_dark);
+}
+
+.icon{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon a{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    color: white;
+    font-size: 14px;
+}
+
+.icon a:hover{
+    background-color: white;
+    color: var(--teal_dark);
+}
+
+main{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+  background-image:
+    linear-gradient(to right, rgba(197,186,179,0.25), rgba(197,186,179,0.05)),
+    url('bachy');
+    background-size: cover;
+    background-position: center;
+}
+
+main .left{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    padding: 40px;
+}
+
+main .left p:first-child{
+    color: var(--navy_dark);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+main .left h1{
+    color: var(--navy_dark);
+    font-size: 48px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+main .left p:nth-child(3){
+    color: #5a4a3f;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+main .left a{
+    background-color: var(--teal_bright);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    width: fit-content;
+}
+
+main .left a:hover{
+    background-color: var(--teal_dark);
+}
+.right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+        justify-content: flex-end; /* fixes Hotel card being cut off screen edge */
+    padding-right: 40px;
+}
+
+.card{
+    position: relative;
+    width: 160px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card:nth-child(1){
+    transition: 1s;
+}
+.card:nth-child(1):hover{
+    translate: 0 15px;
+}
+
+.card:nth-child(2){
+    margin-top: -40px;
+    transition: 1s;
+}
+.card:nth-child(2):hover{
+    translate: 0 18px;
+}
+
+.card:nth-child(3){
+    margin-top: 40px;
+    transition: 1s;
+}
+.card:nth-child(3):hover{
+    translate: 0 -25px;
+}
+
+.card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card span{
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}

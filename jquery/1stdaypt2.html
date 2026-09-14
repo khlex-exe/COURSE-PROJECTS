@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-4.0.0.min.js"></script>
+    <style>
+        .circle{
+            background-color: red;
+            position: relative;
+            border-radius: 50%;
+            transition: 2s;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button>animate</button>
+    <button>append</button>
+    <div class="circle"></div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, ipsam.</p>
+
+
+<script>
+        // eq(0) = first button, eq(1) = second button
+        $("button").eq(0).click(()=>{
+            $(".circle").animate({left:"300px"})
+        })
+        $("button").eq(1).click(()=>{
+            $("p").append(" world!")
+            $("p").prepend("hello: ")
+        })
+</script>
+</body>
+</html>

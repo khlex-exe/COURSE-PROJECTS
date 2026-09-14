@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Roboto, sans-serif;
+    font-weight: 600;
+}
+:root {
+    --light_blue: #3268e2;
+    --orange_d: #e64825;
+    --light_green: #4cb164;
+    --dark_grey: #272323;
+    --light: #ffffff;
+    --light_grey: #eeeeee;
+}
+nav{
+    display: flex;
+    /* height:72px; */
+    justify-content: space-between;
+    padding: 15px 30px;
+    /* margin: 9px; */
+    background-color: var(--light_grey);
+    border-radius: 0 0 20px 20px;
+    align-items: center;
+}
+nav  a{
+    font-size: 1.2rem;
+    margin: 1rem;
+    transition: 1s;
+    /* padding: 8px; */
+    /* border: solid var(--light); */
+    /* border-radius: 15px; */
+    /* background-color: var(--muted); */
+    color:var(--dark_grey);
+}
+nav  a:hover{
+    border-bottom: 2px solid;
+
+}
+nav h2{
+    color: var(--orange_d);
+   
+}
+/* nav  a::selection{
+    color: var(--muted);
+    background-color: var(--primary);
+}
+nav h2::selection{
+    color: var(--light);
+    background-color: var(--dark);
+} */
+nav button{
+    font-size: 1.2rem;
+    background-color: var(--light_blue);
+    padding: 5px 23px;
+    border: 0;
+    color: var(--light);
+    border-radius: 20px;
+    transition: 1s;
+}
+ nav button:hover{
+    translate: 5px -5px;
+}
+
+main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    height: 100vh;
+}
+main .left{
+    width: 40%;
+}
+main .left h1{
+    font-size: 2.7rem;
+    color: var(--orange_d);
+}
+main .left p{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+main .left a{
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: var(--light);
+}
+main .left .open{
+    margin-right: 17px;
+    background-color: var(--orange_d);
+}
+main .left .open:hover{
+    background: transparent;
+    color: var(--orange_d);
+}
+main .left .price{
+    background-color: var(--light_blue);
+}
+main .right{
+    width: 40%;
+    position: relative;
+    top: -200px;
+}
+main .right .rightsec_item1 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(to right , var(--orange_d),var(--light_blue ));
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    transform: rotate(30deg);
+    transition: transform 0.5s  ease;
+}
+main .right .rightsec_item1:hover{
+    /* translate: -60px -20px; */
+    transform: translate(-60px, -20px) rotate(-50deg) scale(1.25) ;
+}
+main .right .rightsec_item2 {
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--orange_d),var(--light_blue));
+    border-radius: 20px;
+    position: absolute;
+    top: 360px;
+    left: 400px;
+    transform: rotate(-25deg);
+    box-shadow: 0 10px 25px rgba(50, 104, 226, 0.4);
+    transition: transform 0.4s ease;
+}
+main .right .rightsec_item2:hover {
+    transform: rotate(0deg) scale(1.25);
+    /* translate: -10px -10px; */
+}
+main .right img {
+    height: 400px;
+    width: 550px;
+    position: absolute;
+    left: -50px;
+}
+section{
+    height: 100vh;
+    background: var(--light_grey);
+    border-radius: 30px;
+    padding: 30px;
+    margin: 30px;
+}
+section h1{
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: linear-gradient(to right, #a10707, #3268e2);
+    color: transparent;
+    background-clip: text;
+}
+section .slide{
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+}
+section .slide .parent{
+    margin: 7px;
+    box-shadow: 0 0 15px;
+    text-align: center;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+}
+section .slide .parent:hover{
+    scale: 1.1;
+}
+ section .slide .parent div{
+    width: 100%;
+    height: fit-content;
+    background: var(--orange_d);
+    padding: 7px;
+ }
+ section .slide .parent p{
+    margin: 7px 0 7px 0;
+ }
+ section .slide .parent h3{
+    color: var(--orange_d);
+    font-weight: bolder;
+ }
+section .slide .parent h4{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--light_blue);
+}
+section .slide .parent div a{
+    color: var(--light_blue);
+}
+section img{
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+}
+
+
+
+

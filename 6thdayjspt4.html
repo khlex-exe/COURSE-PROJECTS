@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        .card{
+            background-color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+   <h1>To Do List</h1>
+
+<div class="card">
+  <h2>Order Here</h2>
+
+  <div class="input-row">
+    <input type="text" id="todo-input" placeholder="Type a task...">
+    <button id="add-btn">+</button>
+  </div>
+
+  <ol id="todo-list">
+  
+  </ol>
+</div>
+
+
+
+
+
+    <script>
+       const addbutton = document.getElementById("add-btn");
+
+        addbutton.addEventListener("click", function(){
+            const tasktext = document.getElementById("todo-input").value;
+            if(tasktext.trim() === "") return; // ignore empty tasks
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(tasktext));
+            document.getElementById("todo-list").appendChild(li);
+            document.getElementById("todo-input").value = ""; // clear the input
+        });
+
+
+
+
+    </script>
+</body>
+</html>

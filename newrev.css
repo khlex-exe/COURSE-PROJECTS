@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: bolder;
+    /* font-family: rob;    */
+ }
+nav{
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    background: #eeeeee;
+    text-align: center;
+    border-radius: 25px;
+}
+nav h1{
+    color: #e64825;
+}
+nav .links a{
+    margin: 15px;
+    color: #272323;
+    font-size: 1.2rem;
+}
+nav .links button{
+    background: lightblue;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    border: none;
+
+    border-radius: 15px;
+}
+main{
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+}
+main .leftsec h1{
+    font-size: 2.5rem;
+    color: #e64825; 
+}
+main .leftsec{
+    width: 40%;
+}
+main .leftsec p{
+    color:#272323 ;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+main .leftsec a{
+    color: #eeeeee;
+    padding: 5px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+}
+main .rightsec img{
+    width: 550px;
+    height: 350px;
+    position: absolute;
+    left: -1px;
+    
+}
+main .leftsec #price{
+    margin-right: 15px;
+    background-color: blue;
+}
+main .leftsec #open{
+    margin-right: 15px;
+    background-color: #e64825;
+    
+}
+main .rightsec{
+    width: 550px;
+    position: relative;
+    top: 150px;
+
+}
+main .rightsec .orange{
+    height: 250px;
+    width: 300px;
+    border-radius: 50%;
+    background-color: #e64825;
+    position: absolute;
+    top: 50px;
+    left: -50px;
+}
+
+main .rightsec .blue{
+    height: 40px;
+    width: 80px;
+    background-color: lightblue;
+    border-radius: 20px;
+    position: absolute;
+    top: 380px;
+    left: 530px;
+}

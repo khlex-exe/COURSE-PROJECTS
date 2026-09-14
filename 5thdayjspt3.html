@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo{
+            color: red;
+        }
+        .txt{
+            font-size: larger;
+        }
+        .par{
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="add()">Add</button>
+    <button onclick="remove()">Remove</button>
+    <button onclick="toggle()">toggle</button>
+    <button onclick="replace()">replace</button>
+    
+    <p class="demo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ex aliquid nulla beatae corrupti ducimus atque quam hic! 
+        Eaque ipsa harum dolorem quos expedita tempore eveniet esse commodi laborum temporibus, fugit hic alias 
+        voluptas debitis, doloremque id. Unde, nihil dolores!</p>
+    <script>
+        let p = document.getElementsByClassName("demo")[0]
+        
+
+        function add() {
+            p.classList.add('demo')
+            p.classList.add('txt')
+        }
+        function remove() {
+            p.classList.remove('demo')
+            p.classList.remove('txt')
+        }
+        function toggle() {
+            p.classList.toggle('demo')
+            p.classList.toggle('txt')
+        }
+        function replace() {
+            p.classList.replace('demo','par')
+        }
+
+    </script>
+</body>
+</html>

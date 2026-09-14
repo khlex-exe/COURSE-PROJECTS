@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border:1px solid ;
+        }
+        .container{
+            font-size: 50px;
+            height: 400px;
+            display: flex; 
+            /*flex makes all of them on the same line*/
+            /* flex-direction:row ; in a row duh */
+            /* flex-direction: row-reverse; reverse of a row duh */
+            /* flex-direction: column; in a column duh */
+            /* flex-direction: column-reverse; blah blah duh */
+            /* justify-content: flex-start; default */
+            /* justify-content: flex-end; end of screen */
+            justify-content: space-around; /*spaces in between all the variables*/
+            /*justify content is like a class thing where all things(flexes) have these stuff applied*/
+            flex-wrap: wrap;/*if you have alot of letters they might overlap so this makes it so it starts the second line so your letters continue in a new line*/
+            align-items: stretch;/*default is stretch, takes the whole line*/
+            align-items: center;/*center of the container*/
+            
+
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+/* .wrapped{
+    background-color: orangered;
+    outline: 1px solid red;
+    outline-offset: 10px;
+    transition: 1s ease-in;
+    width: 30px;
+    height: 30px;
+    margin: 300px;
+}
+.wrapper{
+    transition: 1s ease;
+}
+.wrapper:hover{
+    translate: 12px 0;
+} */
+.box {
+    margin: 300px;
+    width: 30px;
+    height: 30px;
+    background: orangered;
+    outline: 3px dotted orange;
+    outline-offset: 15px;
+    transition: outline-offset 0.4s ease;
+}
+.box:hover {
+    outline-offset: 4px;
+}
+.wrapper {
+    /* border: 3px solid red; */
+    padding: 10px;
+    width: fit-content;
+}

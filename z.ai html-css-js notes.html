@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>z.ai html-css-js notes</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#171e2e; --panel2:#1c2438; --line:#2a3550;
+    --txt:#e8ecf5; --muted:#9aa7c0;
+    --html:#e34c26; --css:#264de4; --js:#f0db4f; --bs:#7952b3; --jq:#0769ad;
+    --accent:#4fd1c5; --warn:#ffb454; --bad:#ff6b6b; --good:#51cf66;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:1.65; font-size:16px;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  code, pre{font-family:Consolas, 'Courier New', monospace;}
+
+  /* ===== top bar ===== */
+  header.top{
+    position:sticky; top:0; z-index:100;
+    background:rgba(15,20,32,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:14px 28px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  header.top h1{font-size:1.3rem; letter-spacing:.5px;}
+  header.top h1 span{color:var(--accent);}
+  nav.chips{display:flex; gap:8px; flex-wrap:wrap;}
+  nav.chips a{
+    font-size:.8rem; padding:4px 12px; border-radius:999px;
+    border:1px solid var(--line); color:var(--muted);
+  }
+  nav.chips a:hover{color:var(--txt); border-color:var(--accent); text-decoration:none;}
+
+  /* ===== layout ===== */
+  .wrap{max-width:1100px; margin:0 auto; padding:30px 24px 80px;}
+  section{margin-bottom:56px;}
+  h2.sec{
+    font-size:1.9rem; margin-bottom:6px; padding-bottom:10px;
+    border-bottom:3px solid var(--line);
+  }
+  h2.sec .tag{
+    font-size:.75rem; vertical-align:middle; margin-left:10px;
+    padding:3px 10px; border-radius:999px; color:#0f1420; font-weight:700;
+  }
+  h3{font-size:1.25rem; margin:28px 0 10px; color:var(--accent);}
+  h4{margin:18px 0 6px;}
+  p{margin:8px 0; color:var(--txt);}
+  .muted{color:var(--muted);}
+  ul.pts{margin:8px 0 8px 22px;}
+  ul.pts li{margin:5px 0;}
+  ul.pts li::marker{color:var(--accent);}
+
+  /* ===== code blocks ===== */
+  pre{
+    background:#0b0f1a; border:1px solid var(--line); border-radius:10px;
+    padding:14px 16px; margin:12px 0; overflow-x:auto; font-size:.88rem; line-height:1.55;
+  }
+  code.inline{
+    background:#0b0f1a; border:1px solid var(--line); border-radius:6px;
+    padding:1px 7px; font-size:.86em; color:#ffd479;
+  }
+  .lbl{font-size:.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:-6px;}
+  .lbl.html{color:var(--html);} .lbl.css{color:#7c9bff;} .lbl.js{color:var(--js);}
+  .lbl.bs{color:#b79df5;} .lbl.jq{color:#5cb3ea;}
+
+  /* ===== callouts / cards ===== */
+  .note,.warn,.fix{
+    border-radius:10px; padding:12px 16px; margin:14px 0; border:1px solid;
+  }
+  .note{border-color:#2f6f6a; background:rgba(79,209,197,.08);}
+  .note::before{content:"💡 NOTE — "; font-weight:700; color:var(--accent);}
+  .warn{border-color:#7a5a2a; background:rgba(255,180,84,.08);}
+  .warn::before{content:"⚠️ CAREFUL — "; font-weight:700; color:var(--warn);}
+  .fix{border-color:#7a2f2f; background:rgba(255,107,107,.08);}
+  .fix::before{content:"🛠 FIXED IN YOUR CODE — "; font-weight:700; color:var(--bad);}
+  .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
+  }
+  .card h4{margin-top:0; color:var(--txt);}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:.92rem;}
+  th,td{border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top;}
+  th{background:var(--panel2); color:var(--accent);}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+
+  .hero{
+    background:linear-gradient(135deg,#171e2e 0%, #1b2a4a 60%, #14333d 100%);
+    border:1px solid var(--line); border-radius:16px; padding:36px 32px; margin-bottom:40px;
+  }
+  .hero h2{font-size:2.1rem; margin-bottom:10px;}
+  .hero p{color:var(--muted); max-width:760px;}
+  .hero .badges{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;}
+  .hero .badges span{
+    font-size:.78rem; font-weight:700; padding:4px 12px; border-radius:999px; color:#0f1420;
+  }
+  footer{border-top:1px solid var(--line); padding:24px; text-align:center; color:var(--muted); font-size:.85rem;}
+  .kbd{border:1px solid var(--line); border-bottom-width:3px; border-radius:6px; padding:1px 8px; font-size:.85em; background:#0b0f1a;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>z.ai <span>html-css-js notes</span></h1>
+  <nav class="chips">
+    <a href="#html">HTML</a>
+    <a href="#css">CSS</a>
+    <a href="#layout">Flex &amp; Grid</a>
+    <a href="#bootstrap">Bootstrap</a>
+    <a href="#js">JavaScript</a>
+    <a href="#dom">DOM &amp; Events</a>
+    <a href="#jquery">jQuery</a>
+    <a href="#errors">Errors I Fixed</a>
+    <a href="#checklist">Best-Practice Checklist</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h2>Everything from your course, in one page.</h2>
+    <p>These notes are built directly from <strong>your own files</strong> (1stdaybootstrap → day30, the project pages, and the jQuery exercises). Every topic your code touches is explained here, with the exact mistakes that were in your code called out in red “fixed” boxes so you never repeat them.</p>
+    <div class="badges">
+      <span style="background:var(--html)">HTML</span>
+      <span style="background:#7c9bff">CSS</span>
+      <span style="background:var(--js)">JavaScript</span>
+      <span style="background:var(--bs)">Bootstrap 5</span>
+      <span style="background:var(--jq)">jQuery</span>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <section id="html">
+    <h2 class="sec">1. HTML Foundations <span class="tag" style="background:var(--html)">HTML</span></h2>
+
+    <h3>1.1 Page skeleton</h3>
+    <p>Every file you wrote starts with the same correct skeleton. Learn it by heart:</p>
+<pre>&lt;!DOCTYPE html&gt;                          &lt;!-- tells the browser: modern HTML --&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;                                    &lt;!-- invisible info ABOUT the page --&gt;
+    &lt;meta charset="UTF-8"&gt;                &lt;!-- allows all characters/emojis --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;page @htmlcourse@&lt;/title&gt;      &lt;!-- text on the browser tab --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;   &lt;!-- CSS goes in the head --&gt;
+&lt;/head&gt;
+&lt;body&gt;                                    &lt;!-- everything the user SEES --&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;         &lt;!-- JS at the end of the body --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <div class="warn">Only <code class="inline">&lt;meta&gt;</code>, <code class="inline">&lt;title&gt;</code>, <code class="inline">&lt;link&gt;</code>, <code class="inline">&lt;style&gt;</code> and <code class="inline">&lt;script&gt;</code> belong in the <code class="inline">&lt;head&gt;</code>. In two of your files (<code class="inline">index4.html</code> and <code class="inline">project2.html</code>) a <code class="inline">&lt;center&gt;</code> tag ended up inside the head — the browser silently moves it, but it is invalid. I fixed both.</div>
+
+    <h3>1.2 Text, headings and comments</h3>
+    <ul class="pts">
+      <li><code class="inline">&lt;h1&gt;</code>–<code class="inline">&lt;h6&gt;</code>: the only difference is default font size / importance. Use <strong>one h1 per page</strong> for the main title.</li>
+      <li><code class="inline">&lt;p&gt;</code> = paragraph. <code class="inline">&lt;hr&gt;</code> = horizontal line (thematic break). <code class="inline">&lt;br&gt;</code> = line break.</li>
+      <li>Comment shortcut in VS Code: <span class="kbd">Ctrl</span> + <span class="kbd">/</span> — comments are invisible in the page.</li>
+      <li>Whatever you write inside <code class="inline">&lt;body&gt;</code> counts even without quotes — but the browser only understands it if it is inside real tags.</li>
+      <li><code class="inline">lorem</code> in VS Code generates filler text; <code class="inline">lorem10</code> generates exactly 10 words.</li>
+    </ul>
+
+    <h3>1.3 Images</h3>
+<pre>&lt;img src="hold your horses.jpg" width="300" height="200" alt="this is a pic"&gt;</pre>
+    <ul class="pts">
+      <li><code class="inline">src</code> = where the picture is. <code class="inline">alt</code> = text shown if the image fails / for screen readers. <strong>Always write alt.</strong></li>
+      <li><code class="inline">width</code>/<code class="inline">height</code> as HTML attributes take numbers or <code class="inline">px</code> values; in CSS you write <code class="inline">width: 300px;</code></li>
+      <li>If the image shows as broken, the file name/extension is wrong — check spelling and case.</li>
+    </ul>
+
+    <h3>1.4 Links <code class="inline">&lt;a&gt;</code></h3>
+<pre>&lt;a href="index.html"&gt;go to first page&lt;/a&gt;          &lt;!-- same folder --&gt;
+&lt;a href="https://animepahe.com"&gt;external site&lt;/a&gt;
+&lt;a href="https://..." target="_blank"&gt;new tab&lt;/a&gt;  &lt;!-- _self is the default --&gt;
+&lt;a href="tel:+201553565565"&gt;call me&lt;/a&gt;
+&lt;a href="mailto:khlexexe@gmail.com"&gt;email me&lt;/a&gt;
+&lt;a href="#par"&gt;jump to a section&lt;/a&gt;              &lt;!-- anchor link --&gt;
+&lt;div id="par"&gt;...&lt;/div&gt;                            &lt;!-- the target of #par --&gt;</pre>
+    <ul class="pts">
+      <li><code class="inline">href</code> = where you are going. <code class="inline">#name</code> jumps to the element whose <code class="inline">id="name"</code> (you used this in <code class="inline">lorem5andhalf.html</code>, <code class="inline">project.html</code> and the car/food projects — “back to the top” links).</li>
+      <li><code class="inline">target="_blank"</code> opens in a new tab.</li>
+    </ul>
+
+    <h3>1.5 Forms (index3.html &amp; 5thdayjs.html)</h3>
+<pre>&lt;form&gt;
+    &lt;label for="txt"&gt;username&lt;/label&gt;
+    &lt;input type="text" id="txt" required placeholder="write your name buddy"&gt;
+
+    &lt;input type="password" id="pass" required&gt;
+    &lt;input type="email"   id="mail"&gt;
+    &lt;input type="date"    id="age"&gt;      &lt;!-- birthday picker --&gt;
+    &lt;input type="number"  id="num"&gt;
+
+    &lt;!-- radio = pick ONE. Same name groups them together --&gt;
+    &lt;input type="radio" name="my" id="mal"&gt;   &lt;label for="mal"&gt;male&lt;/label&gt;
+    &lt;input type="radio" name="my" id="femal"&gt; &lt;label for="femal"&gt;female&lt;/label&gt;
+    &lt;input type="radio" name="my" id="othr"&gt;  &lt;label for="othr"&gt;other&lt;/label&gt;
+
+    &lt;!-- checkbox = pick MANY --&gt;
+    &lt;input type="checkbox" id="label"&gt; &lt;label for="label"&gt;html&lt;/label&gt;
+
+    &lt;select&gt;
+        &lt;option selected disabled&gt;choose country&lt;/option&gt; &lt;!-- shows first, not clickable --&gt;
+        &lt;option&gt;egypt&lt;/option&gt;
+        &lt;option&gt;syria&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;textarea cols="40" rows="8" maxlength="10"&gt;&lt;/textarea&gt;
+
+    &lt;input type="submit" value="submit your form"&gt;
+    &lt;input type="reset"  value="reset your form"&gt;
+&lt;/form&gt;</pre>
+    <ul class="pts">
+      <li><strong><code class="inline">label for</code> must equal the input’s <code class="inline">id</code></strong>. That is the whole contract — clicking the label then focuses/toggles the input, and screen readers announce it correctly. Several of your labels pointed at wrong ids (<code class="inline">for="gender"</code>, <code class="inline">for="check1"</code>…) — fixed.</li>
+      <li><code class="inline">required</code> = user cannot skip the field. <code class="inline">placeholder</code> = grey hint text. <code class="inline">maxlength</code>/<code class="inline">minlength</code> limit the text length.</li>
+      <li>Radio buttons only behave as “choose one” when they share the same <code class="inline">name</code> — yours did this right (<code class="inline">name="my"</code>).</li>
+      <li><code class="inline">selected</code> pre-picks an option; <code class="inline">disabled</code> makes it un-clickable.</li>
+      <li><code class="inline">action</code> attribute on <code class="inline">&lt;form&gt;</code> is for backend servers — you removed it correctly for a frontend-only page.</li>
+      <li><code class="inline">cols</code>/<code class="inline">rows</code> size a textarea.</li>
+    </ul>
+
+    <h3>1.6 Tables</h3>
+<pre>&lt;table border="1"&gt;
+    &lt;tr&gt;                &lt;!-- table row --&gt;
+        &lt;th&gt;username&lt;/th&gt;  &lt;!-- table header (bold) --&gt;
+        &lt;th&gt;age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;ahmed&lt;/td&gt;     &lt;!-- table data --&gt;
+        &lt;td&gt;20&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</pre>
+    <p class="muted">tr = row, th = header cell (bold), td = normal cell. The whole row of <code class="inline">&lt;th&gt;</code> you used as fake data was changed to a proper <code class="inline">&lt;td&gt;</code> row with real-looking data.</p>
+
+    <h3>1.7 Audio &amp; video</h3>
+<pre>&lt;audio src="song.mp3" controls loop autoplay muted&gt;&lt;/audio&gt;
+&lt;video src="clip.mp4" width="500" controls muted autoplay&gt;&lt;/video&gt;</pre>
+    <ul class="pts">
+      <li><code class="inline">controls</code> shows the play bar. <code class="inline">loop</code> repeats forever. <code class="inline">autoplay</code> only works when the media is also <code class="inline">muted</code> (browser rule).</li>
+      <li>Your audio/video tags were correct — nice.</li>
+    </ul>
+
+    <h3>1.8 Semantic tags &amp; misc</h3>
+    <ul class="pts">
+      <li><code class="inline">&lt;span&gt;</code> picks out part of the text to style (your “<span style="color:#4fd1c5">MY</span> LOGO” trick).</li>
+      <li><code class="inline">&lt;center&gt;</code> is <strong>deprecated</strong> — use CSS <code class="inline">text-align:center</code> (I converted your usages). Same for <code class="inline">border</code> on tables — prefer CSS.</li>
+      <li>Structure tags you used in the big projects: <code class="inline">nav, header, main, section, aside, footer, article</code> — they carry meaning and help SEO/screen readers.</li>
+    </ul>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="css">
+    <h2 class="sec">2. CSS Basics <span class="tag" style="background:#7c9bff">CSS</span></h2>
+
+    <h3>2.1 Three ways to add CSS</h3>
+    <div class="grid2">
+      <div class="card"><h4>Inline (on the element)</h4><pre>&lt;h1 style="color:red"&gt;hello&lt;/h1&gt;</pre><p class="muted">Quick tests only.</p></div>
+      <div class="card"><h4>Internal (in the head)</h4><pre>&lt;style&gt;
+  h3 { color: blue; }
+&lt;/style&gt;</pre><p class="muted">Single-page exercises.</p></div>
+      <div class="card"><h4>External (separate file) ✓ best</h4><pre>&lt;link rel="stylesheet" href="5thdayjs.css"&gt;</pre><p class="muted">What your projects use.</p></div>
+    </div>
+
+    <h3>2.2 Selectors</h3>
+<pre>h3          { }   /* by tag            */
+#one        { }   /* by id   — one element  */
+.first      { }   /* by class — reusable     */
+*           { }   /* everything (the reset)  */
+
+h1 + p      { }   /* the FIRST p right after an h1 (adjacent sibling) */
+h1 ~ p      { }   /* ALL p siblings after the h1 (general sibling)    */
+
+nav a       { }   /* descendant: any a inside nav         */
+nav &gt; a     { }   /* direct child only                    */
+
+a:link      { }   /* unvisited link                       */
+a:visited   { }   /* already visited                      */
+a:hover     { }   /* mouse is over it — your favorite!    */
+a:active    { }   /* while being clicked                  */
+::selection { }   /* text the user highlights (day30pt2)  */
+h1::before  { content:'💕'; }   /* inserts content before */
+h1::after   { content:'❤️'; }   /* inserts content after  */</pre>
+    <div class="warn">CSS comments do <strong>not</strong> nest. In <code class="inline">lecafter27.html</code> you wrote <code class="inline">/* /* grid-column-start: 1; */</code> — the first <code class="inline">*/</code> closes the comment, so everything after it is live CSS again. Always delete commented code or keep one level.</div>
+    <div class="note">Specificity (who wins when rules collide): inline style &gt; <code class="inline">#id</code> &gt; <code class="inline">.class</code> &gt; tag. Later rules beat earlier ones at equal specificity.</div>
+
+    <h3>2.3 Text &amp; color properties</h3>
+<pre>color: red;                    background-color: aqua;
+font-size: 40px;               font-family: sans-serif;   /* or "Roboto", cursive... */
+font-weight: lighter;          /* 100–900, bold, bolder — NEVER "600px" */
+text-align: center;            text-decoration: none;     /* removes link underline */
+text-shadow: 0 0 15px purple;  /* x-offset y-offset blur color */</pre>
+    <div class="fix"><code class="inline">font-weight: 600px</code> in <code class="inline">5thdayjs2.html</code> — font-weight is a number or keyword, not a length. Changed to <code class="inline">600</code>. Also <code class="inline">font-width</code> in <code class="inline">day30pt3better.css</code> is not a property → <code class="inline">font-weight</code>.</div>
+
+    <h3>2.4 Backgrounds</h3>
+<pre>body{
+    background-image: url("hold your horses.jpg");   /* quoted, real spaces are fine */
+    background-repeat: no-repeat;
+    background-attachment: fixed;   /* image stays put while you scroll */
+    background-position: center;
+    background-size: cover;         /* fill the screen, keep proportions */
+
+    /* gradients (they are images too): */
+    background-image: linear-gradient(to right, pink, lightpink, lightblue, cyan);
+    background-image: radial-gradient(red, black);   /* circular */
+}</pre>
+
+    <h3>2.5 The box model (your “link in a box” demo, index4.html)</h3>
+<pre>a{
+    border: 3px solid blue;    /* the wall            */
+    padding: 3px 10px;         /* space INSIDE, between content and border (top-bottom | left-right) */
+    margin: 50px 100px;        /* space OUTSIDE, between border and the page   */
+    border-radius: 1px 0 90px; /* rounds corners: top-left top-right bottom-right... */
+}</pre>
+    <ul class="pts">
+      <li>The universal reset you put at the top of every project is standard practice:</li>
+    </ul>
+<pre>*{ margin:0; padding:0; box-sizing:border-box; text-decoration:none; }</pre>
+    <div class="note"><code class="inline">box-sizing: border-box</code> makes <code class="inline">width</code> include padding + border, so elements stay the size you asked for. Keep it in every project.</div>
+    <ul class="pts">
+      <li><code class="inline">outline</code> (testmyself.css) draws a line <em>outside</em> the border without taking space; <code class="inline">outline-offset</code> moves it — your hover trick that pulls the dotted ring inward was correct.</li>
+      <li><code class="inline">box-shadow: 0 10px 25px rgba(...)</code> = x y blur color. You used it well on cards.</li>
+    </ul>
+
+    <h3>2.6 CSS variables (teach.css / bymyself.css)</h3>
+<pre>:root {
+    --light_blue: #3268e2;
+    --orange_d:   #e64825;
+}
+nav a { color: var(--dark_grey); }   /* use with var(...) */</pre>
+    <p class="muted">Define once, reuse everywhere. You used this in your best projects.</p>
+
+    <h3>2.7 Fonts &amp; icons from the internet</h3>
+<pre>&lt;!-- Google Fonts: copy the &lt;link&gt; tags from fonts.google.com --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900..." rel="stylesheet"&gt;
+
+&lt;!-- Font Awesome icons --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"&gt;
+&lt;i class="fa-solid fa-cart-plus"&gt;&lt;/i&gt;      &lt;!-- fa-solid / fa-brands / fa-regular --&gt;</pre>
+
+    <h3>2.8 Pseudo-element button fill (day30pt3better.css)</h3>
+<pre>main .left a{
+    position: relative;    /* the ::before is positioned against THIS */
+    overflow: hidden;      /* clip the fill to the rounded shape */
+    z-index: 1;
+}
+main .left a::before{
+    content: '';
+    background-color: #ff4b4b;
+    position: absolute; top: 0; left: 0;
+    width: 0%; height: 100%;
+    transition: width 0.4s ease-out;   /* needs a DURATION, not just "ease-out" */
+    z-index: -1;
+}
+main .left a:hover::before{ width: 100%; }</pre>
+    <div class="fix">Your version had <code class="inline">transition: ease-out;</code> (no duration = no animation) and the <code class="inline">::before</code> had no positioned parent, so it filled from the page corner. Both fixed: duration added, <code class="inline">position:relative</code> + <code class="inline">overflow:hidden</code> on the link.</div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="layout">
+    <h2 class="sec">3. Positioning, Flexbox &amp; Grid <span class="tag" style="background:#7c9bff">LAYOUT</span></h2>
+
+    <h3>3.1 position (index5.html, lec27thirdhalf.html, project.html)</h3>
+    <table>
+      <tr><th>Value</th><th>Meaning</th><th>top/left work?</th></tr>
+      <tr><td><code>static</code></td><td>default, normal flow</td><td>❌ ignored</td></tr>
+      <tr><td><code>relative</code></td><td>offset from its own normal spot; becomes the reference frame for absolute children</td><td>✅</td></tr>
+      <tr><td><code>absolute</code></td><td>pinned to the nearest positioned ancestor (or the page); removed from flow</td><td>✅</td></tr>
+      <tr><td><code>fixed</code></td><td>glued to the viewport, survives scrolling (your PROJECT.css navbar)</td><td>✅</td></tr>
+      <tr><td><code>sticky</code></td><td>scrolls normally until it reaches <code>top:0</code>, then sticks (your title bar + index5 div)</td><td>✅ (needs a top/left value)</td></tr>
+    </table>
+<pre>div{
+    position: sticky;
+    top: 0;            /* sticky/absolute/fixed do nothing without this */
+    z-index: -1;       /* stacking order: higher = in front */
+}</pre>
+    <p class="muted">Your image-overlap demo (lec27thirdhalf) works because both images are <code class="inline">position:absolute</code> inside a <code class="inline">position:relative</code> parent, and z-index decides who is on top.</p>
+
+    <h3>3.2 Flexbox (index67.html, navbars everywhere)</h3>
+<pre>.container{
+    display: flex;                      /* children sit on one line  */
+    flex-direction: row;                /* row | row-reverse | column | column-reverse */
+    justify-content: space-around;      /* main axis: flex-start | flex-end | center | space-between | space-around | space-evenly */
+    align-items: center;                /* cross axis: stretch (default) | center | flex-start | flex-end */
+    flex-wrap: wrap;                    /* let items wrap to a new line instead of squashing */
+    gap: 20px;                          /* clean spacing, no margins needed */
+}</pre>
+    <ul class="pts">
+      <li><strong>justify-content</strong> = along the row; <strong>align-items</strong> = up/down. Swapped when <code class="inline">flex-direction: column</code>.</li>
+      <li>On the items themselves (lec27): <code class="inline">order: 2</code> reorders visually; <code class="inline">flex-grow: 1</code> lets an item stretch to fill free space; <code class="inline">flex-shrink: 4</code> makes it shrink 4× faster when space runs out.</li>
+      <li>Your navbar recipe (used in nearly every project): <code class="inline">display:flex; justify-content:space-between; align-items:center; padding: 15px 30px;</code> — learn this one by heart.</li>
+    </ul>
+
+    <h3>3.3 CSS Grid (lecafter27.html, day30.html, 4thdayjspt2.css)</h3>
+<pre>.container{
+    display: grid;
+    grid-template-columns: repeat(4, auto);   /* or "40% 60%", "1fr 2fr", "250px 1fr" */
+    grid-template-rows: repeat(5, auto);
+    gap: 5px 10px;                            /* row-gap column-gap */
+}
+.item1{ grid-column: 1/3; }        /* start at line 1, end BEFORE line 3 */
+.item8{ grid-row: 2/4; grid-column: 1/5; }
+.item1{ grid-area: 1/1/3/3; }      /* shorthand: row-start / col-start / row-end / col-end */</pre>
+<pre>/* Named areas — the dashboard layout from 4thdayjspt2: */
+.container{
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 90px 1fr;
+    grid-template-areas:
+        'side nav'
+        'side main';
+}
+.nav  { grid-area: nav; }
+.side { grid-area: side; }
+.main { grid-area: main; }</pre>
+    <div class="fix">In <code class="inline">4thdayjspt2.css</code> the grid-area assignments existed but the container was never <code class="inline">display:grid</code>, so nothing could happen — I added the grid block above, and the four <code class="inline">&lt;img&gt;</code> tags got the <code class="inline">id="first/scound/third/fourth"</code> the CSS was targeting.</div>
+    <div class="note">The blog layout (projectrqfr.css) is the same idea: <code class="inline">grid-template-columns: 1fr 2fr</code> + <code class="inline">.header,.footer{ grid-column: 1/-1; }</code> makes header and footer span every column (<code class="inline">-1</code> = the last line).</div>
+
+    <h3>3.4 Transitions (index6.html, index65.html)</h3>
+<pre>div{
+    transition-property: width;      /* WHICH property animates (name only!) */
+    transition-duration: 1s;         /* how long */
+    transition-delay: 0.05s;         /* wait before starting */
+    transition-timing-function: ease-in-out;   /* speed curve */
+    /* shorthand: property duration timing delay */
+    transition: width 1s linear 1s;
+}
+div:hover{ width: 400px; }           /* the state we animate TO */</pre>
+    <ul class="pts">
+      <li>Timing functions: <code class="inline">ease</code> (default), <code class="inline">linear</code> (constant), <code class="inline">ease-in</code> (slow→fast), <code class="inline">ease-out</code> (fast→slow), <code class="inline">ease-in-out</code> (slow→fast→slow).</li>
+    </ul>
+    <div class="fix"><code class="inline">transition-property: width 1s;</code> in <code class="inline">index6.html</code> — transition-property takes only a property name; the time belongs to duration. Fixed.</div>
+
+    <h3>3.5 Transforms (index65.html)</h3>
+<pre>div:hover{
+    /* old way — one transform, space-separated: */
+    transform: translate(100px,100px) skew(20deg) scale(2) rotate(360deg);
+
+    /* new individual properties (except skew — no standalone property): */
+    translate: 100px 100px;
+    rotate: 360deg;
+    scale: 1.3;
+    transform: skew(20deg);   /* skew still needs transform */
+}</pre>
+    <p class="muted">translate = move (x y), scale = resize, rotate = spin, skew = slant. Pair with <code class="inline">transition</code> to animate them.</p>
+
+    <h3>3.6 Nice extras you already used</h3>
+    <ul class="pts">
+      <li><strong>Gradient text</strong> (teach.css, bymyself.css): <code class="inline">background:linear-gradient(...); color:transparent; background-clip:text;</code></li>
+      <li><strong>Glass navbar</strong> (test of skill): <code class="inline">background:rgba(248,241,231,.6); backdrop-filter:blur(4px); position:sticky; top:0;</code></li>
+      <li><strong>Image overlay cards</strong> (ppnopp.css): card gets <code class="inline">position:relative; overflow:hidden</code>, the <code class="inline">&lt;span&gt;</code> inside gets <code class="inline">position:absolute; bottom:20px;</code></li>
+      <li><strong>Staggered hover cards</strong>: <code class="inline">.card:nth-child(2){ margin-top:-40px }</code> + <code class="inline">translate</code> on hover.</li>
+      <li><strong>Full-screen hero</strong>: parent <code class="inline">height:100vh; display:flex; align-items:center; justify-content:space-between;</code></li>
+    </ul>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="bootstrap">
+    <h2 class="sec">4. Bootstrap 5 <span class="tag" style="background:var(--bs)">BOOTSTRAP</span></h2>
+<pre>&lt;!-- CSS in the head, JS just before &lt;/body&gt; --&gt;
+&lt;link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css"&gt;
+...
+&lt;script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</pre>
+    <div class="fix">In <code class="inline">1stdaybootstrap.html</code> the script pointed at <code class="inline">js/bootstrap.bundle.min.js</code> but the folder lives inside <code class="inline">bootstrap-5.3.8-dist/</code> — path fixed, otherwise the JS-powered components (dropdowns, modals) never work.</div>
+<pre>&lt;button class="btn btn-success"&gt;1&lt;/button&gt;
+&lt;button class="btn btn-outline-info"&gt;click here&lt;/button&gt;</pre>
+    <ul class="pts">
+      <li><code class="inline">btn</code> = base class, <code class="inline">btn-success / btn-danger / btn-info...</code> = colors, <code class="inline">btn-outline-*</code> = colored border + transparent fill.</li>
+      <li>The grid you will grow into: <code class="inline">container &gt; row &gt; col-6 col-md-4</code> — 12 columns per row, responsive breakpoints <code class="inline">sm md lg xl</code>.</li>
+      <li>Useful utilities: <code class="inline">m-3 p-2</code> (spacing 0–5), <code class="inline">text-center</code>, <code class="inline">d-flex</code>, <code class="inline">w-100</code>, <code class="inline">rounded</code>, <code class="inline">shadow</code>.</li>
+      <li><code class="inline">bootstrap.bundle.min.js</code> already includes Popper — never also add popper.js separately.</li>
+    </ul>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="js">
+    <h2 class="sec">5. JavaScript Core <span class="tag" style="background:var(--js)">JAVASCRIPT</span></h2>
+
+    <h3>5.1 Running JS &amp; output</h3>
+<pre>console.log("hello")     // developer console (F12)
+alert("welcome")         // popup box
+prompt("enter your id")  // asks for input, RETURNS A STRING
+document.write("hello")  // writes into the page (fine for practice, avoid in real apps)</pre>
+
+    <h3>5.2 Variables: let, var, const (day10mn8.js)</h3>
+    <table>
+      <tr><th>Keyword</th><th>Re-declarable?</th><th>Use it for</th></tr>
+      <tr><td><code>let</code></td><td>❌ (one let per name)</td><td>normal variables — your default</td></tr>
+      <tr><td><code>var</code></td><td>✅ (last one wins)</td><td>old code only; avoid</td></tr>
+      <tr><td><code>const</code></td><td>❌ and value can’t change</td><td>PI, DOM elements you never re-assign</td></tr>
+    </table>
+<pre>const pi = 3.14;
+let x = "hello";
+console.log(typeof pi);   // "number" — typeof tells you the type</pre>
+
+    <h3>5.3 Operators &amp; conversion</h3>
+<pre>num1 + num2      // + - * / %  (also + joins strings)
+x == 5           // compare VALUE only ("5" == 5 is true)  ← loose
+x === 5          // compare value AND type ("5" === 5 is false) ← prefer this
+&amp;&amp;  ||  !        // and, or, not (age &lt;= 100 &amp;&amp; age &gt;= 75)
+
+Number("123")    // string → number. ALWAYS convert prompt() before math!
+let grade = Number(prompt("enter your grade:"));</pre>
+    <div class="warn"><code class="inline">prompt()</code> gives you text. <code class="inline">"85" &gt;= 90</code> happens to work because JS auto-converts in comparisons, but <code class="inline">"85" + 5</code> gives <code class="inline">"855"</code>. In <code class="inline">5thdayjs.js</code> the password check compared against the number <code class="inline">123</code>; changed to the string <code class="inline">"123"</code> — compare strings with strings.</div>
+
+    <h3>5.4 Conditionals (day10mn8.js grade example)</h3>
+<pre>if(grade &gt;= 90){
+    alert("excellent / A");
+} else if(grade &gt;= 75){
+    alert("very good / B");
+} else if(grade &gt;= 60){
+    alert("good / C");
+} else {
+    alert("You failed");
+}</pre>
+<pre>switch(day){                 // cleaner than a long else-if chain
+    case 1:  alert("saturday"); break;   // break stops fall-through!
+    case 2:  alert("sunday");    break;
+    default: alert("enter valid number");
+}</pre>
+
+    <h3>5.5 Loops (java2ndday.js)</h3>
+<pre>for(let i=0; i&lt;=10; i++){ document.write(i + "&lt;br&gt;") }     // count 0..10
+for(let i=0; i&lt;=10; i+=2){ ... }                            // evens (i+=2 step)
+for(let i=1; i&lt;=10; i+=2){ ... }                            // odds
+
+let x = 0;
+while(x &lt;= 10){ document.write(x); x++; }                   // check first
+
+let y = 0;
+do { document.write(y); y++; } while(y &lt;= 10);              // runs AT LEAST once</pre>
+    <ul class="pts"><li><code class="inline">i % 2 == 0</code> → even, <code class="inline">i % 2 == 1</code> → odd (the remainder trick you used).</li></ul>
+
+    <h3>5.6 Functions (js3rdlecture.js)</h3>
+<pre>function say(){ document.write("say hello ") }   say();
+
+function add(x,y){ return x + y }   // anything after return is IGNORED
+document.write(add(6,9));
+
+// arrow function — shorter syntax:
+let square = (num) =&gt; { return num * num }
+let welcome = () =&gt; { document.write("welcome") }</pre>
+
+    <h3>5.7 Objects (the “kia_car” example)</h3>
+<pre>let kia_car = {
+    car_name: "kia",
+    car_model: 2010,
+    car_color: "red",
+    move: function(){ return "the car is moving" }
+};
+console.log(kia_car.car_name);   // dot access
+console.log(kia_car.move());
+
+let person = {
+    first_name: prompt("first name"),
+    second_name: prompt("second name"),
+    full_name: function(){
+        return "welcome " + this.first_name + " " + this.second_name;
+        // "this" = the object the function belongs to
+    }
+};
+alert(person.full_name());</pre>
+
+    <h3>5.8 Arrays + map / filter / reduce / forEach (7th &amp; 8th day)</h3>
+<pre>let arr = [8, 9, "hello", true, [8,9,3]];
+arr.length;        arr[4][2];        // nested access
+
+let numbers = [8,3,5,1,10];
+for(let i=0; i&lt;numbers.length; i++){ document.write(numbers[i]*2) }
+
+colors.forEach((color) =&gt; { document.write(color + "-") });
+names.forEach((name, index) =&gt; { ... });        // index comes free
+
+let nums = [5,6,7,8,9];
+nums.map((num) =&gt; num * 5);                     // transform EVERY item → new array
+nums.filter((num) =&gt; num % 2 == 1);             // keep items that pass the test
+pro_prices.reduce((total, price) =&gt; total + price, 70);   // boil down to ONE value</pre>
+    <ul class="pts">
+      <li><code class="inline">map</code> = same length out, <code class="inline">filter</code> = fewer-or-equal, <code class="inline">reduce</code> = one value.</li>
+    </ul>
+
+    <h3>5.9 Math object (day10mn8.js)</h3>
+<pre>Math.random()          // 0 … 0.999…
+Math.random() * 4      // scale it;  Math.floor(...) makes an integer index
+Math.pow(5,3)  Math.max(90,20,60)  Math.min(...)
+Math.abs(-1)   Math.round(0.512)   Math.ceil(0.512) /* up */   Math.floor(0.512) /* down */</pre>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="dom">
+    <h2 class="sec">6. DOM &amp; Events <span class="tag" style="background:var(--js)">DOM</span></h2>
+
+    <h3>6.1 Selecting elements (4 ways)</h3>
+<pre>document.getElementById("par")                    // one element by id
+document.getElementsByClassName("demo")[0]        // live collection → [0]
+document.getElementsByTagName("p")[0]
+document.querySelector(".btn")                    // FIRST match of any CSS selector
+document.querySelectorAll("h3")                   // ALL matches → forEach works</pre>
+<pre>let p = document.getElementById("par");
+p.innerHTML = Date();          // change content (Date() = current date/time)
+p.style.color = "red";         // CSS property in camelCase
+p.style.fontSize = "18px";</pre>
+    <div class="fix">In <code class="inline">js3rddaypt2.html</code>: <code class="inline">paragraph.style.fontsize = "20px"</code> silently does nothing — JS style properties are camelCase: <code class="inline">fontSize</code>, <code class="inline">borderRadius</code>, <code class="inline">backgroundColor</code>. Fixed.</div>
+    <p class="muted">The inline version does the same without a function: <code class="inline">&lt;button onclick="this.innerHTML=Date()"&gt;the time is?&lt;/button&gt;</code> — <code class="inline">this</code> = the button that was clicked.</p>
+
+    <h3>6.2 Events — two styles</h3>
+<pre>// 1) inline attribute:  &lt;button onclick="getDate()"&gt;show date&lt;/button&gt;
+
+// 2) addEventListener (preferred — can add many listeners):
+let btn = document.getElementById("btn");
+btn.addEventListener('click', function() {
+    document.getElementById("demo").innerHTML = Date();
+});
+
+btn.onclick = function(){ ... };        // property style
+select.onchange = function(){ ... };    // dropdowns: fires when value changes</pre>
+    <div class="fix">In <code class="inline">6thdayjs.html</code> the button had a stray <code class="inline">on</code> attribute; in <code class="inline">6thdayjspt4.html</code> the to-do button used <code class="inline">addeventlistener</code> (lowercase l) — JS is case-sensitive, so that line threw <em>“addbutton.addEventListener is not a function”</em>. Fixed to <code class="inline">addEventListener</code> and the handler now really adds the task to the <code class="inline">&lt;ol&gt;</code>.</div>
+
+    <h3>6.3 Creating &amp; changing elements (6th day)</h3>
+<pre>function create(){
+    let h = document.createElement("h1");          // make a node
+    let txt = document.createTextNode("hello world"); // make its text
+    h.appendChild(txt);                            // text into the h1
+    document.body.appendChild(h);                  // h1 into the page
+    div.id = "circle";                             // style it via CSS instead of inline styles
+}
+
+// classes (5thdayjspt3.html):
+p.classList.add('txt');
+p.classList.remove('demo');
+p.classList.toggle('demo');            // on ↔ off — perfect for dark mode!
+p.classList.replace('demo', 'par');</pre>
+    <div class="note">Dark-mode idea from <code class="inline">4thdayjspt2.js</code>: the <code class="inline">dark()</code> function existed but nothing called it — I put <code class="inline">onclick="dark()"</code> on the moon icon. Even better: <code class="inline">document.body.classList.toggle("dark")</code> + a <code class="inline">.dark{...}</code> CSS block.</div>
+
+    <h3>6.4 Timing (8th day)</h3>
+<pre>&lt;button onclick="setTimeout(msg, 2000)"&gt;welcome&lt;/button&gt;   &lt;!-- wait 2s, then run msg --&gt;
+function msg(){ alert("Welcome!") }
+setInterval(msg, 3000);   // repeat every 3s    clearInterval(id) to stop</pre>
+
+    <h3>6.5 Login flow (5thdayjs.html → 5thdayjs2.html)</h3>
+<pre>function login(){
+    if(mail.value == "ahmed@gmail.com" &amp;&amp; pass.value == "123")
+        window.location.href = "5thdayjs2.html";   // redirect to the success page
+    else
+        alert("please re-enter your email or password correctly");
+}</pre>
+    <div class="fix"><strong>Naming trap:</strong> the function was called <code class="inline">submit()</code> and triggered from <code class="inline">onclick="submit()"</code> <em>inside a form</em>. Inline handlers see the form’s built-in <code class="inline">submit</code> method first, so your function never ran and the page just reloaded. Renamed to <code class="inline">login()</code>. Rule: never name a function <code class="inline">submit</code> inside a form.</div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="jquery">
+    <h2 class="sec">7. jQuery <span class="tag" style="background:var(--jq)">JQUERY</span></h2>
+
+    <h3>7.1 Setup &amp; the $ function</h3>
+<pre>&lt;script src="jquery-4.0.0.min.js"&gt;&lt;/script&gt;   &lt;!-- BEFORE your own script --&gt;
+
+$("p")            // select ALL &lt;p&gt; like querySelectorAll
+$("#mail")        // by id          $(".circle")   // by class
+$("input")        // returns a jQuery object: .val(), .css(), .append()... all built in</pre>
+    <ul class="pts">
+      <li>jQuery is just a shortcut library over the DOM: <code class="inline">$("p").hide(500)</code> ≈ <code class="inline">document.querySelector("p").style.display="none"</code> (with animation).</li>
+    </ul>
+
+    <h3>7.2 Effects &amp; chaining (1stdayquery.html)</h3>
+<pre>$("p").hide(500);        $("p").show(500);       $("p").toggle();
+$("p").fadeIn();         $("p").fadeOut();       $("p").fadeToggle();
+$("p").slideUp();        $("p").slideDown();     $("p").slideToggle();
+
+// chaining — one after another, in order:
+$("p").show(500).fadeIn(500).slideUp(500).slideDown(500).css("color","red");
+
+// vs vanilla JS:
+let p = document.querySelector("p");
+p.style.display = "none";</pre>
+
+    <h3>7.3 Click handlers &amp; animate (1stdaypt2.html)</h3>
+<pre>// eq(0) = first matching element, eq(1) = second ...
+$("button").eq(0).click(() =&gt; {
+    $(".circle").animate({ left: "300px" });   // animate CSS numbers/positions
+});
+$("button").eq(1).click(() =&gt; {
+    $("p").append(" world!");      // add INSIDE, at the end
+    $("p").prepend("hello: ");     // add INSIDE, at the beginning
+});</pre>
+    <div class="fix">Your file attached the same <code class="inline">$("button").click(...)</code> twice, so <strong>both</strong> buttons did <strong>both</strong> things, and the two handlers kept prepending/appending on every click. Fixed with <code class="inline">.eq(0)</code> / <code class="inline">.eq(1)</code> and neutral text.</div>
+    <div class="note"><code class="inline">animate()</code> only animates numeric CSS values (left, width, opacity…). Colors and <code class="inline">position</code> itself are not animatable — the circle needed <code class="inline">position:relative</code> in CSS, which you already had. 👍</div>
+
+    <h3>7.4 Mini to-do (1stdayquerypt3.html)</h3>
+<pre>let input = $("input"), ol = $("ol");
+$("button").click(() =&gt; {
+    ol.append("&lt;li&gt;" + input.val() + "&lt;/li&gt;");   // .val() = value of an input
+    input.val("");                               // clear the field
+});</pre>
+    <p class="muted">Same logic as your vanilla-JS to-do (6thdaypt5.js): create <code class="inline">li</code> → append text → append to list — jQuery does it in one line with <code class="inline">append()</code>.</p>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="errors">
+    <h2 class="sec">8. Every Error I Fixed In Your Code <span class="tag" style="background:var(--bad)">FIXED</span></h2>
+    <table>
+      <tr><th>File</th><th>What was wrong</th><th>The fix</th></tr>
+      <tr><td>1stdaybootstrap.html</td><td><code>js/bootstrap.bundle.min.js</code> — wrong path, Bootstrap JS never loaded</td><td><code>bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js</code></td></tr>
+      <tr><td>index3.html</td><td>stray <code>&lt;/style&gt;</code> with no opening tag; labels pointed to wrong ids (for="gender"/"check1"); one input had empty <code>id=""</code>; number input id didn’t match its label</td><td>removed the tag; every <code>for</code> now matches an <code>id</code></td></tr>
+      <tr><td>index4.html</td><td><code>&lt;center&gt;</code> inside <code>&lt;head&gt;</code>; escaped-space URL <code>hold\ your\ horses.jpg</code></td><td>heading moved to body with <code>text-align:center</code>; plain quoted URL</td></tr>
+      <tr><td>4thdayjspt2.html/.css</td><td>CSS targeted <code>.nav .design h1</code> / <code>.sid i</code> which don’t exist; <code>font-size:250px</code> typo; images had no ids though CSS styled <code>#first/#scound/…</code>; container never <code>display:grid</code>; <code>dark()</code> was never called</td><td>selectors corrected; 25px; ids added to imgs; grid + areas added; moon icon got <code>onclick="dark()"</code></td></tr>
+      <tr><td>5thdayjs.html/.js</td><td><code>onclick="submit()"</code> inside a form — collides with the form’s built-in <code>submit</code>, so the login never ran; password compared to number <code>123</code></td><td>renamed to <code>login()</code>; compare against string <code>"123"</code></td></tr>
+      <tr><td>5thdayjs2.html</td><td><code>font-weight: 600px</code></td><td><code>font-weight: 600</code></td></tr>
+      <tr><td>6thdayjs.html</td><td>stray <code>on</code> attribute on the button</td><td>removed</td></tr>
+      <tr><td>6thdayjspt4.html</td><td><code>addeventlistener</code> (lowercase l) = TypeError; the task was read but never added</td><td><code>addEventListener</code>; full add-task logic written (li → text → ol → clear input)</td></tr>
+      <tr><td>js3rddaypt2.html</td><td><code>style.fontsize</code> — camelCase required</td><td><code>style.fontSize</code></td></tr>
+      <tr><td>index6.html</td><td><code>transition-property: width 1s</code> — property takes a name only</td><td><code>transition-property: width;</code></td></tr>
+      <tr><td>day30pt3better.css</td><td><code>font-width</code> (not a property); <code>transition: ease-out</code> (no duration); ::before fill had no positioned parent</td><td><code>font-weight</code>; <code>transition: width .4s ease-out</code>; <code>position:relative; overflow:hidden</code> on the link</td></tr>
+      <tr><td>project2.html &amp; project2/project2.html</td><td>stray <code>&lt;/style&gt;</code> / <code>&lt;center&gt;</code> in the head; extra quote <code>href="#grill" "</code>; “RESTRUANT” typo</td><td>heads cleaned, quote removed, spelling fixed</td></tr>
+      <tr><td>project2/indexproj.css</td><td><code>a::hover</code> — :: is for pseudo-elements, hover is a pseudo-class</td><td><code>a:hover</code></td></tr>
+      <tr><td>project.html</td><td><code>border: 10;</code> — border needs width + style</td><td><code>border: 2px solid black;</code></td></tr>
+      <tr><td>PROJECT.css</td><td><code>url('beach2.jpg')</code> — file doesn’t exist</td><td>pointed at existing <code>beach.jpg</code></td></tr>
+      <tr><td>teach.html</td><td>all images pointed to a <code>pics/</code> folder that doesn’t exist → broken images</td><td>repointed to real images in your folder</td></tr>
+      <tr><td>ppnopp.html</td><td>one extra closing <code>&lt;/div&gt;</code> after the cards</td><td>removed</td></tr>
+      <tr><td>jquery/1stdaypt2.html</td><td>two identical <code>$("button").click()</code> bindings — both buttons ran both handlers; offensive filler text</td><td><code>.eq(0)</code>/<code>.eq(1)</code> split; neutral text</td></tr>
+      <tr><td>index3, 6thdayjspt2, project2 files</td><td>offensive/placeholder words in visible content</td><td>replaced with clean sample data</td></tr>
+      <tr><td>8thdayjs.html</td><td>crude alert text</td><td>“Welcome!”</td></tr>
+    </table>
+    <div class="note">Things that looked suspicious but are actually fine: <code class="inline">"123" == 123</code> is true (loose == coerces) — still use <code class="inline">===</code>; string grades from <code class="inline">prompt()</code> compare OK with <code class="inline">&gt;=</code> because JS converts — still wrap in <code class="inline">Number()</code>; <code class="inline">url("hold\ your\ horses.jpg")</code> is a legal (if odd) CSS escape — plain quotes are cleaner.</div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="checklist">
+    <h2 class="sec">9. Best-Practice Checklist <span class="tag" style="background:var(--good)">HABITS</span></h2>
+    <div class="grid2">
+      <div class="card"><h4>HTML</h4>
+        <ul class="pts">
+          <li>Every <code class="inline">&lt;img&gt;</code> gets an <code class="inline">alt</code>.</li>
+          <li>Every <code class="inline">label for</code> matches an input <code class="inline">id</code>.</li>
+          <li>No <code class="inline">&lt;center&gt;</code>, no <code class="inline">border</code> attribute — use CSS.</li>
+          <li>Nothing visible inside <code class="inline">&lt;head&gt;</code>.</li>
+          <li>Semantic tags: nav/header/main/section/footer.</li>
+        </ul>
+      </div>
+      <div class="card"><h4>CSS</h4>
+        <ul class="pts">
+          <li>Start every file with the <code class="inline">*{...box-sizing:border-box}</code> reset.</li>
+          <li>Prefer <code class="inline">:root</code> variables for your color palette.</li>
+          <li><code class="inline">transition</code> always needs a duration.</li>
+          <li>camelCase in JS, kebab-case in CSS: <code class="inline">fontSize</code> vs <code class="inline">font-size</code>.</li>
+          <li><code class="inline">::before</code> = pseudo-<em>element</em>, <code class="inline">:hover</code> = pseudo-<em>class</em>.</li>
+        </ul>
+      </div>
+      <div class="card"><h4>JavaScript</h4>
+        <ul class="pts">
+          <li>Case-sensitive: <code class="inline">addEventListener</code>, <code class="inline">getElementById</code>.</li>
+          <li>Convert <code class="inline">prompt()</code> with <code class="inline">Number()</code>.</li>
+          <li>Use <code class="inline">===</code> instead of <code class="inline">==</code>.</li>
+          <li>Never name a function <code class="inline">submit</code> inside a form.</li>
+          <li>Script tag at the end of <code class="inline">&lt;body&gt;</code>.</li>
+          <li>Open the console (F12) — red text tells you the line and the error.</li>
+        </ul>
+      </div>
+      <div class="card"><h4>Workflow</h4>
+        <ul class="pts">
+          <li>Live Server extension = instant reload (you already know 👍).</li>
+          <li>One folder per project; keep images next to the HTML or use relative paths.</li>
+          <li>Delete commented-out dead code once it works.</li>
+          <li>Name files without typos — <code class="inline">js3rdlectue.html</code> vs <code class="inline">js3rdlecture.js</code> was a missing-file bug waiting to happen.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  z.ai html-css-js notes — built from your own course files · HTML → CSS → Flex/Grid → Bootstrap → JS → DOM → jQuery
+</footer>
+
+</body>
+</html>

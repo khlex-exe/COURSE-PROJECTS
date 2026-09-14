@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 200px;
+            width: 150px;
+            background: black;
+            /*1*/transition-duration: 1s;
+            /*2*/transition-delay: 0.05s ; /* how much time it takes to start the 2 second duration*/
+            /*3*/transition-property: width; /* makes all the changes happen to the width only */
+            /*4*/transition-timing-function: ease-in-out;
+            /* ease-in the default ,Starts slow, speeds up, and ends at maximum speed.*/
+            /* ease-out goes from slow to fast,Starts fast, then slows down to a gentle stop.*/
+            /* ease-in-out,Starts slow, speeds up in the middle, then slows down to stop.  */
+            transition: width 1ms linear 1s;
+            /*linear is the same as ease in/ease out,its a timing function*/
+            
+
+        }
+        div:hover{
+            width: 400px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

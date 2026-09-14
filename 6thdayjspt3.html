@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #circle{
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<button onclick="create()">click here</button>
+
+    <script>
+        function create(){
+            let div = document.createElement("div")
+            // div.style.background="green"
+            // div.style.width="100px"
+            // div.style.height="100px"
+            // div.style.borderRadius="50%"
+            // div.style.margin="10px"
+            document.body.appendChild(div)
+            div.id="circle"
+
+
+
+        }
+    </script>
+</body>
+</html>

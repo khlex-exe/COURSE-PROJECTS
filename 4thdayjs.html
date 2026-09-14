@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getDate()">show date</button>
+    <p id="par"></p>
+    <button onclick="this.innerHTML=Date()">the time is?</button>
+
+    <script>
+        let p = document.getElementById("par")
+        function getDate(){
+            p.innerHTML =Date()
+            p.style.color ="red"
+            p.style.fontSize="18px"
+        }
+    </script>
+</body>
+</html>

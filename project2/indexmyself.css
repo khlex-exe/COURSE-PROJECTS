@@ -1,0 +1,85 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+}
+/* This replaces the <center> tag and applies a default text color */
+body {
+    text-align: center; 
+    background-image: url(images.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Fixes the invisible header */
+h1 {
+    color: black; 
+    text-shadow: 0 0 15px white, 0 0 10px white; 
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Cleans up those default blue/purple links */
+a {
+    color: lightgray; 
+    text-decoration: none; /* Removes the underline */
+    margin: 0 10px; /* Adds space between your links */
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: black;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px black;
+}
+
+/* Adds a nice effect when you hover over the links */
+a:hover {
+    color: white; 
+    background-color:darkgray;
+}
+p {
+    font-weight: bold;
+    color: lightgray;
+    width: 600px; /* Or whatever width you prefer! */
+    margin: 0 auto; /* This is the magic line that centers the block */
+}
+h3{
+    color: black;
+    text-shadow: 0 0 15px wheat, 0 0 10px gray; 
+}
+hr{
+    margin: 20px;
+    background-color: black;
+    height: 4px;
+}
+.WEBSITE{
+    color: black; 
+    text-decoration: none; /* Removes the underline */
+    margin: 0 10px; /* Adds space between your links */
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: gray;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px lightblue;     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

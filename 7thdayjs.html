@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select{
+            font-size: 22px;
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button id="btn">change color</button> -->
+     <h3>choose your language</h3>
+    <select  id="select">
+        <option selected disabled></option>
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value="js">js</option>
+        <option value="c++">c++</option>
+    </select>
+    <script>
+        
+    // let hello = function () {
+    //     document.write("hello" + "<br>");
+    // }
+
+    // hello();
+
+    // let welcome = () => {
+    //     document.write("welcome" + "<br>");
+    // }
+
+    // welcome();
+
+    // let square = (num) => {
+    //     return num * num;
+    // }
+
+    // document.write(square(5) + "<br>");
+
+    // let add = (x, y) => {
+    //     return x + y;
+    // }
+
+    // document.write(add(5, 6));
+
+
+    // let numbers = [8,3,5,1,10]
+    // for (let i =0;i<numbers.length;i++){
+    //         document.write(numbers[i]*2+" <br> ")
+    // }
+
+    // let colors = ['red','blue','green','gray']
+    // colors.forEach((color) => {
+    //     document.write(color+"-")
+    // })
+
+    // let names = ['ola','sara','ali','omar']
+    // names.forEach((name,index)=>{
+    //     document.write("the index of"+" "+name+" " +"is"+index+"<br>")
+    // })
+
+        // let btn = document.getElementById("btn")
+        // btn.onclick=function(){
+        //     let colors = ['wheat','lighgreen','lightgray','pink']
+        // colors.forEach((color,index)=>{
+        //     document.body.style.background=colors[Math.floor(index*Math.random()*4)]
+        // })
+        // }
+  
+
+
+        let select = document.getElementById("select")
+
+select.onchange = function() {
+    if(select.value == 'html'){
+        document.write("your language is html")
+    }
+    else if(select.value == 'css'){
+        document.write("your language is css")
+    }
+    else if(select.value == 'js'){
+        document.write("your language is js")
+    }
+    else if(select.value == 'c++'){
+        document.write("your lang is c++")
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

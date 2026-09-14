@@ -1,0 +1,55 @@
+ /* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+} */
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, Helvetica, sans-serif;
+
+    line-height: 1.6; /* This adds vertical space between lines of text to make reading easier */
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr auto; /* <--- ADD THIS LINE */
+    gap: 20px;
+    width: 90%;
+    height: 90vh;
+    margin: 20px auto;
+}
+.header, .footer {
+    grid-column: 1/-1;
+    color: #ffffff; 
+    background-color: #008080; /* A darker teal so the white text pops */
+    border-radius: 50px;
+    text-align: center;
+    padding: 2px; /* Removed the fixed height, just using padding now! */
+    font-weight: bold;
+    font-size: 30px;
+}
+    
+.sidebar{
+     border-right: 3px dotted #016363;
+    padding: 20px;
+    color: #2d3748;
+}
+
+
+.main{
+    padding: 20px 40px;
+    padding-left: 10px;
+    color: #2d3748;
+    /* display: inline-block;
+    margin-top: 0;
+    font-size: 30px;
+    border-bottom: 3px solid whitesmoke;
+    padding-bottom: 5px; */
+}
+h2{
+    display: inline-block;
+    margin-top: 0;
+    font-size: 30px;
+    border-bottom: 3px solid #008080;
+    padding-bottom: 5px;
+}
