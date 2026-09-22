@@ -168,7 +168,7 @@
     border-color: var(--accent);
     transform: translateY(-4px);
   }
-  
+
   .car-card img {
   width: 100%;
   aspect-ratio: 16 / 10;
