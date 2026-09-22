@@ -168,6 +168,13 @@
     border-color: var(--accent);
     transform: translateY(-4px);
   }
+  
+  .car-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  }
 
   .car-thumb {
     aspect-ratio: 16 / 10;
