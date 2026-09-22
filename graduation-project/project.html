@@ -17,6 +17,11 @@
 </head>
 <body>
 
+<!-- moved out of .hero — this now sits behind the ENTIRE page, not just the hero section -->
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="loop.mp4" type="video/mp4">
+</video>
+
 <nav>
   <div class="logo"><i class="bi bi-car-front-fill"></i> The Garage</div>
   <ul class="nav-links">
@@ -28,12 +33,13 @@
 </nav>
 
 <section class="hero">
-  <h1>Find your next drive</h1>
-  <p>A small collection of cars worth a second look. Scroll down, pick one that catches your eye.</p>
-  <button class="hero-btn" onclick="document.getElementById('garage').scrollIntoView({behavior:'smooth'})">
-    Browse the garage <i class="bi bi-arrow-down"></i>
-  </button>
-  <!-- <img src="transparent1.jpg" alt=""> -->
+  <div class="hero-content">
+    <h1>Find your next drive</h1>
+    <p>A small collection of cars worth a second look. Scroll down, pick one that catches your eye.</p>
+    <button class="hero-btn" onclick="document.getElementById('garage').scrollIntoView({behavior:'smooth'})">
+      Browse the garage <i class="bi bi-arrow-down"></i>
+    </button>
+  </div>
 </section>
 
 <section class="garage" id="garage">
@@ -41,19 +47,18 @@
     <h2>Available now</h2>
     <div class="btn-span">
       <select id="garage-btn">
-    <option selected disabled>choose class</option>
-    <option value="ALL">ALL</option>
-    <option value="coupe">Coupe</option>
-    <option value="Sports">Sports</option>
-    <option value="suv">SUV</option>
-    <option value="sedan">Sedan</option>
-    <option value="SUPERCAR">SuperCar</option>
-    <option value="MUSCLE">Muscle</option>
-    <option value="LUXURY">LUXURY</option>
-    <option value="HATCHBACK">HATCHBACK</option>
-    <option value="WAGON">WAGON</option>
-  <!-- ...one per category you're using -->
-</select>
+        <option selected disabled>choose class</option>
+        <option value="all">ALL</option>
+        <option value="coupe">Coupe</option>
+        <option value="Sports">Sports</option>
+        <option value="suv">SUV</option>
+        <option value="sedan">Sedan</option>
+        <option value="SUPERCAR">SuperCar</option>
+        <option value="MUSCLE">Muscle</option>
+        <option value="LUXURY">LUXURY</option>
+        <option value="HATCHBACK">HATCHBACK</option>
+        <option value="WAGON">WAGON</option>
+      </select>
       <span></span>
     </div>
   </div>
@@ -71,23 +76,23 @@
 
     <div class="car-card" data-category="Sports">
       <img src="911.jpg" alt="911 Carrera">
-      <div class="car-info" >
+      <div class="car-info">
         <h3>911 Carrera</h3>
         <span class="car-plate">2022 · SPORTS</span>
         <p class="car-meta">379 hp · rear-wheel drive</p>
       </div>
     </div>
 
-    <div class="car-card" data-category="suv" >
+    <div class="car-card" data-category="suv">
       <img src="rav.jpg" alt="RAV4">
-      <div class="car-info" >
+      <div class="car-info">
         <h3>RAV4</h3>
         <span class="car-plate">2024 · SUV</span>
         <p class="car-meta">203 hp · all-wheel drive</p>
       </div>
     </div>
 
-    <div class="car-card" data-category="sedan" >
+    <div class="car-card" data-category="sedan">
       <img src="model.jpg" alt="Model 3">
       <div class="car-info">
         <h3>Model 3</h3>
@@ -96,7 +101,7 @@
       </div>
     </div>
 
-    <div class="car-card" data-category="LUXURY" >
+    <div class="car-card" data-category="LUXURY">
       <img src="sclass.jpg" alt="Mercedes-Benz S-Class">
       <div class="car-info">
         <h3>Mercedes-Benz S-Class</h3>
@@ -105,16 +110,16 @@
       </div>
     </div>
 
-    <div class="car-card" data-category="suv" >
+    <div class="car-card" data-category="suv">
       <img src="ranger.jpg" alt="Range Rover Sport">
-      <div class="car-info" >
+      <div class="car-info">
         <h3>Range Rover Sport</h3>
         <span class="car-plate">2023 · SUV</span>
         <p class="car-meta">395 hp · all-wheel drive</p>
       </div>
     </div>
 
-    <div class="car-card" data-category="HATCHBACK" >
+    <div class="car-card" data-category="HATCHBACK">
       <img src="civic.jpg" alt="Civic Type R">
       <div class="car-info">
         <h3>Civic Type R</h3>
@@ -123,7 +128,7 @@
       </div>
     </div>
 
-    <div class="car-card" data-category="MUSCLE" >
+    <div class="car-card" data-category="MUSCLE">
       <img src="challenge.jpg" alt="Challenger R/T">
       <div class="car-info">
         <h3>Challenger R/T</h3>
@@ -132,16 +137,16 @@
       </div>
     </div>
 
-    <div class="car-card" data-category="coupe" >
+    <div class="car-card" data-category="coupe">
       <img src="m4.jpg" alt="BMW M4">
-      <div class="car-info" >
+      <div class="car-info">
         <h3>BMW M4</h3>
         <span class="car-plate">2023 · COUPE</span>
         <p class="car-meta">503 hp · all-wheel drive</p>
       </div>
     </div>
 
-    <div class="car-card" data-category="WAGON" >
+    <div class="car-card" data-category="WAGON">
       <img src="audi.jpg" alt="Audi RS6 Avant">
       <div class="car-info">
         <h3>Audi RS6 Avant</h3>
@@ -150,7 +155,7 @@
       </div>
     </div>
 
-    <div class="car-card" data-category="suv" >
+    <div class="car-card" data-category="suv">
       <img src="ford.jpg" alt="Ford Bronco">
       <div class="car-info">
         <h3>Ford Bronco</h3>
@@ -176,10 +181,6 @@
   <br><br><br>
   <a href="tel:0403330368" id="contact">To contact us call: 0403330368</a>
 </footer>
-
-
-
-
 
 <script src="project.js"></script>
 

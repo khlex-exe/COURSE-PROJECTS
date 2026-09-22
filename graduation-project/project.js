@@ -7,7 +7,7 @@ const cards = document.querySelectorAll('.car-card');
 
 select.onchange = function() {
   cards.forEach(card => {
-    if (select.value === 'ALL' || card.dataset.category === select.value ) {
+    if (select.value === 'all' || card.dataset.category === select.value) {
       card.style.display = 'block';   // show it
      } 
      else {
