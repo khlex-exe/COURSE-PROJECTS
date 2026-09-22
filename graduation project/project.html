@@ -1,55 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Garage</title>
 
-    <link rel="stylesheet" href="project.css">
-    <script src="project.js"></script>
+<!-- Two font families: Oswald for headings (industrial/automotive feel),
+     Inter for body text (clean and readable). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Swap this for whichever icon library you picked (Bootstrap Icons / Tabler) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="project.css">
+
+
 </head>
 <body>
-    
-    <nav>
-            <div class="logo">
-                <i class="bi bi-car-front"></i>
-                <h2>KHLEXEXE</h2>
-            </div>
-                <div class="links">
-                    <a href="#">GARAGE</a>
-                    <a href="#">ABOUT</a>
-                    <a href="#">CONTACT</a>
-                </div>            
-    </nav>
 
-    <main>
-        
+<nav>
+  <div class="logo"><i class="bi bi-car-front-fill"></i> The Garage</div>
+  <ul class="nav-links">
+    <li><a href="#garage">Garage</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle"><i class="bi bi-list"></i></button>
+</nav>
 
+<section class="hero">
+  <h1>Find your next drive</h1>
+  <p>A small collection of cars worth a second look. Scroll down, pick one that catches your eye.</p>
+  <button class="hero-btn" onclick="document.getElementById('garage').scrollIntoView({behavior:'smooth'})">
+    Browse the garage <i class="bi bi-arrow-down"></i>
+  </button>
+</section>
 
+<section class="garage" id="garage">
+  <div class="garage-heading">
+    <h2>Available now</h2>
+    <span>4 cars</span>
+  </div>
 
+  <div class="car-grid">
+    <!-- Repeat this block per car — swap thumbnail, name, plate text, and meta -->
+    <div class="car-card">
+      <img src="gt.jpg" alt="gt">
+      <div class="car-info">
+        <h3>Mustang GT</h3>
+        <span class="car-plate">2023 · COUPE</span>
+        <p class="car-meta">460 hp · rear-wheel drive</p>
+      </div>
+    </div>
 
+    <div class="car-card">
+      <img src="911.jpg" alt="911">
+      <div class="car-info">
+        <h3>911 Carrera</h3>
+        <span class="car-plate">2022 · SPORTS</span>
+        <p class="car-meta">379 hp · rear-wheel drive</p>
+      </div>
+    </div>
 
+    <div class="car-card">
+      <img src="rav.jpg" alt="rav">
+      <div class="car-info">
+        <h3>RAV4</h3>
+        <span class="car-plate">2024 · SUV</span>
+        <p class="car-meta">203 hp · all-wheel drive</p>
+      </div>
+    </div>
 
-    </main>
+    <div class="car-card">
+      <img src="model.jpg" alt="model">
+      <div class="car-info">
+        <h3>Model 3</h3>
+        <span class="car-plate">2023 · SEDAN</span>
+        <p class="car-meta">283 hp · electric</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<footer>
+  Built by [khaled mahmoud] &middot; graduation project.
+  <br>
+  <br>
+  <br>
+  <a href="telephone"  id="contact">To contact us call : 0403330368 </a>
+</footer>
 
 </body>
 </html>

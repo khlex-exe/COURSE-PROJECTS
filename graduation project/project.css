@@ -1,32 +1,225 @@
-*{
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
+/* ===================== DESIGN TOKENS ===================== */
+  :root {
+    --bg: #15171b;          /* charcoal, not pure black */
+    --surface: #1d2025;     /* card background */
+    --surface-hover: #262a31;
+    --border: #2c3038;
+    --text: #ededee;
+    --text-muted: #8f949c;
+    --accent: #f2a93b;      /* headlight amber */
+    --accent-dim: #6b5227;
 
-}
-nav{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 30px;
-    align-items: center;
-    gap: 100px;
-    margin: 19px;
-    background-color: gray;
-    border-radius: 20px;
-    /* width: 100; */
-}
-.logo{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-nav .links{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-}
-nav .links a{
-    color: black;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
 
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ===================== NAV ===================== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2rem;
+    background: rgba(21, 23, 27, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo i { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.4rem;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem;
+    background:
+      radial-gradient(ellipse at 30% 40%, var(--accent-dim), transparent 60%),
+      var(--bg);
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    max-width: 14ch;
+    line-height: 1.05;
+  }
+
+  .hero p {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    max-width: 42ch;
+    font-size: 1.05rem;
+  }
+
+  .hero-btn {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #15171b;
+    font-weight: 600;
+    padding: 0.85rem 1.6rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .hero-btn:hover { transform: translateY(-2px); }
+
+  /* ===================== GARAGE / CAR GRID ===================== */
+  .garage {
+    padding: 4rem 2rem;
+  }
+
+  .garage-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .garage-heading h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .garage-heading span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .car-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .car-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .car-thumb {
+    aspect-ratio: 16 / 10;
+    background: #26292f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 2rem;
+  }
+
+  .car-info {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+
+  .car-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* license-plate-style tag: a small automotive detail instead of a generic badge */
+  .car-plate {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--bg);
+    background: var(--text);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .car-meta {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===================== MOBILE ===================== */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .garage { padding: 3rem 1.2rem; }
+  }
