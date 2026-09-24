@@ -227,12 +227,24 @@ nav {
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
 }
-
-.car-meta {
+.price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+.price p:nth-child(2){
+  position: relative;
+  right: 15px;
+}
+
+/* .car-meta {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+} */
 
 /* ===================== FOOTER ===================== */
 footer {
