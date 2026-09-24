@@ -163,14 +163,60 @@ nav {
 }
 
 #garage-btn {
-  min-width: 110px; /* was a fixed width; longer option text like "SUPERCAR" needs room to grow */
+  min-width: 125px; /* was a fixed width; longer option text like "SUPERCAR" needs room to grow */
   background-color: var(--text-muted);
   color: rgb(19, 19, 19);
+  text-align: center;
+  text-align-last: center;
+  padding-left: 40px;
+  
+
+}
+
+/* opt this select into the new stylable mode */
+#garage-btn,
+#garage-btn::picker(select) {
+  appearance: base-select;
+}
+
+/* style + animate the dropdown panel itself */
+#garage-btn::picker(select) {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  
+}
+
+/* when it's open, fade/slide it in */
+#garage-btn:open::picker(select) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* style each option row */
+#garage-btn option {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text);
+  
+}
+
+#garage-btn option:checked {
+  background: var(--accent-dim);
+  
 }
 
 .btn-span {
   display: flex;
+  align-items: center;
   gap: 45px;
+  justify-content: flex-end;
+  
 }
 
 .garage-heading span {
@@ -235,10 +281,15 @@ nav {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
-/* .price p:nth-child(2){
-  position: relative;
-  right: 15px;
-} */
+
+.price p {
+
+  margin: 0; /* prevents each <p>'s own default spacing from adding extra gaps */
+}
+
+.price p:nth-child(2){
+  color: var(--text);
+}
 
 /* .car-meta {
   margin-top: 0.5rem;
@@ -256,6 +307,77 @@ footer {
   /* background-color: #121417; */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(50px);
+}
+
+
+
+
+
+/* ===================== MODAL ===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;                      /* shorthand for top/right/bottom/left: 0 */
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;          /* can't be clicked while hidden */
+  transition: opacity 0.2s ease;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: 440px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(16px);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.active .modal-box {
+  transform: translateY(0);
+}
+
+.modal-box img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.modal-content {
+  padding: 1.2rem 1.4rem 1.5rem;
+}
+
+.modal-desc {
+  margin-top: 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  z-index: 2;
 }
 
 /* ===================== MOBILE ===================== */

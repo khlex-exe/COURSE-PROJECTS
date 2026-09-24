@@ -65,14 +65,14 @@
 
   <div class="car-grid">
     <!-- Repeat this block per car — swap image, name, plate text, and meta -->
-    <div class="car-card" data-category="coupe">
+    <div class="car-card" data-category="coupe" data-desc="The Garage's benchmark muscle coupe — big V8 power in a nimble, rear-drive body.">
       <img src="gt.jpg" alt="Mustang GT">
       <div class="car-info">
         <h3>Mustang GT</h3>
         <span class="car-plate">2023 · COUPE</span>
           <div class="price">
           <p class="car-meta">460 hp · rear-wheel drive</p>
-            <p>4000$</p>
+            <p>$45,000</p>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
         <span class="car-plate">2022 · SPORTS</span>
         <div class="price">
         <p class="car-meta">379 hp · rear-wheel drive</p>
-          <p>2000$</p>
+          <p>$105,000</p>
       </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
         <span class="car-plate">2024 · SUV</span>
         <div class="price">
         <p class="car-meta">203 hp · all-wheel drive</p>
-        <p>3000$</p>
+        <p>$32,000</p>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@
         <span class="car-plate">2023 · SEDAN</span>
           <div class="price">
           <p class="car-meta">283 hp · electric</p>
-          <p>2000$</p>
+          <p>$42,000</p>
          </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
         <span class="car-plate">2023 · LUXURY</span>
         <div class="price">
         <p class="car-meta">496 hp · all-wheel drive</p>
-          <p>2500$</p>
+          <p>$115,000</p>
       </div>
       </div>
     </div>
@@ -132,7 +132,7 @@
         <span class="car-plate">2023 · SUV</span>
         <div class="price">
         <p class="car-meta">395 hp · all-wheel drive</p>
-          <p>2400$</p>
+          <p>$85,000</p>
       </div>
       </div>
     </div>
@@ -144,7 +144,7 @@
         <span class="car-plate">2023 · HATCHBACK</span>
         <div class="price">
         <p class="car-meta">315 hp · front-wheel drive</p>
-          <p>2300$</p>
+          <p>$44,000</p>
       </div>
       </div>
     </div>
@@ -156,7 +156,7 @@
         <span class="car-plate">2022 · MUSCLE</span>
         <div class="price">
         <p class="car-meta">375 hp · rear-wheel drive</p>
-      <p>3400$</p>
+      <p>$40,000</p>
       </div>
       </div>
     </div>
@@ -168,7 +168,7 @@
         <span class="car-plate">2023 · COUPE</span>
         <div class="price">
         <p class="car-meta">503 hp · all-wheel drive</p>
-      <p>2300$</p>
+      <p>$78,000</p>
       </div>
       </div>
     </div>
@@ -180,7 +180,7 @@
         <span class="car-plate">2023 · WAGON</span>
         <div class="price">
         <p class="car-meta">591 hp · all-wheel drive</p>
-      <p>3400$</p>
+      <p>$122,000</p>
       </div>
       </div>
     </div>
@@ -192,7 +192,7 @@
         <span class="car-plate">2023 · SUV</span>
         <div class="price">
         <p class="car-meta">330 hp · four-wheel drive</p>
-      <p>2900$</p>
+      <p>$48,000</p>
       </div>
       </div>
     </div>
@@ -204,7 +204,7 @@
         <span class="car-plate">2022 · SUPERCAR</span>
         <div class="price">
         <p class="car-meta">631 hp · all-wheel drive</p>
-      <p>34000$</p>
+      <p>$260,000</p>
       </div>
       </div>
     </div>
@@ -217,6 +217,25 @@
   <br><br><br>
   <a href="tel:0403330368" id="contact">To contact us call: 0403330368</a>
 </footer>
+
+
+
+
+<!-- Modal -->
+<div class="modal-overlay" id="carModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-content">
+      <h3 id="modalName"></h3>
+      <span class="car-plate" id="modalPlate"></span>
+      <p class="car-meta" id="modalMeta"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
 
 <script src="project.js"></script>
 
