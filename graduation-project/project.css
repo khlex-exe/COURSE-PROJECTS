@@ -235,10 +235,10 @@ nav {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
-.price p:nth-child(2){
+/* .price p:nth-child(2){
   position: relative;
   right: 15px;
-}
+} */
 
 /* .car-meta {
   margin-top: 0.5rem;
