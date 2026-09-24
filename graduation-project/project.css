@@ -165,7 +165,7 @@ nav {
 #garage-btn {
   min-width: 110px; /* was a fixed width; longer option text like "SUPERCAR" needs room to grow */
   background-color: var(--text-muted);
-  color: var(--accent-dim);
+  color: rgb(19, 19, 19);
 }
 
 .btn-span {
