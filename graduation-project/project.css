@@ -468,3 +468,32 @@ footer {
     overflow-y: auto;
   }
 }
+@media (max-width: 640px) {
+  .modal-box {
+    width: 92%;
+    max-width: 400px;
+    height: auto;        /* cancels the fixed 560px from the desktop rule */
+    max-height: 85vh;
+    overflow-y: auto;    /* scrolls instead of cutting content off, if it's ever still too tall */
+  }
+
+  .info {
+    flex-direction: column;   /* image on top, text below — instead of side-by-side */
+  }
+
+  .modal-box img {
+    width: 100%;               /* full width now that it's on its own row */
+    max-height: 200px;
+    border-radius: 0;
+  }
+
+  .modal-content {
+    margin: 16px;               /* was 80px — way too much space for a narrow screen */
+    padding: 1rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.5rem;          /* was xx-large — that's fine on desktop, too big here */
+    padding-bottom: 12px;       /* was 60px */
+  }
+}
