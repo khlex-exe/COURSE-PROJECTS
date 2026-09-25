@@ -459,9 +459,12 @@ footer {
     border-bottom: 1px solid var(--border);
   }
 }
-@media(max-width:640px){
-  .modal-overlay{
-    max-width: 600px;
-    max-height: 800px;
+@media (max-width: 640px) {
+  .modal-box {
+    width: 92%;
+    max-width: 400px;
+    height: auto;
+    max-height: 85vh;
+    overflow-y: auto;
   }
 }
