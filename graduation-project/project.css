@@ -446,3 +446,16 @@ footer {
   .nav-toggle { display: block; }
   .garage { padding: 3rem 1.2rem; }
 }
+@media (max-width: 640px) {
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+}
