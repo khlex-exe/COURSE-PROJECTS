@@ -46,8 +46,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 2rem;
-  background: rgba(21, 23, 27, 0.85);
-  backdrop-filter: blur(8px);
+  /* background: rgba(21, 23, 27, 0.85); */
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -168,16 +168,17 @@ nav {
   color: rgb(19, 19, 19);
   text-align: center;
   text-align-last: center;
-  padding-left: 40px;
+  /* padding-left: 40px; */
+  transition-behavior: allow-discrete;
   
 
 }
 
 /* opt this select into the new stylable mode */
-#garage-btn,
+/* #garage-btn,
 #garage-btn::picker(select) {
   appearance: base-select;
-}
+} */
 
 /* style + animate the dropdown panel itself */
 #garage-btn::picker(select) {
@@ -236,7 +237,20 @@ nav {
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease, display 0.25s allow-discrete;
+}
+
+.car-card.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+@starting-style {
+  .car-card {
+    opacity: 0;
+    transform: scale(0.9);
+  }
 }
 
 .car-card:hover {
@@ -336,13 +350,38 @@ footer {
 .modal-box {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  max-width: 440px;
+  border-radius: 20px;
+  max-width: 1000px;
+  max-height: 85vh;     /* was: height: 560px */
+  overflow-y: auto;     /* was: overflow: hidden — now it scrolls if it's ever too tall, instead of chopping content off */
   width: 100%;
-  overflow: hidden;
   position: relative;
   transform: translateY(16px);
   transition: transform 0.2s ease;
+}
+.info{
+  display: flex;
+  
+}
+.modal-box a {
+  display: inline-block;
+  text-decoration: none;
+  font-family: Oswald;
+  text-transform: uppercase;
+  background-color: var(--text-muted);
+  color:var(--surface-hover);
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Fixed sizing and spacing: */
+  padding: 8px 40px; 
+  width: auto; 
+  margin-top: 15px;
+  margin-left: 230px; 
+  margin-bottom: 20px;
+  border: var() 1px solid;
 }
 
 .modal-overlay.active .modal-box {
@@ -350,13 +389,34 @@ footer {
 }
 
 .modal-box img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  width: 60%;
+  /* aspect-ratio: 15 / 14; */
   object-fit: cover;
+  border-radius: 0 8px 20px 10px;
 }
 
 .modal-content {
+   margin: 24px;              /* was 80px */
   padding: 1.2rem 1.4rem 1.5rem;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* ← This makes your multi-line descriptions center properly */
+}
+
+.modal-content h3{
+  padding-bottom: 16px;      
+  font-size:xx-large;
+
+}
+.modal-content span,
+.modal-content p {  /* ← Added the class here so it doesn't accidentally make all prices/text on your site huge */
+  font-size: larger;
+}
+
+.info2{
+  padding-bottom:40px ;
 }
 
 .modal-desc {
@@ -370,8 +430,8 @@ footer {
   position: absolute;
   top: 0.7rem;
   right: 0.7rem;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(0,0,0,0.5);
   border: none;

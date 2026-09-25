@@ -1,25 +1,42 @@
+// ===================== CAR COUNT =====================
 document.querySelector('.garage-heading span').textContent = 
   document.querySelectorAll('.car-card').length + ' cars';
 
-
- const select = document.getElementById('garage-btn');
+// ===================== FILTER =====================
+const select = document.getElementById('garage-btn');
 const cards = document.querySelectorAll('.car-card');
+
+function hideCard(card) {
+  card.classList.add('hidden');   // starts the fade — that's all this does now
+}
+
+function showCard(card) {
+  card.style.display = '';         // put it back in the grid...
+  card.classList.remove('hidden'); // ...then let CSS fade it in
+}
+
+// ONE listener per card, set up once — never re-created on every filter change
+cards.forEach(card => {
+  card.addEventListener('transitionend', (e) => {
+    if (e.propertyName !== 'opacity') return;
+    // only pull it out of the grid if it's STILL supposed to be hidden right now
+    if (card.classList.contains('hidden')) {
+      card.style.display = 'none';
+    }
+  });
+});
 
 select.onchange = function() {
   cards.forEach(card => {
     if (select.value === 'all' || card.dataset.category === select.value) {
-      card.style.display = 'block';   // show it
-     } 
-     else {
-      card.style.display = 'none';    // hide it
+      showCard(card);
+    } else {
+      hideCard(card);
     }
   });
 };
 
-
-
-
-
+// ===================== MODAL =====================
 const grid = document.querySelector('.car-grid');
 const modal = document.getElementById('carModal');
 const modalImg = document.getElementById('modalImg');
@@ -29,12 +46,10 @@ const modalMeta = document.getElementById('modalMeta');
 const modalDesc = document.getElementById('modalDesc');
 const modalClose = document.getElementById('modalClose');
 
-// ONE listener on the whole grid, not one per card
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
-  if (!card) return; // clicked the grid's empty space, not a card
+  if (!card) return;
 
-  // read the info straight off the card that was clicked — no duplicating it
   modalImg.src = card.querySelector('img').src;
   modalImg.alt = card.querySelector('img').alt;
   modalName.textContent = card.querySelector('h3').textContent;
@@ -43,7 +58,7 @@ grid.addEventListener('click', (e) => {
   modalDesc.textContent = card.dataset.desc || '';
 
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden'; // stop background from scrolling
+  document.body.style.overflow = 'hidden';
 });
 
 function closeModal() {
@@ -53,7 +68,6 @@ function closeModal() {
 
 modalClose.addEventListener('click', closeModal);
 
-// click on the dark backdrop (not the box itself) also closes it
 modal.addEventListener('click', (e) => {
   if (e.target === modal) closeModal();
 });
@@ -61,19 +75,3 @@ modal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
