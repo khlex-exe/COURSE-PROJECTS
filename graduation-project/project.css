@@ -495,6 +495,8 @@ footer {
   .modal-content h3 {
     font-size: 1.5rem;          /* was xx-large — that's fine on desktop, too big here */
     padding-bottom: 12px;       /* was 60px */
+  }
+  .modal-box a{
     position: relative;
     right: 100px;
   }
