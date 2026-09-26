@@ -405,6 +405,7 @@ footer {
   text-align: center; /* ← This makes your multi-line descriptions center properly */
 }
 
+
 .modal-content h3{
   padding-bottom: 16px;      
   font-size:xx-large;
@@ -416,7 +417,7 @@ footer {
 }
 
 .info2{
-  padding-bottom:40px ;
+  padding-bottom:25px ;
 }
 
 .modal-desc {
@@ -445,8 +446,7 @@ footer {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
   .garage { padding: 3rem 1.2rem; }
-}
-@media (max-width: 640px) {
+
   .nav-links.open {
     display: flex;
     flex-direction: column;
@@ -458,46 +458,42 @@ footer {
     padding: 1rem 2rem;
     border-bottom: 1px solid var(--border);
   }
-}
-@media (max-width: 640px) {
+
   .modal-box {
     width: 92%;
     max-width: 400px;
     height: auto;
     max-height: 85vh;
     overflow-y: auto;
-  }
-}
-@media (max-width: 640px) {
-  .modal-box {
-    width: 92%;
-    max-width: 400px;
-    height: auto;        /* cancels the fixed 560px from the desktop rule */
-    max-height: 85vh;
-    overflow-y: auto;    /* scrolls instead of cutting content off, if it's ever still too tall */
+    overflow-x: hidden;
+    text-align: center;
   }
 
   .info {
-    flex-direction: column;   /* image on top, text below — instead of side-by-side */
+    flex-direction: column;
   }
 
   .modal-box img {
-    width: 100%;               /* full width now that it's on its own row */
+    width: 100%;
     max-height: 200px;
     border-radius: 0;
   }
 
   .modal-content {
-    margin: 16px;               /* was 80px — way too much space for a narrow screen */
     padding: 1rem;
   }
 
   .modal-content h3 {
-    font-size: 1.5rem;          /* was xx-large — that's fine on desktop, too big here */
-    padding-bottom: 12px;       /* was 60px */
+    font-size: 1.5rem;
+    padding-bottom: 12px;
   }
-  .modal-box a{
-    position: relative;
-    right: 200px;
+
+  .modal-content > * {
+    max-width: 100%;
+  }
+  .modal-box a { position: relative; right: 150px; }
+
+  .btn-span {
+    gap: 12px;
   }
 }
