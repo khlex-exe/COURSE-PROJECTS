@@ -1,0 +1,11 @@
+Model Information:
+* title:	2015 Dodge Challenger 392 HEMI Scat Pack Shaker
+* source:	https://sketchfab.com/3d-models/2015-dodge-challenger-392-hemi-scat-pack-shaker-c2822b007f0a49aeb093b3671ca65c2a
+* author:	Ddiaz Design (https://sketchfab.com/ddiaz-design)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "2015 Dodge Challenger 392 HEMI Scat Pack Shaker" (https://sketchfab.com/3d-models/2015-dodge-challenger-392-hemi-scat-pack-shaker-c2822b007f0a49aeb093b3671ca65c2a) by Ddiaz Design (https://sketchfab.com/ddiaz-design) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
