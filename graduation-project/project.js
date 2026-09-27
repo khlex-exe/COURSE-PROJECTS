@@ -45,6 +45,7 @@ const modalPlate = document.getElementById('modalPlate');
 const modalMeta = document.getElementById('modalMeta');
 const modalDesc = document.getElementById('modalDesc');
 const modalClose = document.getElementById('modalClose');
+const modalPreview = document.querySelector('.modal-box a'); // the "preview" link
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
@@ -56,6 +57,7 @@ grid.addEventListener('click', (e) => {
   modalPlate.textContent = card.querySelector('.car-plate').textContent;
   modalMeta.textContent = card.querySelector('.car-meta').textContent;
   modalDesc.textContent = card.dataset.desc || '';
+  modalPreview.href = 'car-detail.html?car=' + card.dataset.id; // ← new line
 
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';

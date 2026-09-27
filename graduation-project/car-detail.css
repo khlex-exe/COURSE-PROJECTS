@@ -1,0 +1,184 @@
+/* ===================== CAR-DETAIL PAGE ===================== */
+/* Reuses --bg, --surface, --border, --text, --text-muted, --accent,
+   --font-heading, --font-body from project.css — link project.css
+   BEFORE this file in car-detail.html so those tokens exist. */
+
+body {
+  background-color: var(--bg);
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  padding: 0; /* overrides project.css .hero padding — image fills the section instead */
+  display: block;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark gradient so white/light text stays readable over any photo */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.25) 45%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 3rem;
+  left: 2rem;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.hero-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+}
+
+.hero-content p {
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ===================== SHARED: REVEAL / VIDEO / MODEL SECTIONS ===================== */
+.reveal,
+.video-section,
+.model-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 4rem 2rem;
+}
+
+.reveal-img,
+.reveal-video,
+.reveal-model {
+  max-width: 90%;
+  max-height: 75vh;
+  border-radius: 10px;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(40px);
+  transition: opacity 1s ease, filter 1s ease, transform 1s ease;
+}
+
+.reveal-img.in-view,
+.reveal-video.in-view,
+.reveal-model.in-view {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* ===================== MODEL SECTION ===================== */
+.model-section {
+  position: relative;
+}
+
+.model-label {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+model-viewer.reveal-model {
+  width: 60%;
+  height: 500px;
+  background-color: var(--surface);
+}
+
+@media (max-width: 640px) {
+  model-viewer.reveal-model {
+    width: 100%;
+  }
+}
+
+/* ===================== SPECS SECTION ===================== */
+.specs-section {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.specs-box {
+  width: 100%;
+  max-width: 700px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.specs-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.specs-box ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.specs-box ul li {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.specs-box ul li strong {
+  color: var(--text);
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.specs-box .modal-desc {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .specs-box ul {
+    grid-template-columns: 1fr;
+  }
+}
