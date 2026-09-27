@@ -28,7 +28,8 @@ cards.forEach(card => {
 
 select.onchange = function() {
   cards.forEach(card => {
-    if (select.value === 'all' || card.dataset.category === select.value) {
+   if (select.value === 'all' ||
+    card.dataset.category.toLowerCase() === select.value.toLowerCase()) {
       showCard(card);
     } else {
       hideCard(card);
@@ -49,6 +50,7 @@ const modalPreview = document.querySelector('.modal-box a'); // the "preview" li
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
+  const car = cars[card.dataset.id];
   if (!card) return;
 
   modalImg.src = card.querySelector('img').src;
@@ -56,7 +58,7 @@ grid.addEventListener('click', (e) => {
   modalName.textContent = card.querySelector('h3').textContent;
   modalPlate.textContent = card.querySelector('.car-plate').textContent;
   modalMeta.textContent = card.querySelector('.car-meta').textContent;
-  modalDesc.textContent = card.dataset.desc || '';
+ modalDesc.textContent = car?.longDesc || card.dataset.desc || '';
   modalPreview.href = 'car-detail.html?car=' + card.dataset.id; // ← new line
 
   modal.classList.add('active');

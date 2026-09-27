@@ -352,38 +352,42 @@ footer {
   border: 1px solid var(--border);
   border-radius: 20px;
   max-width: 1000px;
-  max-height: 85vh;     /* was: height: 560px */
-  overflow-y: auto;     /* was: overflow: hidden — now it scrolls if it's ever too tall, instead of chopping content off */
+  max-height: 85vh;
+  overflow-y: auto;
   width: 100%;
   position: relative;
   transform: translateY(16px);
   transition: transform 0.2s ease;
+
+  /* NEW: stack children vertically so the button can self-center */
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-box a {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  background-color: var(--text-muted);
+  color: var(--surface-hover);
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 8px 40px;
+  width: auto;
+
+  /* NEW: center it under the .info block instead of the magic 230px */
+  align-self: center;
+  margin: 15px 0 20px;
+
+  border: 1px solid var(--border);
 }
 .info{
   display: flex;
   
 }
-.modal-box a {
-  display: inline-block;
-  text-decoration: none;
-  font-family: Oswald;
-  text-transform: uppercase;
-  background-color: var(--text-muted);
-  color:var(--surface-hover);
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  /* Fixed sizing and spacing: */
-  padding: 8px 40px; 
-  width: auto; 
-  margin-top: 15px;
-  margin-left: 230px; 
-  margin-bottom: 20px;
-  border: var() 1px solid;
-}
-
 .modal-overlay.active .modal-box {
   transform: translateY(0);
 }
@@ -491,7 +495,6 @@ footer {
   .modal-content > * {
     max-width: 100%;
   }
-  .modal-box a { position: relative; right: 150px; }
 
   .btn-span {
     gap: 12px;
