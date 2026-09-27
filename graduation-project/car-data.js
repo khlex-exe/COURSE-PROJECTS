@@ -19,7 +19,6 @@ const cars = {
     drive: "rear-wheel drive",
     price: "$45,000",
     image: "pics/gt.jpg",
-    image2: "",
     video: "",
     model3d: "3d/mustang/scene.gltf",
     longDesc: "The Garage's benchmark muscle coupe — big V8 power in a nimble, rear-drive body."
@@ -34,7 +33,6 @@ const cars = {
     drive: "rear-wheel drive",
     price: "$105,000",
     image: "pics/porsche.jpg",
-    image2: "pics/porsche.jpg",
     video: "vids/Porsche 911_ Exterior _ Interior Design.(720P_HD).mp4",
     model3d: "3d/porsche/scene.gltf",
     longDesc: "The definitive everyday sports car. Timeless silhouette and surgical precision on canyon roads."
@@ -49,7 +47,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$32,000",
     image: "pics/rav.jpg",
-    image2: "",
     video: "",
     model3d: "",
     longDesc: "Reliable, versatile, and ready for anything. The perfect daily driver with capable all-wheel drive."
@@ -64,7 +61,6 @@ const cars = {
     drive: "electric",
     price: "$42,000",
     image: "pics/model.jpg",
-    image2: "",
     video: "",
     model3d: "3d/tesla/scene.gltf",
     longDesc: "The future of the daily commute. Instant electric torque paired with minimalist, cutting-edge technology."
@@ -79,7 +75,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$115,000",
     image: "pics/sclass.jpg",
-    image2: "",
     video: "",
     model3d: "3d/mercedes/scene.gltf",
     longDesc: "The ultimate expression of executive luxury. Unmatched comfort, ambient lighting, and smooth power."
@@ -94,7 +89,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$85,000",
     image: "pics/ranger.jpg",
-    image2: "",
     video: "",
     model3d: "",
     longDesc: "British luxury meets rugged capability. Command the road in absolute comfort and undeniable style."
@@ -109,7 +103,6 @@ const cars = {
     drive: "front-wheel drive",
     price: "$44,000",
     image: "pics/civic.jpg",
-    image2: "",
     video: "",
     model3d: "",
     longDesc: "A front-wheel-drive track weapon. Aggressive aero, a manual transmission, and pure driving engagement."
@@ -124,7 +117,6 @@ const cars = {
     drive: "rear-wheel drive",
     price: "$40,000",
     image: "pics/challenge.jpg",
-    image2: "",
     video: "",
     model3d: "3d/challenger/scene.gltf",
     longDesc: "Old-school American muscle. A roaring Hemi V8 wrapped in a retro-styled, unapologetically wide body."
@@ -139,7 +131,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$78,000",
     image: "pics/m4.jpg",
-    image2: "",
     video: "",
     model3d: "3d/bmw/scene.gltf",
     longDesc: "Aggressive styling matched by brutal twin-turbo power. A true driver's coupe built for the Autobahn."
@@ -154,7 +145,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$122,000",
     image: "pics/audi.jpg",
-    image2: "",
     video: "",
     model3d: "3d/audi/scene.gltf",
     longDesc: "The ultimate family supercar. A practical wagon body hiding a monstrous twin-turbo V8."
@@ -169,7 +159,6 @@ const cars = {
     drive: "four-wheel drive",
     price: "$48,000",
     image: "pics/ford.jpg",
-    image2: "",
     video: "",
     model3d: "",
     longDesc: "Built wild. A retro-inspired off-roader designed to conquer any trail you point it at."
@@ -184,7 +173,6 @@ const cars = {
     drive: "all-wheel drive",
     price: "$260,000",
     image: "pics/lambo.jpg",
-    image2: "",
     video: "",
     model3d: "3d/hurrican/scene.gltf",
     longDesc: "Pure Italian theater. A screaming naturally aspirated V10 wrapped in sharp, aggressive bodywork."

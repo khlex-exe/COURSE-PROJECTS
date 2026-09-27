@@ -66,7 +66,6 @@ body {
 }
 
 /* ===================== SHARED: REVEAL / VIDEO / MODEL SECTIONS ===================== */
-.reveal,
 .video-section,
 .model-section {
   min-height: 100vh;
@@ -78,7 +77,6 @@ body {
   padding: 4rem 2rem;
 }
 
-.reveal-img,
 .reveal-video,
 .reveal-model {
   max-width: 90%;
@@ -90,7 +88,6 @@ body {
   transition: opacity 1s ease, filter 1s ease, transform 1s ease;
 }
 
-.reveal-img.in-view,
 .reveal-video.in-view,
 .reveal-model.in-view {
   opacity: 1;

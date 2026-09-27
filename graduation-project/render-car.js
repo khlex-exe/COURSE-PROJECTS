@@ -30,14 +30,7 @@ function fillPage(car) {
 
   document.title = `The Garage — ${car.brand} ${car.name}`;
 
-  // --- reveal image (section 2) ---
-  const revealSection = document.getElementById('reveal-section');
-  if (car.image2) {
-    document.getElementById('reveal-img').src = car.image2;
-    document.getElementById('reveal-img').alt = car.name + ' detail shot';
-  } else {
-    revealSection.style.display = 'none';
-  }
+  
 
   // --- video (section 3) ---
   const videoSection = document.getElementById('video-section');
@@ -81,7 +74,7 @@ function fillPage(car) {
 
 // ===================== SCROLL REVEAL =====================
 function setUpScrollReveal() {
-  const revealEls = document.querySelectorAll('.reveal-img, .reveal-video, .reveal-model');
+  const revealEls = document.querySelectorAll('.reveal-video, .reveal-model');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
