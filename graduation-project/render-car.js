@@ -9,7 +9,7 @@ if (!car) {
     <div style="min-height:100vh; display:flex; flex-direction:column;
                 align-items:center; justify-content:center; text-align:center; gap:1rem;">
       <h1 style="font-family:'Oswald',sans-serif;">Car not found</h1>
-      <a href="index.html" class="hero-btn">Back to garage</a>
+      <a href="project.html" class="hero-btn">Back to garage</a>
     </div>`;
 } else {
   fillPage(car);
