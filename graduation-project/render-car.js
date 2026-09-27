@@ -87,3 +87,12 @@ function setUpScrollReveal() {
 
   revealEls.forEach(el => observer.observe(el));
 }
+
+
+
+
+// mobile view
+// add near the top of render-car.js
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));

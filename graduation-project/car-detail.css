@@ -80,8 +80,8 @@ body {
 .reveal-video,
 .reveal-model {
   max-width: 90%;
-  max-height: 75vh;
-  border-radius: 10px;
+  max-height: 80vh;
+  border-radius: 30px;
   opacity: 0;
   filter: blur(8px);
   transform: translateY(40px);

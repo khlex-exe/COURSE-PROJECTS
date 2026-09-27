@@ -375,12 +375,12 @@ footer {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease;
-  padding: 8px 40px;
+  padding: 10px 60px;
   width: auto;
 
   /* NEW: center it under the .info block instead of the magic 230px */
   align-self: center;
-  margin: 15px 0 20px;
+  margin: 15px 0 7px;
 
   border: 1px solid var(--border);
 }
