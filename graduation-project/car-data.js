@@ -18,7 +18,7 @@ const cars = {
     power: "460 hp",
     drive: "rear-wheel drive",
     price: "$45,000",
-    image: "pics/.jpg",
+    image: "pics/gt.jpg",
     image2: "",
     video: "",
     model3d: "",
