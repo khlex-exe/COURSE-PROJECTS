@@ -21,7 +21,7 @@ const cars = {
     image: "pics/gt.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/mustang/scene.gltf",
     longDesc: "The Garage's benchmark muscle coupe — big V8 power in a nimble, rear-drive body."
   },
 
@@ -33,9 +33,9 @@ const cars = {
     power: "379 hp",
     drive: "rear-wheel drive",
     price: "$105,000",
-    image: "pics/911.jpg",
+    image: "pics/porsche.jpg",
     image2: "pics/porsche.jpg",
-    video: "vids/porsche-911.mp4",
+    video: "vids/Porsche 911_ Exterior _ Interior Design.(720P_HD).mp4",
     model3d: "3d/porsche/scene.gltf",
     longDesc: "The definitive everyday sports car. Timeless silhouette and surgical precision on canyon roads."
   },
@@ -66,7 +66,7 @@ const cars = {
     image: "pics/model.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/tesla/scene.gltf",
     longDesc: "The future of the daily commute. Instant electric torque paired with minimalist, cutting-edge technology."
   },
 
@@ -81,7 +81,7 @@ const cars = {
     image: "pics/sclass.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/mercedes/scene.gltf",
     longDesc: "The ultimate expression of executive luxury. Unmatched comfort, ambient lighting, and smooth power."
   },
 
@@ -126,7 +126,7 @@ const cars = {
     image: "pics/challenge.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/challenger/scene.gltf",
     longDesc: "Old-school American muscle. A roaring Hemi V8 wrapped in a retro-styled, unapologetically wide body."
   },
 
@@ -141,7 +141,7 @@ const cars = {
     image: "pics/m4.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/bmw/scene.gltf",
     longDesc: "Aggressive styling matched by brutal twin-turbo power. A true driver's coupe built for the Autobahn."
   },
 
@@ -156,7 +156,7 @@ const cars = {
     image: "pics/audi.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/audi/scene.gltf",
     longDesc: "The ultimate family supercar. A practical wagon body hiding a monstrous twin-turbo V8."
   },
 
@@ -186,7 +186,7 @@ const cars = {
     image: "pics/lambo.jpg",
     image2: "",
     video: "",
-    model3d: "",
+    model3d: "3d/hurrican/scene.gltf",
     longDesc: "Pure Italian theater. A screaming naturally aspirated V10 wrapped in sharp, aggressive bodywork."
   }
 

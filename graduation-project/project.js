@@ -50,8 +50,8 @@ const modalPreview = document.querySelector('.modal-box a'); // the "preview" li
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
-  const car = cars[card.dataset.id];
   if (!card) return;
+  const car = cars[card.dataset.id];
 
   modalImg.src = card.querySelector('img').src;
   modalImg.alt = card.querySelector('img').alt;
@@ -88,22 +88,3 @@ const navLinks = document.querySelector('.nav-links');
 navToggle.addEventListener('click',function(){
   navLinks.classList.toggle('open');
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

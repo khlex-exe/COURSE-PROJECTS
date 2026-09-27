@@ -39,7 +39,7 @@ body {
 
 .hero-content {
   position: absolute;
-  bottom: 3rem;
+  bottom: 5rem;
   left: 2rem;
   z-index: 2;
 }
