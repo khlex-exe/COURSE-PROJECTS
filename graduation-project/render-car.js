@@ -62,7 +62,8 @@ function fillPage(car) {
     Category: car.category,
     Power: car.power,
     Drivetrain: car.drive,
-    Price: car.price
+    Price: car.price,
+    rental: car.rental
   };
 
   for (const [label, value] of Object.entries(specs)) {

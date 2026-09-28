@@ -1,4 +1,4 @@
-// ===================== CAR DATA =====================
+// ===================== CAR DATA =================
 // One object = one car. Key must exactly match the data-id you put
 // on that car's .car-card in index.html (e.g. data-id="mustang-gt").
 //
@@ -7,6 +7,7 @@
 // video      -> clip for the video section (add your own path)
 // model3d    -> .gltf path for <model-viewer> (leave "" if you don't have one yet)
 // longDesc   -> longer write-up for the detail page (data-desc on the card stays short)
+// rental     -> daily rental price (USD)
 
 const cars = {
 
@@ -18,8 +19,9 @@ const cars = {
     power: "460 hp",
     drive: "rear-wheel drive",
     price: "$45,000",
+    rental: "$149 / day",
     image: "pics/gt.jpg",
-    video: "",
+    video: "vids/gt.mp4",
     model3d: "3d/mustang/scene.gltf",
     longDesc: "The Garage's benchmark muscle coupe — big V8 power in a nimble, rear-drive body."
   },
@@ -32,6 +34,7 @@ const cars = {
     power: "379 hp",
     drive: "rear-wheel drive",
     price: "$105,000",
+    rental: "$399 / day",
     image: "pics/porsche.jpg",
     video: "vids/Porsche 911_ Exterior _ Interior Design.(720P_HD).mp4",
     model3d: "3d/porsche/scene.gltf",
@@ -46,6 +49,7 @@ const cars = {
     power: "203 hp",
     drive: "all-wheel drive",
     price: "$32,000",
+    rental: "$65 / day",
     image: "pics/rav.jpg",
     video: "",
     model3d: "",
@@ -60,6 +64,7 @@ const cars = {
     power: "283 hp",
     drive: "electric",
     price: "$42,000",
+    rental: "$89 / day",
     image: "pics/model.jpg",
     video: "",
     model3d: "3d/tesla/scene.gltf",
@@ -74,8 +79,9 @@ const cars = {
     power: "496 hp",
     drive: "all-wheel drive",
     price: "$115,000",
+    rental: "$449 / day",
     image: "pics/sclass.jpg",
-    video: "",
+    video: "vids/mercedes.mp4",
     model3d: "3d/mercedes/scene.gltf",
     longDesc: "The ultimate expression of executive luxury. Unmatched comfort, ambient lighting, and smooth power."
   },
@@ -88,6 +94,7 @@ const cars = {
     power: "395 hp",
     drive: "all-wheel drive",
     price: "$85,000",
+    rental: "$299 / day",
     image: "pics/ranger.jpg",
     video: "",
     model3d: "",
@@ -102,6 +109,7 @@ const cars = {
     power: "315 hp",
     drive: "front-wheel drive",
     price: "$44,000",
+    rental: "$129 / day",
     image: "pics/civic.jpg",
     video: "",
     model3d: "",
@@ -116,8 +124,9 @@ const cars = {
     power: "375 hp",
     drive: "rear-wheel drive",
     price: "$40,000",
+    rental: "$139 / day",
     image: "pics/challenge.jpg",
-    video: "",
+    video: "vids/dodge.mp4",
     model3d: "3d/challenger/scene.gltf",
     longDesc: "Old-school American muscle. A roaring Hemi V8 wrapped in a retro-styled, unapologetically wide body."
   },
@@ -130,8 +139,9 @@ const cars = {
     power: "503 hp",
     drive: "all-wheel drive",
     price: "$78,000",
+    rental: "$279 / day",
     image: "pics/m4.jpg",
-    video: "",
+    video: "vids/bmw.mp4",
     model3d: "3d/bmw/scene.gltf",
     longDesc: "Aggressive styling matched by brutal twin-turbo power. A true driver's coupe built for the Autobahn."
   },
@@ -144,8 +154,9 @@ const cars = {
     power: "591 hp",
     drive: "all-wheel drive",
     price: "$122,000",
+    rental: "$399 / day",
     image: "pics/audi.jpg",
-    video: "",
+    video: "vids/audi.mp4",
     model3d: "3d/audi/scene.gltf",
     longDesc: "The ultimate family supercar. A practical wagon body hiding a monstrous twin-turbo V8."
   },
@@ -158,6 +169,7 @@ const cars = {
     power: "330 hp",
     drive: "four-wheel drive",
     price: "$48,000",
+    rental: "$119 / day",
     image: "pics/ford.jpg",
     video: "",
     model3d: "",
@@ -172,8 +184,9 @@ const cars = {
     power: "631 hp",
     drive: "all-wheel drive",
     price: "$260,000",
+    rental: "$1,299 / day",
     image: "pics/lambo.jpg",
-    video: "",
+    video: "vids/lambo.mp4",
     model3d: "3d/hurrican/scene.gltf",
     longDesc: "Pure Italian theater. A screaming naturally aspirated V10 wrapped in sharp, aggressive bodywork."
   }

@@ -160,6 +160,34 @@ model-viewer.reveal-model {
   font-size: 0.9rem;
   color: var(--text-muted);
 }
+.spec-links{
+  display: flex;
+  flex-direction: column;
+
+}
+.buy{
+  display: flex;
+  /* align-items:center; */
+  justify-content:center;
+  gap: 29px;
+
+}
+
+.Purchace,
+.Rent{
+  padding: 10px 12px;
+  border-radius: 15px;
+}
+
+.Purchace{
+  border: 1px solid green;
+  background-color: green;
+}
+
+.Rent{
+  border: 1px solid blue;
+  background-color: blue;
+}
 
 .specs-box ul li strong {
   color: var(--text);
