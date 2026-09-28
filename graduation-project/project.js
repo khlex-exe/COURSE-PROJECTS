@@ -1,13 +1,15 @@
-// ===================== CAR COUNT =====================
-document.querySelector('.garage-heading span').textContent = 
-  document.querySelectorAll('.car-card').length + ' cars';
-
 // ===================== FILTER =====================
 const select = document.getElementById('garage-btn');
 const cards = document.querySelectorAll('.car-card');
 
+// ===================== CAR COUNT =====================
+function updateCount() {
+  const visible = [...cards].filter(c => !c.classList.contains('hidden')).length;
+  document.querySelector('.garage-heading span').textContent = visible + (visible === 1 ? ' car' : ' cars');
+}
+
 function hideCard(card) {
-  card.classList.add('hidden');   // starts the fade — that's all this does now
+  card.classList.add('hidden');   // starts the fade
 }
 
 function showCard(card) {
@@ -15,11 +17,10 @@ function showCard(card) {
   card.classList.remove('hidden'); // ...then let CSS fade it in
 }
 
-// ONE listener per card, set up once — never re-created on every filter change
+// ONE listener per card, set up once
 cards.forEach(card => {
   card.addEventListener('transitionend', (e) => {
     if (e.propertyName !== 'opacity') return;
-    // only pull it out of the grid if it's STILL supposed to be hidden right now
     if (card.classList.contains('hidden')) {
       card.style.display = 'none';
     }
@@ -28,14 +29,17 @@ cards.forEach(card => {
 
 select.onchange = function() {
   cards.forEach(card => {
-   if (select.value === 'all' ||
-    card.dataset.category.toLowerCase() === select.value.toLowerCase()) {
+    if (select.value === 'all' ||
+      card.dataset.category.toLowerCase() === select.value.toLowerCase()) {
       showCard(card);
     } else {
       hideCard(card);
     }
   });
+  updateCount();   // ← refreshes the count after every filter change
 };
+
+updateCount();     // ← sets the initial "12 cars" on page load
 
 // ===================== MODAL =====================
 const grid = document.querySelector('.car-grid');
@@ -46,7 +50,7 @@ const modalPlate = document.getElementById('modalPlate');
 const modalMeta = document.getElementById('modalMeta');
 const modalDesc = document.getElementById('modalDesc');
 const modalClose = document.getElementById('modalClose');
-const modalPreview = document.querySelector('.modal-box a'); // the "preview" link
+const modalPreview = document.querySelector('.modal-box a');
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
@@ -58,8 +62,8 @@ grid.addEventListener('click', (e) => {
   modalName.textContent = card.querySelector('h3').textContent;
   modalPlate.textContent = card.querySelector('.car-plate').textContent;
   modalMeta.textContent = card.querySelector('.car-meta').textContent;
- modalDesc.textContent = car?.longDesc || card.dataset.desc || '';
-  modalPreview.href = 'car-detail.html?car=' + card.dataset.id; // ← new line
+  modalDesc.textContent = car?.longDesc || card.dataset.desc || '';
+  modalPreview.href = 'car-detail.html?car=' + card.dataset.id;
 
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -80,11 +84,10 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
-
+// ===================== MOBILE NAV =====================
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-
-navToggle.addEventListener('click',function(){
+navToggle.addEventListener('click', function() {
   navLinks.classList.toggle('open');
-})
+});
