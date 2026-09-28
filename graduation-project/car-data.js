@@ -22,7 +22,7 @@ const cars = {
     rental: "$149 / day",
     image: "pics/gt.jpg",
     video: "vids/gt.mp4",
-    model3d: "3d/mustang/scene.gltf",
+    model3d: "3d/mustang.glb",
     longDesc: "The Garage's benchmark muscle coupe — big V8 power in a nimble, rear-drive body."
   },
 
@@ -37,7 +37,7 @@ const cars = {
     rental: "$399 / day",
     image: "pics/porsche.jpg",
     video: "vids/Porsche 911_ Exterior _ Interior Design.(720P_HD).mp4",
-    model3d: "3d/porsche/scene.gltf",
+    model3d: "3d/porsche.glb",
     longDesc: "The definitive everyday sports car. Timeless silhouette and surgical precision on canyon roads."
   },
 
@@ -67,7 +67,7 @@ const cars = {
     rental: "$89 / day",
     image: "pics/model.jpg",
     video: "",
-    model3d: "3d/tesla/scene.gltf",
+    model3d: "3d/tesla.glb",
     longDesc: "The future of the daily commute. Instant electric torque paired with minimalist, cutting-edge technology."
   },
 
@@ -82,7 +82,7 @@ const cars = {
     rental: "$449 / day",
     image: "pics/sclass.jpg",
     video: "vids/mercedes.mp4",
-    model3d: "3d/mercedes/scene.gltf",
+    model3d: "3d/mercedes.glb",
     longDesc: "The ultimate expression of executive luxury. Unmatched comfort, ambient lighting, and smooth power."
   },
 
@@ -127,7 +127,7 @@ const cars = {
     rental: "$139 / day",
     image: "pics/challenge.jpg",
     video: "vids/dodge.mp4",
-    model3d: "3d/challenger/scene.gltf",
+    model3d: "3d/challenger.glb",
     longDesc: "Old-school American muscle. A roaring Hemi V8 wrapped in a retro-styled, unapologetically wide body."
   },
 
@@ -142,7 +142,7 @@ const cars = {
     rental: "$279 / day",
     image: "pics/m4.jpg",
     video: "vids/bmw.mp4",
-    model3d: "3d/bmw/scene.gltf",
+    model3d: "3d/bmw.glb",
     longDesc: "Aggressive styling matched by brutal twin-turbo power. A true driver's coupe built for the Autobahn."
   },
 
@@ -157,7 +157,7 @@ const cars = {
     rental: "$399 / day",
     image: "pics/audi.jpg",
     video: "vids/audi.mp4",
-    model3d: "3d/audi/scene.gltf",
+    model3d: "3d/audi.glb",
     longDesc: "The ultimate family supercar. A practical wagon body hiding a monstrous twin-turbo V8."
   },
 
@@ -187,7 +187,7 @@ const cars = {
     rental: "$1,299 / day",
     image: "pics/lambo.jpg",
     video: "vids/lambo.mp4",
-    model3d: "3d/hurrican/scene.gltf",
+    model3d: "3d/hurrican.glb",
     longDesc: "Pure Italian theater. A screaming naturally aspirated V10 wrapped in sharp, aggressive bodywork."
   }
 
