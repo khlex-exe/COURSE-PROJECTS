@@ -61,15 +61,14 @@
     <h3 id="specs-name"></h3>
     <ul id="specs-list"></ul>
     <p id="specs-desc" class="modal-desc"></p>
-    <p id="rental"></p>
-    <div class="spac-links">
-      <div class="buy">
-    <a href="#" class="Purchace">Purchase <i class="bi bi-cart"></i> </a>
-    <a href="#" class="Rent">Rent <i class="bi bi-cash-stack"></i> </a>
-    </div>
-    <a href="project.html" class="hero-btn">Back to garage <i class="bi bi-arrow-left"></i></a>
-    </div>
+    <div class="spec-links">
+  <div class="buy">
+    <button type="button" class="btn-purchase" id="purchaseBtn"><i class="bi bi-cart"></i> Purchase</button>
+    <button type="button" class="btn-rent" id="rentBtn"><i class="bi bi-cash-stack"></i> Rent</button>
   </div>
+  <a href="project.html" class="hero-btn">Back to garage <i class="bi bi-arrow-left"></i></a>
+</div>
+  
 </section>
 
 <footer>
@@ -77,6 +76,34 @@
   <br><br><br>
   <a href="tel:0403330368">To contact us call: 0403330368</a>
 </footer>
+
+
+
+<dialog id="dealDialog">
+  <button type="button" class="deal-close" id="dealClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+
+  <form id="dealForm">
+    <h3 id="dealTitle"></h3>
+    <p id="dealSummary" class="deal-summary"></p>
+
+    <div id="rentFields">
+      <label>Pick-up <input type="date" id="dateFrom"></label>
+      <label>Return <input type="date" id="dateTo"></label>
+    </div>
+
+    <label>Full name <input type="text" id="dealName" required></label>
+    <label>Phone <input type="tel" id="dealPhone" required></label>
+
+    <p id="dealTotal" class="deal-total"></p>
+    <button type="submit" class="hero-btn" id="dealSubmit"></button>
+  </form>
+
+  <div id="dealDone" hidden>
+    <i class="bi bi-check-circle"></i>
+    <h3>Request sent</h3>
+    <p id="dealDoneText"></p>
+  </div>
+</dialog>
 
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <script src="car-data.js"></script>
