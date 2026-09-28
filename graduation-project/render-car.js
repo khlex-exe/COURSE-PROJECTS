@@ -14,6 +14,7 @@ if (!car) {
 } else {
   fillPage(car);
   setUpScrollReveal();
+  setUpDeals(car);   // ← this was missing
 }
 
 // ===================== FILL THE TEMPLATE =====================
@@ -165,4 +166,6 @@ function setUpDeals(car) {
 // add near the top of render-car.js
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
-navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+if (navToggle) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+}
