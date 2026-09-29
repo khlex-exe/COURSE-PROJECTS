@@ -1,6 +1,9 @@
 // ===================== FILTER =====================
 const select = document.getElementById('garage-btn');
 const cards = document.querySelectorAll('.car-card');
+  let currentlyOpenId = null ;
+  let favs = JSON.parse( localStorage.getItem('favs') || '[]' );
+
 
 // ===================== CAR COUNT =====================
 function updateCount() {
@@ -10,6 +13,18 @@ function updateCount() {
 
 function hideCard(card) {
   card.classList.add('hidden');   // starts the fade
+}
+
+function toggleLike(id){
+
+  if(!(favs.includes(id))){
+    favs.push(id)
+  }
+  else{
+  favs = favs.filter(carid => carid !== id)
+  }
+
+  localStorage.setItem('favs', JSON.stringify(favs))
 }
 
 function showCard(card) {
@@ -29,15 +44,27 @@ cards.forEach(card => {
 
 select.onchange = function() {
   cards.forEach(card => {
-    if (select.value === 'all' ||
-      card.dataset.category.toLowerCase() === select.value.toLowerCase()) {
+    let matches;
+
+    if (select.value === 'all') {
+      matches = true;
+    } else if (select.value === 'favs') {
+      matches = favs.includes(card.dataset.id);
+    } else {
+      matches = card.dataset.category.toLowerCase() === select.value.toLowerCase();
+    }
+
+    if (matches) {
       showCard(card);
     } else {
       hideCard(card);
     }
   });
+
   updateCount();   // ← refreshes the count after every filter change
 };
+
+
 
 updateCount();     // ← sets the initial "12 cars" on page load
 
@@ -51,11 +78,24 @@ const modalMeta = document.getElementById('modalMeta');
 const modalDesc = document.getElementById('modalDesc');
 const modalClose = document.getElementById('modalClose');
 const modalPreview = document.querySelector('.modal-box a');
+const heartBtn = document.querySelector('.heart-btn'); //!THIS
+
+const heartIcon = heartBtn.querySelector('i');
+
+function renderHeart() {
+  const liked = favs.includes(currentlyOpenId);
+  heartIcon.classList.toggle('bi-heart',      !liked);
+  heartIcon.classList.toggle('bi-heart-fill',  liked);
+}
+
+
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.car-card');
   if (!card) return;
   const car = cars[card.dataset.id];
+  currentlyOpenId = card.dataset.id;
+
 
   modalImg.src = card.querySelector('img').src;
   modalImg.alt = card.querySelector('img').alt;
@@ -67,6 +107,14 @@ grid.addEventListener('click', (e) => {
 
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
+
+  renderHeart();   // ← add this
+});
+
+heartBtn.addEventListener('click', () => {
+  toggleLike(currentlyOpenId);   // uses whatever's currently remembered
+   renderHeart();   // ← add this
+
 });
 
 function closeModal() {
@@ -91,3 +139,7 @@ const navLinks = document.querySelector('.nav-links');
 navToggle.addEventListener('click', function() {
   navLinks.classList.toggle('open');
 });
+
+
+
+

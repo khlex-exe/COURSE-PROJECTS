@@ -240,6 +240,35 @@ nav {
     transition: opacity 0.25s ease, transform 0.25s ease, display 0.25s allow-discrete;
 }
 
+.heart-btn{
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: 10px;
+  right: 10px;
+  border-radius: 7px;
+  border: 1px transparent;
+  color: red;
+  /* background: linear-gradient(to right , var(--bg) ,var(--surface-hover)); */
+
+}
+.heart-btn { color: var(--text-muted); }
+.heart-btn .bi-heart-fill { color: red; }
+
+.heart-btn i {
+  transition: transform 0.15s ease;
+}
+.heart-btn i.bi-heart-fill {
+  transform: scale(1.15);
+}
+
+.btn-spacing{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
 .car-card.hidden {
   opacity: 0;
   transform: scale(0.9);
@@ -364,7 +393,8 @@ footer {
   flex-direction: column;
 }
 
-.modal-box a {
+.modal-box a
+ {
   display: inline-block;
   text-decoration: none;
   font-family: var(--font-heading);
@@ -429,6 +459,22 @@ footer {
   color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.btns{
+  display: flex;
+  /* justify-content: space-around; */
+   justify-content: center; 
+   /* align-items: center; */
+   gap: 80px; 
+}
+.btns button{
+  position: relative;
+  top: 17px;
+
+}
+.btns button:hover{
+  cursor: pointer;
 }
 
 .modal-close {
