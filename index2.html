@@ -1,79 +1,1164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ Study Guide — From Practice File to Projects</title>
+<style>
+  :root{
+    --bg:#0d1017; --panel:#161a24; --panel2:#1d2230;
+    --ink:#eceff6; --muted:#a7b0c5;
+    --accent:#82c4ff; --accent2:#ffd47e; --good:#93e393; --bad:#ff9c9c;
+    --border:#343c55; --code:#0a0d13;
+    --mono:Consolas,"SF Mono","Liberation Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; font-size:16px;
+  }
+  .skip{
+    position:absolute; left:-9999px; top:0; background:var(--accent2);
+    color:#111; padding:8px 14px; border-radius:0 0 6px 0; font-weight:700; z-index:99;
+  }
+  .skip:focus{left:0;}
+  header{padding:48px 24px 32px; text-align:center; border-bottom:1px solid var(--border);}
+  header h1{margin:0 0 10px; font-size:2rem;}
+  header p{color:var(--muted); max-width:720px; margin:8px auto; text-align:left;}
+  main{max-width:960px; margin:0 auto; padding:0 20px 80px;}
+
+  nav.toc{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:18px 22px; margin:28px 0;
+  }
+  nav.toc h2{margin:0 0 8px; font-size:1rem; color:var(--accent2);
+    text-transform:uppercase; letter-spacing:.06em;}
+  nav.toc ul{list-style:none; padding:0; margin:0; columns:2; column-gap:32px;}
+  nav.toc li{margin:4px 0; break-inside:avoid;}
+  nav.toc a{color:var(--accent); text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+  nav.toc .sub{padding-left:18px; color:var(--muted);}
+  nav.toc .sub a{color:var(--ink);}
+  .tools{margin-top:12px;}
+  .tools button{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--border);
+    border-radius:6px; padding:6px 14px; cursor:pointer; font-size:.9rem; margin-right:8px;
+  }
+  .tools button:hover{border-color:var(--accent);}
+
+  h2.part{
+    color:var(--accent2); font-size:1.4rem; margin:56px 0 6px;
+    border-bottom:1px solid var(--border); padding-bottom:10px;
+  }
+  p.dek{color:var(--muted); margin:6px 0 18px;}
+
+  /* keyboard-friendly accordions (native details/summary) */
+  details.acc{
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:10px; margin:12px 0; overflow:hidden;
+  }
+  details.acc>summary{
+    list-style:none; cursor:pointer; padding:14px 18px;
+    display:flex; align-items:baseline; gap:12px;
+  }
+  details.acc>summary::-webkit-details-marker{display:none;}
+  details.acc>summary::before{
+    content:"+"; font-family:var(--mono); color:var(--accent2);
+    font-size:1.2rem; flex:none; width:1em; text-align:center;
+  }
+  details.acc[open]>summary::before{content:"−";}
+  details.acc[open]>summary{border-bottom:1px solid var(--border);}
+  details.acc>summary:focus-visible,
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--accent); outline-offset:2px;
+  }
+  details.acc .body{padding:8px 22px 20px;}
+  summary h3{margin:0; font-size:1.1rem; color:var(--ink);}
+
+  .tag{
+    font-family:var(--mono); font-size:.72rem; padding:2px 8px; border-radius:99px;
+    border:1px solid var(--border); white-space:nowrap; font-weight:700;
+  }
+  .tag.review{color:var(--accent); border-color:var(--accent);}
+  .tag.new{color:#0d1017; background:var(--accent2); border-color:var(--accent2);}
+  .tag.level{color:var(--good); border-color:var(--good);}
+
+  h4.sub{
+    color:var(--accent); font-size:.95rem; margin:20px 0 6px;
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  code{
+    font-family:var(--mono); background:var(--code); color:var(--accent2);
+    padding:1px 6px; border-radius:4px; font-size:.88em;
+  }
+  pre{
+    background:var(--code); border:1px solid var(--border); border-radius:8px;
+    padding:14px 16px; overflow-x:auto; margin:10px 0;
+  }
+  pre code{background:none; padding:0; color:#dbe4ff; font-size:.86rem; line-height:1.55;}
+  .note{
+    background:var(--panel2); border-left:4px solid var(--accent);
+    padding:10px 14px; border-radius:6px; margin:12px 0; font-size:.93rem;
+  }
+  .warn{
+    background:#2a1a1a; border-left:4px solid var(--bad);
+    padding:10px 14px; border-radius:6px; margin:12px 0; font-size:.93rem;
+  }
+  table{width:100%; border-collapse:collapse; margin:10px 0 18px; font-size:.92rem;}
+  caption{
+    caption-side:top; text-align:left; color:var(--muted);
+    font-size:.85rem; padding-bottom:6px; font-style:italic;
+  }
+  th,td{border:1px solid var(--border); padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--panel2); color:var(--accent2); font-family:var(--mono); font-size:.8rem;}
+  ul.plain{margin:8px 0; padding-left:22px;}
+  ul.plain li{margin:4px 0;}
+  footer{
+    text-align:center; color:var(--muted); font-size:.85rem;
+    padding:30px 20px; border-top:1px solid var(--border);
+  }
+  @media (max-width:640px){ nav.toc ul{columns:1;} }
+</style>
 </head>
 <body>
-    
-    <a href="index.html">go to first page</a>
-    <hr>
-    <br><br>
-    <a href="https://animepahe.com">fav anime page</a>
-    <hr>
-    <img src="hold your horses.jpg" width="300px" height="300px" alt="pic">
-    <br>
-    <a href="tel:+20 01553565565">call me</a>
-    <br>
-    <a href="mailto:khlexexe@gmail.com">email me</a>
-    <br><br>
-    <a href="https://fitgirl-repacks.site/" target="_blank">fit gurl</a>
-    
-    <p>blank makes it so the link opens in a new page</p>
-    <p>"a"'s default is self</p>
-    <p>im using hr as a line to disconnect shit</p>
-    <p>but you can use br for spcaes "enter"</p>
-    <p>inside href you put where you are going</p>
-    <p>"a" is used to make links</p>
-    
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<header>
+  <h1>C++ Study Guide</h1>
+  <p>Built to follow your practice file. You have already coded output, variables,
+     namespaces, casting, input, switches, ternaries, string methods, all the loop
+     types, random numbers, functions, overloading, and local/global scope — and
+     your file stops right at the first line of a rock-paper-scissors game.</p>
+  <p>This guide does three things: it turns what you know into <strong>short
+     reference notes</strong>, teaches the <strong>topics not in your file yet</strong>
+     (pointers, classes, inheritance, templates, the STL), and walks you through
+     <strong>six projects in order of difficulty</strong> — starting by finishing
+     that rock-paper-scissors game you began.</p>
+</header>
+
+<main id="main">
+
+<!-- ============================ HOW TO USE ============================ -->
+<section aria-labelledby="howto-h">
+  <h2 class="part" id="howto-h">How to use this guide</h2>
+  <ol>
+    <li>Skim Part 1. Sections marked <span class="tag review">REVIEW</span> are things you have already coded — read them as a refresher. Sections marked <span class="tag new">NEW</span> build directly on them.</li>
+    <li>Paste the <a href="#quickstart">quick-start template</a> into your editor and confirm you can compile and run it before anything else.</li>
+    <li>Do the <a href="#projects">projects</a> in order. Each one needs only the concepts listed above it.</li>
+    <li>Stuck on a project? The <a href="#walkthrough">vending machine walkthrough</a> shows the full build process on an easier example — copy the <em>method</em>, not the code.</li>
+  </ol>
+  <p>Every section below is collapsible. Click a title, or press <code>Tab</code> to reach it and <code>Enter</code> to open and close it.</p>
+</section>
+
+<nav class="toc" aria-label="Table of contents">
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#quickstart">Quick-start template</a></li>
+    <li><a href="#concepts">Part 1 — Core concepts</a></li>
+    <li class="sub"><a href="#c-vars">1.1 Variables &amp; types</a></li>
+    <li class="sub"><a href="#c-flow">1.2 Control flow</a></li>
+    <li class="sub"><a href="#c-funcs">1.3 Functions</a></li>
+    <li class="sub"><a href="#c-coll">1.4 Strings, arrays &amp; vectors</a></li>
+    <li class="sub"><a href="#c-ptr">1.5 Pointers &amp; references</a></li>
+    <li class="sub"><a href="#c-class">1.6 Classes &amp; objects</a></li>
+    <li class="sub"><a href="#c-inherit">1.7 Inheritance &amp; polymorphism</a></li>
+    <li class="sub"><a href="#c-tpl">1.8 Templates</a></li>
+    <li class="sub"><a href="#c-stl">1.9 STL basics</a></li>
+    <li><a href="#projects">Part 2 — Six projects</a></li>
+    <li><a href="#walkthrough">Part 3 — Worked walkthrough: vending machine</a></li>
+    <li><a href="#glossary">Glossary — key terms in plain language</a></li>
+  </ul>
+  <div class="tools" id="accordion-tools" hidden>
+    <button id="open-all" type="button">Open all sections</button>
+    <button id="close-all" type="button">Close all sections</button>
+  </div>
+</nav>
+
+<!-- ============================ QUICK START ============================ -->
+<section aria-labelledby="qs-h">
+  <h2 class="part" id="qs-h">Quick-start template</h2>
+  <p class="dek">A complete, standalone program that works unchanged with C++17 or C++20. Paste it into <code>quickstart.cpp</code>, compile, run — if this works, everything in this guide will.</p>
+
+  <pre><code>// quickstart.cpp - a minimal but complete C++17/20 program
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+// a small function, so the template shows the full shape of a program
+int sum(const std::vector&lt;int&gt;&amp; numbers) {
+    int total = 0;
+    for (int n : numbers) {   // range-for: visits every element
+        total += n;
+    }
+    return total;
+}
+
+int main() {
+    std::cout &lt;&lt; "this template compiles under C++17 and C++20\n";
+
+    std::string name;
+    std::cout &lt;&lt; "your name: ";
+    std::getline(std::cin, name);       // getline: reads spaces too
+
+    std::vector&lt;int&gt; scores = {90, 75, 100};
+    scores.push_back(60);               // vector grows on its own
+
+    std::cout &lt;&lt; "hi " &lt;&lt; name &lt;&lt; "!\n";
+    std::cout &lt;&lt; "scores total: " &lt;&lt; sum(scores) &lt;&lt; '\n';
+    return 0;
+}</code></pre>
+
+  <table>
+    <caption>How to compile and run it</caption>
+    <tr><th scope="col">Tool</th><th scope="col">Command</th></tr>
+    <tr><td>g++ (Linux, macOS, MinGW)</td><td><code>g++ -std=c++17 -Wall -Wextra -o quickstart quickstart.cpp</code> then <code>./quickstart</code></td></tr>
+    <tr><td>clang++</td><td><code>clang++ -std=c++17 -Wall -Wextra -o quickstart quickstart.cpp</code></td></tr>
+    <tr><td>MSVC (developer prompt)</td><td><code>cl /std:c++17 /EHsc /W4 quickstart.cpp</code> then <code>quickstart</code></td></tr>
+    <tr><td>Online (no install)</td><td>Search "online C++ compiler" or "Compiler Explorer", pick C++17 or newer, paste and run</td></tr>
+  </table>
+  <div class="note"><code>-Wall -Wextra</code> turns on extra warnings — say yes to these. They catch things like the missing <code>break;</code> and unused variables before they become bugs.</div>
+</section>
+
+<!-- ============================ PART 1: CONCEPTS ============================ -->
+<h2 class="part" id="concepts">Part 1 — Core concepts</h2>
+<p class="dek">Nine short sections. The first four are mostly review of things you have already written; the last five are the C++ your practice file hasn't reached yet.</p>
+
+<details class="acc" id="c-vars" open>
+  <summary><h3>1.1 Variables &amp; types</h3> <span class="tag review">REVIEW + auto</span></summary>
+  <div class="body">
+    <table>
+      <caption>The five types your practice file already uses</caption>
+      <tr><th scope="col">Type</th><th scope="col">Holds</th><th scope="col">Example</th></tr>
+      <tr><td><code>int</code></td><td>whole numbers</td><td><code>int age = 21;</code></td></tr>
+      <tr><td><code>double</code></td><td>decimals</td><td><code>double price = 12.99;</code></td></tr>
+      <tr><td><code>char</code></td><td>one character, single quotes</td><td><code>char grade = 'A';</code></td></tr>
+      <tr><td><code>bool</code></td><td>true / false</td><td><code>bool isStudent = true;</code></td></tr>
+      <tr><td><code>std::string</code></td><td>text, double quotes</td><td><code>std::string name = "khaled";</code></td></tr>
+    </table>
+<pre><code>const double TAX_RATE = 0.14;    // locked forever - ALL_CAPS by convention
+auto total = price * 2;          // auto: compiler picks the type (double here)
+
+// the classic trap you already fixed once in your own file:
+std::cout &lt;&lt; 8 / 10 &lt;&lt; '\n';     // 0    (int / int throws away decimals)
+std::cout &lt;&lt; 8 / 10.0 &lt;&lt; '\n';   // 0.8  (making one side a double is enough)</code></pre>
+    <div class="note"><strong><code>auto</code> is new to you:</strong> the compiler figures out the type from the value. It only works when you initialize the variable immediately — <code>auto x;</code> alone is an error, because the compiler has nothing to read the type from.</div>
+  </div>
+</details>
+
+<details class="acc" id="c-flow">
+  <summary><h3>1.2 Control flow</h3> <span class="tag review">REVIEW + range-for</span></summary>
+  <div class="body">
+<pre><code>if (score &gt;= 90)       { std::cout &lt;&lt; "A"; }
+else if (score &gt;= 80)  { std::cout &lt;&lt; "B"; }
+else                   { std::cout &lt;&lt; "keep going"; }
+
+switch (menuChoice) {
+    case 1: deposit();  break;    // no break = falls into the next case
+    case 2: withdraw(); break;    // (a bug you already met in your calculator)
+    default: std::cout &lt;&lt; "invalid"; break;
+}
+
+int biggest = (a &gt; b) ? a : b;   // ternary: condition ? then : else
+
+while (name.empty())  { /* ask again */ }
+do { playRound(); } while (again == 'y');   // runs the body at least once
+for (int i = 0; i &lt; 5; i++) { /* i = 0,1,2,3,4 */ }
+for (int value : numbers) { /* every element, no index needed */ }  // NEW</code></pre>
+    <div class="note">The only new item is the <strong>range-based for loop</strong>: <code>for (int value : numbers)</code> visits every element of an array, vector, or string without you managing an index — so no more off-by-one mistakes like a loop bound of <code>temp &lt; 4</code> on a 5-element array.</div>
+  </div>
+</details>
+
+<details class="acc" id="c-funcs">
+  <summary><h3>1.3 Functions</h3> <span class="tag review">REVIEW + references &amp; defaults</span></summary>
+  <div class="body">
+<pre><code>int add(int a, int b);            // declaration: promises "this exists"
+
+int add(int a, int b) {           // definition: the actual body
+    return a + b;
+}
+
+void greet(std::string name = "friend") {   // default argument
+    std::cout &lt;&lt; "hi " &lt;&lt; name &lt;&lt; '\n';
+}
+
+void levelUp(int&amp; hp) { hp += 10; }         // &amp; = by reference: changes stick
+
+int main() {
+    greet();              // hi friend
+    greet("khaled");      // hi khaled
+
+    int hp = 5;
+    levelUp(hp);          // hp is now 15 - the ORIGINAL changed
+    std::cout &lt;&lt; add(hp, 5);   // 20
+}</code></pre>
+    <ul class="plain">
+      <li>Your banking program already used declarations — prototypes like <code>void showBalance(double balance);</code> above <code>main()</code>, definitions below it.</li>
+      <li>Overloading (your four <code>bakepizza</code> functions) means several functions share a name but take different parameters.</li>
+      <li><strong>New:</strong> <em>pass by value</em> (the default) gives the function a <em>copy</em>; <em>pass by reference</em> (<code>int&amp;</code>) gives it the original — that's why <code>levelUp(hp)</code> can change <code>hp</code> back in <code>main</code>.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="acc" id="c-coll">
+  <summary><h3>1.4 Strings, arrays &amp; vectors</h3> <span class="tag review">REVIEW + vector</span></summary>
+  <div class="body">
+<pre><code>int scores[5] = {90, 85, 70, 95, 60};   // C-style array: size fixed forever
+scores[0] = 100;                         // index 0 is the FIRST element
+
+std::vector&lt;int&gt; levels;                 // vector: starts empty, grows itself
+levels.push_back(1);
+levels.push_back(2);
+levels.push_back(3);
+std::cout &lt;&lt; levels.size();              // 3
+
+for (int value : levels) {               // range-for works on vectors too
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+}
+
+std::string s = "khaled";
+std::cout &lt;&lt; s.length() &lt;&lt; s.at(0);      // 6k  (methods you already know)</code></pre>
+    <ul class="plain">
+      <li>String methods you already use: <code>.length()</code>, <code>.empty()</code>, <code>.clear()</code>, <code>.append()</code>, <code>.at()</code>, <code>.insert()</code>, <code>.find()</code>, <code>.erase()</code>.</li>
+      <li><strong>New:</strong> <code>std::vector</code> is a resizable array — <code>push_back</code> adds to the end, <code>.size()</code> tells you the length, and <code>.at(i)</code> checks the index is legal before reading (plain <code>[i]</code> doesn't).</li>
+      <li>Rule of thumb for your projects: use a vector unless you know the exact size at compile time.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="acc" id="c-ptr">
+  <summary><h3>1.5 Pointers &amp; references</h3> <span class="tag new">NEW</span></summary>
+  <div class="body">
+<pre><code>int hp = 100;
+
+int&amp; alias = hp;        // reference: a second NAME for the same box
+alias -= 30;            // hp is now 70
+
+int* ptr = &amp;hp;         // pointer: stores hp's ADDRESS
+std::cout &lt;&lt; ptr;       // something like 0x7ffee3b4c8fc
+std::cout &lt;&lt; *ptr;      // 70 - the * follows the address ("dereference")
+*ptr = 50;              // writes through the address - hp is now 50
+
+int* nothing = nullptr; // "points nowhere" - never dereference this</code></pre>
+    <ul class="plain">
+      <li>The character <code>&amp;</code> has two jobs: <code>int&amp;</code> declares a reference; <code>&amp;hp</code> reads an address. Context decides which — confusing at first, normal later.</li>
+      <li>A <strong>reference</strong> must be attached to something and can never be reattached. A <strong>pointer</strong> can be moved, can point at nothing (<code>nullptr</code>), and can be null-checked.</li>
+      <li>Why you care right now: (1) pass by reference, as in 1.3; (2) getting elements "in place" instead of copies, which the walkthrough uses; (3) under the hood, arrays and vectors are built on pointers.</li>
+    </ul>
+    <div class="note">Rule of thumb: <strong>prefer references when you can, pointers when you must</strong> — you need a pointer mainly when "nothing" is a legal state (<code>nullptr</code>).</div>
+  </div>
+</details>
+
+<details class="acc" id="c-class">
+  <summary><h3>1.6 Classes &amp; objects</h3> <span class="tag new">NEW</span></summary>
+  <div class="body">
+<pre><code>struct Task {                 // struct: groups data, everything public
+    std::string text;
+    bool done = false;
+};
+
+class Player {                // class: data + the functions that guard it
+private:                      // outside code cannot touch these directly
+    std::string name;
+    int hp;
+public:                       // the safe doorway everyone uses
+    Player(std::string n, int startHp)     // constructor: runs on creation
+        : name(n), hp(startHp) {}
+
+    void takeDamage(int amount) {
+        if (amount &gt; 0) hp -= amount;      // the class enforces its own rules
+    }
+    int getHp() const { return hp; }       // const: promises not to modify
+};
+
+int main() {
+    Player hero("khaled", 100);   // an OBJECT, built from the blueprint
+    hero.takeDamage(30);
+    std::cout &lt;&lt; hero.getHp();    // 70
+    // hero.hp = -999;            // ERROR: hp is private - protected by design
+}</code></pre>
+    <ul class="plain">
+      <li>A <strong>class</strong> is a blueprint; an <strong>object</strong> is one real thing built from it. You've used objects all along — <code>std::string</code> and its dot-methods are exactly this.</li>
+      <li><code>private</code> / <code>public</code> = <strong>encapsulation</strong>: data can only change through the class's own functions, so the class can keep its own rules (like "hp never goes negative").</li>
+      <li>A <strong>constructor</strong> runs automatically when the object is created, so it can never exist half-initialized.</li>
+      <li><code>struct</code> and <code>class</code> are the same thing except struct members are public by default — the convention is struct for plain data, class when there are rules to enforce.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="acc" id="c-inherit">
+  <summary><h3>1.7 Inheritance &amp; polymorphism</h3> <span class="tag new">NEW</span></summary>
+  <div class="body">
+<pre><code>class Account {                          // base class ("parent")
+protected:                               // visible to children, hidden outside
+    double balance = 0.0;
+public:
+    void deposit(double amount) { if (amount &gt; 0) balance += amount; }
+    virtual void printInfo() const {     // virtual: children may replace this
+        std::cout &lt;&lt; "account: " &lt;&lt; balance &lt;&lt; '\n';
+    }
+    virtual ~Account() = default;        // safe habit for a parent class
+};
+
+class SavingsAccount : public Account {  // "a savings account IS an account"
+public:
+    void addInterest() { balance += balance * 0.03; }
+    void printInfo() const override {    // override: replaces the parent's version
+        std::cout &lt;&lt; "savings: " &lt;&lt; balance &lt;&lt; '\n';
+    }
+};
+
+int main() {
+    SavingsAccount s;
+    Account&amp; a = s;      // a parent reference to a child object
+    a.printInfo();       // prints "savings: ..." - the CHILD's version runs
+}</code></pre>
+    <ul class="plain">
+      <li><strong>Inheritance</strong> (<code>class Child : public Parent</code>) means "is a": a <code>SavingsAccount</code> <em>is an</em> <code>Account</code>, so it gets <code>deposit()</code> for free and only adds what makes it special.</li>
+      <li><strong>Polymorphism</strong> = one call, many behaviors. Because <code>printInfo()</code> is <code>virtual</code>, C++ picks the version that matches the <em>actual object</em>, not the type of the reference — that's why <code>a.printInfo()</code> prints the savings version.</li>
+      <li>Always write <code>override</code> on replacements — the compiler then checks you actually matched the parent's signature.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="acc" id="c-tpl">
+  <summary><h3>1.8 Templates</h3> <span class="tag new">NEW</span></summary>
+  <div class="body">
+<pre><code>// your four bakepizza() overloads, generalized into ONE function:
+template &lt;typename T&gt;
+T biggest(T a, T b) {
+    return (a &gt; b) ? a : b;
+}
+
+biggest(3, 7);                    // T = int     -&gt; 7
+biggest(2.5, 1.5);                // T = double  -&gt; 2.5
+biggest&lt;std::string&gt;("apple", "pear");
+
+// templates work for classes too:
+template &lt;typename T&gt;
+class Box {
+    T item;
+public:
+    void put(T thing) { item = thing; }
+    T get() const { return item; }
+};
+
+Box&lt;int&gt; hp_box;               // a Box that holds ints
+Box&lt;std::string&gt; name_box;     // a Box that holds strings</code></pre>
+    <div class="note">A template is a <em>recipe</em>, not code yet. When you call <code>biggest(3, 7)</code>, the compiler stamps out an int version on the spot; <code>biggest(2.5, 1.5)</code> stamps out a double version. You write the logic once, the compiler writes the overloads.</div>
+  </div>
+</details>
+
+<details class="acc" id="c-stl">
+  <summary><h3>1.9 STL basics</h3> <span class="tag new">NEW</span></summary>
+  <div class="body">
+<pre><code>#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+
+std::vector&lt;int&gt; scores = {60, 90, 75, 90};
+scores.push_back(100);
+std::cout &lt;&lt; scores.size();                              // 5
+
+std::sort(scores.begin(), scores.end());                 // 60 75 90 90 100
+int nines = std::count(scores.begin(), scores.end(), 90); // 2
+
+std::map&lt;std::string, int&gt; wins;      // key -&gt; value pairs, sorted by key
+wins["khaled"] = 3;
+wins["computer"] = 1;
+if (wins.count("khaled")) std::cout &lt;&lt; wins["khaled"];   // 3
+
+for (const auto&amp; entry : wins)        // entry.first = key, entry.second = value
+    std::cout &lt;&lt; entry.first &lt;&lt; ": " &lt;&lt; entry.second &lt;&lt; '\n';</code></pre>
+    <ul class="plain">
+      <li>You have been using the STL all along — <code>std::string</code> and <code>std::vector</code> are part of it. "STL" just means the standard library's ready-made containers and algorithms.</li>
+      <li><code>std::sort</code> and <code>std::count</code> take a <em>range</em>: where to start (<code>.begin()</code>) and where to stop (<code>.end()</code>). These positions are called <strong>iterators</strong>.</li>
+      <li><code>std::map</code> is a dictionary: look up a value by a key instead of a number index — perfect for "score per player" or "price per item".</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============================ PART 2: PROJECTS ============================ -->
+<h2 class="part" id="projects">Part 2 — Six projects, in order</h2>
+<p class="dek">Each project lists what you need, a sample run, a starter skeleton, and a marking rubric out of 100 so you can grade yourself. Projects 1, 2 and 4 are plain console programs; project 3 is a text-based UI; project 5 is the object-oriented design problem; project 6 is the capstone.</p>
+
+<table>
+  <caption>The progression at a glance</caption>
+  <tr><th scope="col">#</th><th scope="col">Project</th><th scope="col">Level</th><th scope="col">Type</th><th scope="col">Main new skill</th></tr>
+  <tr><td>1</td><td>Rock, Paper, Scissors</td><td>1 / 5</td><td>console</td><td>finishing a program from a skeleton</td></tr>
+  <tr><td>2</td><td>To-Do List</td><td>2 / 5</td><td>console</td><td>vectors + structs + a menu state loop</td></tr>
+  <tr><td>3</td><td>Tic-Tac-Toe</td><td>3 / 5</td><td>text UI</td><td>2D grids, drawing, win detection</td></tr>
+  <tr><td>4</td><td>Hangman</td><td>3 / 5</td><td>console</td><td>string building, game state</td></tr>
+  <tr><td>5</td><td>Bank Accounts OO</td><td>4 / 5</td><td>OO design</td><td>classes, inheritance, polymorphism</td></tr>
+  <tr><td>6</td><td>Trivia Quiz Engine</td><td>5 / 5</td><td>capstone</td><td>templates, map, shuffle, full design</td></tr>
+</table>
+
+<!-- PROJECT 1 -->
+<details class="acc" id="p1">
+  <summary><h3>Project 1 · Rock, Paper, Scissors</h3> <span class="tag level">★☆☆☆☆ level 1/5</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>Finish the game your practice file stops at. Human vs computer, score tracked across rounds, replay until the player quits. This is your first "build from a skeleton, not a tutorial" program.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Functions (<a href="#c-funcs">§1.3</a>), switch/if (<a href="#c-flow">§1.2</a>), random numbers (your guessing game already does <code>srand(time(0))</code> and <code>rand() % N + 1</code>).</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>Choose (r)ock, (p)aper or (s)cissors: x
+Invalid - try again: r
+You: rock | Computer: scissors
+You win this round!
+Score - you: 1, computer: 0
+Play again? (y/n): n
+Thanks for playing!</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+char getUserChoice();        // keep asking until 'r', 'p' or 's'
+char getComputerChoice();    // random 'r', 'p' or 's'
+void showChoice(char c);     // prints "rock" / "paper" / "scissors"
+char pickWinner(char user, char comp);   // 'u', 'c' or 't' (tie)
+
+int main() {
+    srand(time(0));          // seed ONCE, at the start
+    int userScore = 0, compScore = 0;
+    char again = 'y';
+
+    // TODO loop while again == 'y':
+    //   read both choices, show them, pick the winner,
+    //   update the score, ask to play again
+}</code></pre>
+    <div class="note">Hint for <code>pickWinner</code>: if the two are equal it's a tie. Otherwise: rock beats scissors, scissors beats paper, paper beats rock — three comparisons decide everything.</div>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Input validation</td><td>20</td><td>Wrong letters re-prompt forever; never crashes</td></tr>
+      <tr><td>Winner logic</td><td>30</td><td>All 9 combinations correct, including ties</td></tr>
+      <tr><td>Scoreboard</td><td>20</td><td>Accurate across multiple rounds</td></tr>
+      <tr><td>Play-again loop</td><td>15</td><td>Clean exit on 'n', continues on 'y'</td></tr>
+      <tr><td>Decomposition</td><td>15</td><td>Each function does one job; <code>main</code> reads like an outline</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- PROJECT 2 -->
+<details class="acc" id="p2">
+  <summary><h3>Project 2 · To-Do List</h3> <span class="tag level">★★☆☆☆ level 2/5</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>A menu-driven task manager — same shape as your banking program, but the data is a growing list instead of a single number. Add tasks, list them, mark them done, remove them safely.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Vectors and structs (<a href="#c-coll">§1.4</a>, <a href="#c-class">§1.6</a>), functions, menu loops (your banking program), mixing <code>cin</code> and <code>getline</code> (you know the <code>std::ws</code> trick).</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>== TO-DO LIST (2 open) ==
+1. [ ] finish C++ notes
+2. [x] do laundry
+3. [ ] call grandma
+1) add  2) list  3) mark done  4) remove  5) quit
+&gt; 3
+Task number to mark done: 3
+Marked "call grandma" as done.</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+struct Task {
+    std::string text;
+    bool done = false;
+};
+
+void printTasks(const std::vector&lt;Task&gt;&amp; tasks);
+int readInt(const std::string&amp; prompt);   // reuse the vending machine helper!
+
+int main() {
+    std::vector&lt;Task&gt; tasks;
+    int choice = 0;
+
+    // TODO menu loop:
+    //  1) add task    -&gt; getline a description, push_back it
+    //  2) list tasks  -&gt; "[x]" for done, "[ ]" for open, then the count
+    //  3) mark done   -&gt; ask a number, CHECK it exists, set done = true
+    //  4) remove task -&gt; ask a number, CHECK it exists, then erase
+    //  5) quit
+}</code></pre>
+    <div class="note">After a <code>cin &gt;&gt; choice</code>, reading a task name with <code>getline</code> needs <code>std::getline(std::cin &gt;&gt; std::ws, text)</code> — you already hit and solved this exact bug in your name-and-age program.</div>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Menu loop</td><td>20</td><td>Always returns to the menu; quit exits cleanly</td></tr>
+      <tr><td>Add &amp; list</td><td>25</td><td>Tasks appear in order with correct done/open marks</td></tr>
+      <tr><td>Mark done</td><td>20</td><td>Works by number; out-of-range numbers rejected politely</td></tr>
+      <tr><td>Safe removal</td><td>20</td><td>No crash on bad input; remaining tasks renumber correctly</td></tr>
+      <tr><td>Structure</td><td>15</td><td>Functions, no duplicated blocks, meaningful names</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- PROJECT 3 -->
+<details class="acc" id="p3">
+  <summary><h3>Project 3 · Tic-Tac-Toe (text-based UI)</h3> <span class="tag level">★★★☆☆ level 3/5</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>Your first program that <em>draws</em> something. Two players alternate on a 3×3 grid that redraws after every move, until someone wins or the board fills. Think of it as your rows-and-columns symbol printer, grown up.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Nested loops and 2D arrays (<a href="#c-coll">§1.4</a> — your rows/columns program is the seed of this), functions, input validation.</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>    1   2   3
+ 1    |   | X
+   ---+---+---
+ 2  O |   |
+   ---+---+---
+ 3    |   |
+Player O, pick a row (1-3): 2
+Pick a column (1-3): 3</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>char board[3][3];   // board[row][col], each cell is ' ', 'X' or 'O'
+
+void resetBoard();                              // every cell to ' '
+void drawBoard();                               // nested loops + separators
+bool placeMark(int row, int col, char player);  // false if taken/out of range
+char checkWinner();                             // 'X', 'O', 'D'raw, ' ' ongoing
+
+int main() {
+    resetBoard();
+    char current = 'X';
+    // TODO loop until someone wins or the board is full:
+    //   draw the board, ask current player for row + column,
+    //   if placeMark succeeds -&gt; switch player; else -&gt; same player retries
+    //   after every successful move, check checkWinner()
+}</code></pre>
+    <div class="note">Hint for <code>checkWinner</code>: there are exactly 8 lines to test — 3 rows, 3 columns, 2 diagonals. A draw is when the board is full and none of the 8 lines matched.</div>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Board rendering</td><td>25</td><td>Redraws correctly after every move, readable layout</td></tr>
+      <tr><td>Move validation</td><td>20</td><td>Out-of-range and already-taken cells rejected, no crash</td></tr>
+      <tr><td>Win detection</td><td>30</td><td>All 8 lines plus draw, detected the moment they happen</td></tr>
+      <tr><td>Turns</td><td>15</td><td>Players alternate correctly; failed move doesn't skip a turn</td></tr>
+      <tr><td>Structure</td><td>10</td><td>Board logic separated from drawing logic</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- PROJECT 4 -->
+<details class="acc" id="p4">
+  <summary><h3>Project 4 · Hangman</h3> <span class="tag level">★★★☆☆ level 3/5</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>Guess a hidden word one letter at a time, six wrong guesses allowed. This project is string-method heavy — <code>find</code>, <code>length</code>, and building the masked display letter by letter.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Strings and their methods (<a href="#c-coll">§1.4</a>), vectors, random choice (your random event generator), loops.</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>word:   _ _ _ _ _ _
+wrong guesses left: 6   already tried: e, r
+guess a letter: a
+word:   _ _ _ a _ a
+wrong guesses left: 6   already tried: e, r, a</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+
+std::string chooseWord();   // pick a random word from a hardcoded list
+
+bool wasGuessed(char c, const std::vector&lt;char&gt;&amp; guessed);
+std::string maskedWord(const std::string&amp; word,
+                       const std::vector&lt;char&gt;&amp; guessed);
+// turns "banana" into "_ a _ a _ a" once 'a' was guessed
+
+int main() {
+    const int MAX_WRONG = 6;
+    // TODO: pick a word, then loop:
+    //   show masked word + wrong guesses left + letters already tried
+    //   read one letter, ignore letters guessed before
+    //   wrong guess -&gt; lose a life
+    //   win when every letter is revealed; lose when lives hit 0
+}</code></pre>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Masking</td><td>30</td><td>Only guessed letters appear; repeated letters all reveal at once</td></tr>
+      <tr><td>Lives &amp; repeats</td><td>25</td><td>Wrong guesses lose a life; repeats cost nothing</td></tr>
+      <tr><td>Win / lose</td><td>25</td><td>Both endings detected immediately, word revealed on loss</td></tr>
+      <tr><td>Word list &amp; replay</td><td>10</td><td>Several words, random pick, option to play again</td></tr>
+      <tr><td>Structure</td><td>10</td><td>Masked display built by a function, not pasted three times</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- PROJECT 5 -->
+<details class="acc" id="p5">
+  <summary><h3>Project 5 · Bank Accounts — the OO redesign</h3> <span class="tag level">★★★★☆ level 4/5</span> <span class="tag new">OO DESIGN</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>Rebuild your procedural banking program with classes. An <code>Account</code> base class holds the shared rules; <code>SavingsAccount</code> adds interest; <code>CheckingAccount</code> adds a withdrawal rule. The design goal: <em>the balance can never be set directly from outside</em>.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Classes (<a href="#c-class">§1.6</a>), inheritance and virtual functions (<a href="#c-inherit">§1.7</a>), references (<a href="#c-ptr">§1.5</a>).</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>1) open savings   2) open checking   3) list accounts
+4) deposit        5) withdraw        6) run month-end   7) quit
+&gt; 6
+savings #1: $103.00
+checking #1: $50.00   (2 withdrawals left this month)</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+class Account {
+protected:
+    double balance = 0.0;
+    int number;
+public:
+    Account(int number, double opening);
+    void deposit(double amount);            // amount must be &gt; 0
+    virtual bool withdraw(double amount);   // shared rules live here
+    virtual void monthEnd() {}              // savings overrides: add interest
+    virtual void printInfo() const;         // each type prints its own line
+    double getBalance() const { return balance; }
+    virtual ~Account() = default;           // safe habit for a parent class
+};
+
+// TODO class SavingsAccount : public Account
+//      - override monthEnd() to add balance * rate
+//      - override printInfo() to say "savings"
+
+// TODO class CheckingAccount : public Account
+//      - track withdrawals this month, override withdraw() with a rule
+//        (e.g. max 3 free withdrawals per month), override printInfo()
+
+int main() {
+    std::vector&lt;SavingsAccount&gt; savings;     // simplest storage: two vectors
+    std::vector&lt;CheckingAccount&gt; checkings;
+
+    // TODO menu: open / deposit / withdraw / run month-end / list / quit
+    // month-end shows polymorphism in action through ONE function:
+    //   void monthEndFor(Account&amp; acc) { acc.monthEnd(); acc.printInfo(); }
+}</code></pre>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Encapsulation</td><td>25</td><td><code>balance</code> protected; every change goes through deposit/withdraw</td></tr>
+      <tr><td>Inheritance</td><td>20</td><td>Shared rules in the base once; children only add what's special</td></tr>
+      <tr><td>Virtual &amp; override</td><td>25</td><td><code>monthEnd</code>/<code>printInfo</code> dispatch to the right version via an <code>Account&amp;</code></td></tr>
+      <tr><td>Menu integration</td><td>20</td><td>All menu paths work; invalid amounts rejected</td></tr>
+      <tr><td>Structure</td><td>10</td><td>No duplicated logic; virtual destructor present</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- PROJECT 6 -->
+<details class="acc" id="p6">
+  <summary><h3>Project 6 · Trivia Quiz Engine (capstone)</h3> <span class="tag level">★★★★★ level 5/5</span></summary>
+  <div class="body">
+    <h4 class="sub">Objective</h4>
+    <p>A reusable quiz engine: a data structure for questions, randomized order, per-category scoring, and a final report. The difference from a "program": the questions are <em>data</em>, not code — add ten new questions without touching the engine.</p>
+    <h4 class="sub">You need first</h4>
+    <p>Everything above, plus templates (<a href="#c-tpl">§1.8</a>) and <code>std::map</code> / <code>std::shuffle</code> (<a href="#c-stl">§1.9</a>).</p>
+    <h4 class="sub">Sample run</h4>
+<pre><code>Question 3/8  [games]
+Which company created Mario?
+  1) Sega    2) Nintendo    3) Sony
+answer: 2
+correct!
+
+=== FINAL REPORT ===
+score: 6/8 (75%)
+best category: games</code></pre>
+    <h4 class="sub">Starter skeleton</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+struct Question {
+    std::string text;
+    std::vector&lt;std::string&gt; options;   // 3-4 answers
+    int correct;                        // index of the right one (0-based)
+    std::string category;
+};
+
+std::vector&lt;Question&gt; loadQuestions();                  // hardcode 8-10
+bool askOne(const Question&amp; q, int number, int total);   // true = correct
+
+template &lt;typename T&gt;
+T highestOf(const std::vector&lt;T&gt;&amp; values);              // for the report
+
+int main() {
+    srand(time(0));
+    // TODO: load questions, shuffle them (std::shuffle or your own swap loop),
+    // ask each one, track score per category in std::map&lt;std::string, int&gt;,
+    // then print the final report: score, percentage, best category
+}</code></pre>
+    <h4 class="sub">Marking rubric</h4>
+    <table>
+      <tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What "good" looks like</th></tr>
+      <tr><td>Data model</td><td>20</td><td>Adding a question = adding one line of data, zero engine changes</td></tr>
+      <tr><td>Asking &amp; validation</td><td>25</td><td>Options displayed; out-of-range answers re-prompted</td></tr>
+      <tr><td>Random order</td><td>15</td><td>Questions (and ideally options) shuffled each run</td></tr>
+      <tr><td>Scoring &amp; report</td><td>25</td><td>Correct totals, percentage, best category from the map</td></tr>
+      <tr><td>Design</td><td>15</td><td>Template used correctly; clean separation of data / engine / report</td></tr>
+    </table>
+  </div>
+</details>
+
+<!-- ============================ PART 3: WALKTHROUGH ============================ -->
+<h2 class="part" id="walkthrough">Part 3 — Worked walkthrough: the Vending Machine</h2>
+<p class="dek">A complete, easy simulation project built step by step, the way you'd actually do it: decide the data, write the helpers, wire it up, then test. Difficulty ★★☆☆☆ — doable with sections 1.1–1.4 alone. Copy the <em>method</em>, then apply it to the projects above.</p>
+
+<section>
+  <h3>The scenario</h3>
+  <p>A vending machine sells four items. Customers insert coins, buy items, and get change. An admin can restock. On shutdown the machine reports how much money it collected.</p>
+
+  <h3>Requirements</h3>
+  <ol>
+    <li>Show all four items with price and remaining stock.</li>
+    <li>Accept coins of 5, 10, 25 and 100 cents; reject anything else.</li>
+    <li>Buying an item needs enough credit <em>and</em> stock; on success the stock drops and the difference is returned as change.</li>
+    <li>Show the current credit at all times.</li>
+    <li>Admin option: restock every item to 5.</li>
+    <li>On quit, print the total money collected.</li>
+    <li>Never crash on bad input — not even if the user types letters.</li>
+  </ol>
+
+  <div class="note"><strong>Design decision — money as whole cents.</strong> Prices are stored as <code>int</code> (125 means $1.25). This dodges the classic floating-point problem where <code>0.1 + 0.2</code> comes out as <code>0.30000000000000004</code>. Rule: floats for measurements, integers for money and anything you count.</div>
+
+  <h3>Step-by-step build</h3>
+
+  <h4 class="sub">Step 1 — the data</h4>
+  <p>Each product is one <code>struct</code>; the machine's shelf is a vector of them.</p>
+<pre><code>struct Item {
+    std::string name;
+    int priceCents;
+    int stock;
+};
+
+std::vector&lt;Item&gt; items = {
+    {"water", 125, 5},
+    {"chips", 150, 5},
+    {"candy",  90, 5},
+    {"soda",  175, 5},
+};</code></pre>
+  <ul class="plain">
+    <li>One row per product — <code>{"water", 125, 5}</code> fills <code>name</code>, then <code>priceCents</code>, then <code>stock</code>, in order.</li>
+    <li>Adding a fifth product later means adding one row here. Nothing else changes.</li>
+  </ul>
+
+  <h4 class="sub">Step 2 — safe number input</h4>
+  <p>You already wrote this pattern in your calculator: if the user types letters, <code>cin</code> fails and must be cleared before retrying.</p>
+<pre><code>int readInt(const std::string&amp; prompt) {
+    int value;
+    std::cout &lt;&lt; prompt;
+    std::cin &gt;&gt; value;
+    while (std::cin.fail()) {                     // user typed letters
+        std::cin.clear();                         // undo the error flag
+        std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+        std::cout &lt;&lt; "please enter a number\n";  // throw the bad input away
+        std::cout &lt;&lt; prompt;
+        std::cin &gt;&gt; value;
+    }
+    return value;
+}</code></pre>
+  <ul class="plain">
+    <li><code>clear()</code> resets the error; <code>ignore(...)</code> throws away everything the user typed up to the newline.</li>
+    <li>Take the address of a string (<code>const std::string&amp;</code>) so the prompt isn't copied every call — pass-by-reference from §1.3 doing quiet work.</li>
+    <li>Needs <code>#include &lt;limits&gt;</code>. Every input in this program goes through this function — requirement 7 solved once, everywhere.</li>
+  </ul>
+
+  <h4 class="sub">Step 3 — show the menu</h4>
+<pre><code>void showMenu(const std::vector&lt;Item&gt;&amp; items, int credit) {
+    std::cout &lt;&lt; "\n===== VENDING MACHINE =====\n";
+    for (std::size_t i = 0; i &lt; items.size(); i++) {
+        std::cout &lt;&lt; (i + 1) &lt;&lt; ") " &lt;&lt; items[i].name &lt;&lt; " - "
+                  &lt;&lt; items[i].priceCents &lt;&lt; "c ("
+                  &lt;&lt; items[i].stock &lt;&lt; " left)\n";
+    }
+    std::cout &lt;&lt; "credit: " &lt;&lt; credit &lt;&lt; "c\n";
+    std::cout &lt;&lt; "5) insert coin   6) restock   7) quit\n";
+}</code></pre>
+  <ul class="plain">
+    <li>Menu numbers are 1–4, but vector indexes are 0–3 — so the print uses <code>i + 1</code> and the buy step will use <code>number - 1</code>. Pick a convention once and stick to it everywhere.</li>
+    <li><code>std::size_t</code> is the type <code>.size()</code> actually returns; comparing it to a plain <code>int i</code> makes the compiler warn.</li>
+  </ul>
+
+  <h4 class="sub">Step 4 — insert coins</h4>
+<pre><code>void insertCoin(int&amp; credit) {
+    std::cout &lt;&lt; "accepted coins: 5, 10, 25, 100\n";
+    int coin = readInt("coin: ");
+    if (coin == 5 || coin == 10 || coin == 25 || coin == 100) {
+        credit += coin;
+        std::cout &lt;&lt; "credit is now " &lt;&lt; credit &lt;&lt; "c\n";
+    } else {
+        std::cout &lt;&lt; "the machine spits that coin back out\n";
+    }
+}</code></pre>
+  <ul class="plain">
+    <li><code>int&amp; credit</code> is §1.5 doing real work: the function receives the <em>original</em> credit from <code>main</code>, so the change survives after the function ends. Drop the <code>&amp;</code> and this silently stops working — the function would update a copy.</li>
+    <li>Rejecting unknown coins is a whitelist check: valid list first, everything else bounces.</li>
+  </ul>
+
+  <h4 class="sub">Step 5 — buy an item</h4>
+<pre><code>void buy(std::vector&lt;Item&gt;&amp; items, int number, int&amp; credit, int&amp; collected) {
+    Item&amp; item = items[number - 1];        // menu number -&gt; vector index
+    if (item.stock &lt;= 0) {
+        std::cout &lt;&lt; "sold out, sorry\n";
+    } else if (credit &lt; item.priceCents) {
+        std::cout &lt;&lt; "not enough credit - insert "
+                  &lt;&lt; (item.priceCents - credit) &lt;&lt; "c more\n";
+    } else {
+        item.stock--;
+        int change = credit - item.priceCents;
+        collected += item.priceCents;
+        credit = 0;
+        std::cout &lt;&lt; "*thunk* - a " &lt;&lt; item.name &lt;&lt; " drops out\n";
+        std::cout &lt;&lt; "change returned: " &lt;&lt; change &lt;&lt; "c\n";
+    }
+}</code></pre>
+  <ul class="plain">
+    <li><code>Item&amp; item</code> is a reference to the actual row — <code>item.stock--</code> edits the shelf, not a copy.</li>
+    <li>Order of checks: sold out before credit (either order works — but pick one and stay consistent so testing is predictable).</li>
+    <li>Money is only counted as "collected" when a purchase succeeds — a failed attempt leaves credit untouched.</li>
+  </ul>
+
+  <h4 class="sub">Step 6 — restock</h4>
+<pre><code>void restock(std::vector&lt;Item&gt;&amp; items) {
+    for (Item&amp; item : items) item.stock = 5;
+    std::cout &lt;&lt; "all items restocked to 5\n";
+}</code></pre>
+  <ul class="plain">
+    <li>Range-for with <code>Item&amp;</code> (by reference!) — without the <code>&amp;</code> each item would be a copy and nothing would change. The single most common range-for bug.</li>
+  </ul>
+
+  <h4 class="sub">Step 7 — wire it together</h4>
+<pre><code>int main() {
+    std::vector&lt;Item&gt; items = {           // the shelf
+        {"water", 125, 5},
+        {"chips", 150, 5},
+        {"candy",  90, 5},
+        {"soda",  175, 5},
+    };
+    int credit = 0;                        // coins currently inside
+    int collected = 0;                     // money earned (survives purchases)
+    int choice = 0;
+
+    while (choice != 7) {
+        showMenu(items, credit);
+        choice = readInt("&gt; ");
+        switch (choice) {
+            case 1: case 2: case 3: case 4:   // items 1-4 all mean "buy that"
+                buy(items, choice, credit, collected);
+                break;                        // &lt;-- you know exactly why
+            case 5: insertCoin(credit); break;
+            case 6: restock(items); break;
+            case 7: std::cout &lt;&lt; "bye! money collected: "
+                        &lt;&lt; collected &lt;&lt; "c\n"; break;
+            default: std::cout &lt;&lt; "unknown option\n";
+        }
+    }
+    return 0;
+}</code></pre>
+  <ul class="plain">
+    <li><code>case 1: case 2: case 3: case 4:</code> stacked on purpose — several labels sharing one body. That's the <em>good</em> kind of fallthrough, completely different from forgetting a <code>break;</code>.</li>
+    <li>The three state variables (<code>items</code>, <code>credit</code>, <code>collected</code>) live in <code>main</code> and get passed to whoever needs them — the menu loop is the program's memory.</li>
+  </ul>
+
+  <h3>Full solution</h3>
+  <details class="acc">
+    <summary><h3>Show the complete program (try it yourself first)</h3></summary>
+    <div class="body">
+<pre><code>#include &lt;iostream&gt;
+#include &lt;limits&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+struct Item {
+    std::string name;
+    int priceCents;
+    int stock;
+};
+
+int readInt(const std::string&amp; prompt) {
+    int value;
+    std::cout &lt;&lt; prompt;
+    std::cin &gt;&gt; value;
+    while (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+        std::cout &lt;&lt; "please enter a number\n";
+        std::cout &lt;&lt; prompt;
+        std::cin &gt;&gt; value;
+    }
+    return value;
+}
+
+void showMenu(const std::vector&lt;Item&gt;&amp; items, int credit) {
+    std::cout &lt;&lt; "\n===== VENDING MACHINE =====\n";
+    for (std::size_t i = 0; i &lt; items.size(); i++) {
+        std::cout &lt;&lt; (i + 1) &lt;&lt; ") " &lt;&lt; items[i].name &lt;&lt; " - "
+                  &lt;&lt; items[i].priceCents &lt;&lt; "c ("
+                  &lt;&lt; items[i].stock &lt;&lt; " left)\n";
+    }
+    std::cout &lt;&lt; "credit: " &lt;&lt; credit &lt;&lt; "c\n";
+    std::cout &lt;&lt; "5) insert coin   6) restock   7) quit\n";
+}
+
+void insertCoin(int&amp; credit) {
+    std::cout &lt;&lt; "accepted coins: 5, 10, 25, 100\n";
+    int coin = readInt("coin: ");
+    if (coin == 5 || coin == 10 || coin == 25 || coin == 100) {
+        credit += coin;
+        std::cout &lt;&lt; "credit is now " &lt;&lt; credit &lt;&lt; "c\n";
+    } else {
+        std::cout &lt;&lt; "the machine spits that coin back out\n";
+    }
+}
+
+void buy(std::vector&lt;Item&gt;&amp; items, int number, int&amp; credit, int&amp; collected) {
+    Item&amp; item = items[number - 1];
+    if (item.stock &lt;= 0) {
+        std::cout &lt;&lt; "sold out, sorry\n";
+    } else if (credit &lt; item.priceCents) {
+        std::cout &lt;&lt; "not enough credit - insert "
+                  &lt;&lt; (item.priceCents - credit) &lt;&lt; "c more\n";
+    } else {
+        item.stock--;
+        int change = credit - item.priceCents;
+        collected += item.priceCents;
+        credit = 0;
+        std::cout &lt;&lt; "*thunk* - a " &lt;&lt; item.name &lt;&lt; " drops out\n";
+        std::cout &lt;&lt; "change returned: " &lt;&lt; change &lt;&lt; "c\n";
+    }
+}
+
+void restock(std::vector&lt;Item&gt;&amp; items) {
+    for (Item&amp; item : items) item.stock = 5;
+    std::cout &lt;&lt; "all items restocked to 5\n";
+}
+
+int main() {
+    std::vector&lt;Item&gt; items = {
+        {"water", 125, 5},
+        {"chips", 150, 5},
+        {"candy",  90, 5},
+        {"soda",  175, 5},
+    };
+    int credit = 0;
+    int collected = 0;
+    int choice = 0;
+
+    while (choice != 7) {
+        showMenu(items, credit);
+        choice = readInt("&gt; ");
+        switch (choice) {
+            case 1: case 2: case 3: case 4:
+                buy(items, choice, credit, collected);
+                break;
+            case 5: insertCoin(credit); break;
+            case 6: restock(items); break;
+            case 7: std::cout &lt;&lt; "bye! money collected: "
+                        &lt;&lt; collected &lt;&lt; "c\n"; break;
+            default: std::cout &lt;&lt; "unknown option\n";
+        }
+    }
+    return 0;
+}</code></pre>
+    </div>
+  </details>
+
+  <h3>Test it yourself</h3>
+  <p>Run each case against your finished program. If all eight behave as expected, your simulation is correct — this is exactly what a rubric-grader (or a future employer's test suite) will do.</p>
+  <table>
+    <caption>Test cases and expected results</caption>
+    <tr><th scope="col">#</th><th scope="col">You do</th><th scope="col">You should see</th></tr>
+    <tr><td>1</td><td>Insert coin 25 three times, then press 1 (water, 125c)</td><td>"not enough credit - insert 50c more"; water still 5 left; credit still 75c</td></tr>
+    <tr><td>2</td><td>Insert 100, then 25, then press 1</td><td>Water drops out, "change returned: 0c", water now 4 left</td></tr>
+    <tr><td>3</td><td>Keep buying water until the shelf empties, then press 1 once more with enough credit</td><td>Four more purchases succeed, then "sold out, sorry"</td></tr>
+    <tr><td>4</td><td>Press 6</td><td>"all items restocked to 5"; every stock shows 5 again</td></tr>
+    <tr><td>5</td><td>Type <code>banana</code> at the <code>&gt;</code> prompt</td><td>"please enter a number", then the prompt again — no crash, no garbage</td></tr>
+    <tr><td>6</td><td>Insert coin 7</td><td>"the machine spits that coin back out"; credit unchanged</td></tr>
+    <tr><td>7</td><td>Press 9</td><td>"unknown option"; back to the menu</td></tr>
+    <tr><td>8</td><td>Press 7</td><td>"bye! money collected: Nc" where N is the sum of every successful purchase (e.g. 625c if you ran cases 2 and 3)</td></tr>
+  </table>
+</section>
+
+<!-- ============================ GLOSSARY ============================ -->
+<h2 class="part" id="glossary">Glossary — key terms in plain language</h2>
+<p class="dek">Every term this guide uses, in one place. If a sentence in the notes loses you, the word is probably defined here.</p>
+<table>
+  <caption>Key terms, alphabetically</caption>
+  <tr><th scope="col">Term</th><th scope="col">Plain-language meaning</th></tr>
+  <tr><td>argument</td><td>the actual value you hand to a function when you call it — in <code>greet("khaled")</code>, "khaled" is the argument</td></tr>
+  <tr><td>array</td><td>a fixed-size list of values of the same type</td></tr>
+  <tr><td>class</td><td>a blueprint that bundles data together with the functions that guard it</td></tr>
+  <tr><td>compiler</td><td>the program that translates your .cpp code into a runnable program</td></tr>
+  <tr><td>constant</td><td>a value locked with <code>const</code> so it can never be reassigned</td></tr>
+  <tr><td>constructor</td><td>special member function that runs automatically when an object is created</td></tr>
+  <tr><td>container</td><td>an object that stores other values — vector, map, and string are all containers</td></tr>
+  <tr><td>dereference</td><td>using <code>*ptr</code> to read or write the value a pointer points at</td></tr>
+  <tr><td>encapsulation</td><td>keeping data private inside a class so it can only change through the class's own functions</td></tr>
+  <tr><td>function</td><td>a named, reusable block of code</td></tr>
+  <tr><td>header file</td><td>a file of declarations you <code>#include</code> so your code knows what exists elsewhere</td></tr>
+  <tr><td>inheritance</td><td>a class built on top of another class, reusing and extending it ("is a")</td></tr>
+  <tr><td>iterator</td><td>an object marking a position inside a container; <code>begin()</code> and <code>end()</code> return them</td></tr>
+  <tr><td>library</td><td>pre-written code you can include and use, like the standard library</td></tr>
+  <tr><td>loop</td><td>code that repeats while a condition holds</td></tr>
+  <tr><td>member function</td><td>a function belonging to a class, called with a dot: <code>hero.getHp()</code></td></tr>
+  <tr><td>memory address</td><td>the location number of a variable in memory</td></tr>
+  <tr><td>namespace</td><td>a labeled group of names that avoids collisions — <code>std</code> is one (your first/second <code>x</code> program!)</td></tr>
+  <tr><td>nullptr</td><td>the pointer value meaning "points to nothing"</td></tr>
+  <tr><td>object</td><td>one concrete thing built from a class blueprint</td></tr>
+  <tr><td>override</td><td>a derived class's replacement of a base class's virtual function</td></tr>
+  <tr><td>parameter</td><td>the placeholder name in a function definition — <code>name</code> in <code>void greet(std::string name)</code></td></tr>
+  <tr><td>pass by reference</td><td>the function receives the original variable, so its changes stick</td></tr>
+  <tr><td>pass by value</td><td>the function receives a copy; the original is untouched</td></tr>
+  <tr><td>pointer</td><td>a variable that stores a memory address</td></tr>
+  <tr><td>polymorphism</td><td>one call, many behaviors — the right virtual function runs based on the actual object</td></tr>
+  <tr><td>reference</td><td>another name for an existing variable</td></tr>
+  <tr><td>return</td><td>a function handing a value back to whoever called it</td></tr>
+  <tr><td>scope</td><td>the region of code where a name is usable — your local vs global variables notes were exactly this</td></tr>
+  <tr><td>STL</td><td>the Standard Template Library: the containers and algorithms shipped with C++</td></tr>
+  <tr><td>struct</td><td>like a class but public by default; usually used for plain data</td></tr>
+  <tr><td>template</td><td>a recipe for code that works with any type, stamped out by the compiler as needed</td></tr>
+  <tr><td>type</td><td>what kind of value fits in a variable — int, double, char, bool, string...</td></tr>
+  <tr><td>variable</td><td>a named box in memory that holds a value</td></tr>
+  <tr><td>vector</td><td>a resizable array that grows as you add items</td></tr>
+  <tr><td>virtual</td><td>marks a base-class function that derived classes are allowed to override</td></tr>
+</table>
+
+<div class="note"><strong>Where to go after Project 6:</strong> file I/O (so the to-do list and quiz survive between runs), exceptions (<code>try</code>/<code>catch</code>), smart pointers (<code>std::unique_ptr</code>), and the rest of <code>&lt;algorithm&gt;</code>. At that point you're solidly intermediate.</div>
+
+</main>
+
+<footer>C++ study guide — review notes, new topics, six projects, and one fully worked build. Made to follow your practice file.</footer>
+
+<script>
+(function () {
+  var toolbar = document.getElementById('accordion-tools');
+  if (!toolbar) return;
+  toolbar.hidden = false;   // buttons only appear when JavaScript is available
+
+  function setAll(open) {
+    document.querySelectorAll('details').forEach(function (d) { d.open = open; });
+  }
+  document.getElementById('open-all').addEventListener('click', function () { setAll(true); });
+  document.getElementById('close-all').addEventListener('click', function () { setAll(false); });
+
+  // if a contents link points inside a closed section, open that section first
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var el = document.getElementById(this.getAttribute('href').slice(1));
+      while (el) {
+        if (el.tagName === 'DETAILS') el.open = true;
+        el = el.parentElement;
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

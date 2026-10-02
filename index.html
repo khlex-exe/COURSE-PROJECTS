@@ -1,45 +1,699 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page @htmlcourse@</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ self‑study guide · beginner to intermediate</title>
+  <style>
+    /* high‑contrast, calm dark theme */
+    :root {
+      --bg: #0f1219;
+      --panel: #1a1e2a;
+      --panel2: #232838;
+      --ink: #eef2f8;
+      --ink-dim: #b0b8cc;
+      --rule: #2e3548;
+      --accent: #8bc2ff;
+      --accent2: #f5c86b;
+      --code-bg: #0b0e14;
+      --code-ink: #dce5f0;
+      --good: #b0e8b0;
+      --bad: #ffb0b0;
+      --focus: 0 0 0 3px #3f6ba0;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+
+    h1, h2, h3, h4 {
+      line-height: 1.3;
+      font-weight: 600;
+      color: #fff;
+    }
+    h1 { font-size: 2.2rem; margin: 0.5rem 0 0.2rem; letter-spacing: -0.02em; }
+    h2 { font-size: 1.6rem; margin: 0 0 1rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+    h4 { font-size: 1.1rem; margin: 1rem 0 0.25rem; color: var(--accent2); }
+    p, li { color: var(--ink); font-size: 1rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* code blocks */
+    pre, code {
+      font-family: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      background: var(--code-bg);
+      border-radius: 8px;
+    }
+    code {
+      font-size: 0.9em;
+      padding: 0.2em 0.4em;
+      background: var(--panel2);
+      color: var(--accent2);
+      border: 1px solid var(--rule);
+    }
+    pre {
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--code-ink);
+      border: 1px solid var(--rule);
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    /* collapsible / accordion */
+    details {
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      margin: 1.2rem 0;
+      overflow: hidden;
+    }
+    details[open] {
+      border-color: #3f4a60;
+    }
+    summary {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+      background: var(--panel2);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.15s;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▸";
+      display: inline-block;
+      transition: transform 0.2s;
+      font-size: 1.2rem;
+      color: var(--accent);
+      width: 1.2rem;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { background: #2b3246; }
+    summary:focus-visible {
+      outline: var(--focus);
+      outline-offset: -3px;
+      border-radius: 12px;
+    }
+    .details-content {
+      padding: 1.25rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--rule);
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--panel2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* notes / callouts */
+    .note {
+      background: var(--panel2);
+      border-left: 4px solid var(--accent);
+      padding: 0.8rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .warning {
+      background: #2a1e1e;
+      border-left: 4px solid var(--bad);
+      padding: 0.8rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .glossary-term {
+      font-weight: 700;
+      color: var(--accent2);
+    }
+    .tag {
+      display: inline-block;
+      background: var(--panel2);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 0.15rem 0.8rem;
+      font-size: 0.8rem;
+      color: var(--ink-dim);
+      margin-right: 0.4rem;
+    }
+    .rubric {
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0;
+    }
+    .rubric ul { padding-left: 1.2rem; }
+    .rubric li { margin: 0.2rem 0; }
+
+    /* nav / quick links */
+    .toc {
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .toc h2 { border: none; margin-bottom: 0.5rem; }
+    .toc ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.3rem 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+    .toc li { font-size: 0.95rem; }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.5rem 3rem; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.3rem; }
+      summary { padding: 0.8rem 1rem; font-size: 1rem; }
+      .details-content { padding: 1rem; }
+      pre { font-size: 0.8rem; padding: 0.8rem; }
+    }
+  </style>
 </head>
 <body>
-    <center>
-    <h1>dont know what the comments are yet so i'll use this</h1>
-    <h1>whatever you write counts even without ""</h1>   
-    <h1>whatever you want to be in your page should be inside the body</h1>
-    <h1>the diff between h1-h6 is a font size and thats all</h1>
-    <h1>welcome to my page</h1>
-    <h2>welcome to my page</h2>
-    <h3>welcome to my page</h3>
-    <h4>welcome to my page</h4>
-    <h5>welcome to my page</h5>
-    <h6>welcome to my page</h6>
+<div class="wrap">
 
+  <header>
+    <p style="color:var(--accent2); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase;">Self‑contained study guide</p>
+    <h1>C++ from scratch to intermediate</h1>
+    <p style="color:var(--ink-dim); max-width:700px;">A compact reference, six progressive projects, and a full simulation walkthrough — all in one page. Built for learners who know the basics but want to solidify control flow, functions, OOP, and the STL.</p>
+  </header>
 
+  <!-- quick navigation -->
+  <nav class="toc" aria-label="Table of contents">
+    <h2>📌 On this page</h2>
+    <ul>
+      <li><a href="#core">Core study notes</a></li>
+      <li><a href="#projects">6 hands‑on projects</a></li>
+      <li><a href="#sim">Worked simulation</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+      <li><a href="#template">Paste‑and‑run template</a></li>
+    </ul>
+  </nav>
 
-<p>welcome everyone</p>
-<p>p is different cuz its called a paragraph or smth</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus iusto, exercitationem, expedita voluptatibus, vitae incidunt eaque provident nemo hic suscipit neque ab. Deserunt eos nesciunt eveniet aspernatur distinctio vero tempora.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, distinctio.</p>
-<p>differece is "lorem"and"lorem10"</p>
-<hr>
-<p>hr makes a line</p>
+  <!-- ============================================================ -->
+  <!-- 1. CORE STUDY NOTES                                          -->
+  <!-- ============================================================ -->
+  <section id="core">
+    <h2>📘 Core C++ study notes</h2>
+    <p style="margin-bottom:1.5rem;">Everything below is organised so you can read it start‑to‑finish. Click any topic to expand it. All code is C++17/20 compatible.</p>
 
-<img src="hold your horses.jpg" width="500px" height="250px" alt="this is a pic">
-</center>
+    <!-- variables -->
+    <details>
+      <summary>Variables, types &amp; constants</summary>
+      <div class="details-content">
+        <p>C++ is <strong>statically typed</strong>: every variable has a fixed type known at compile time.</p>
+        <table>
+          <tr><th>Type</th><th>Stores</th><th>Example</th></tr>
+          <tr><td><code>int</code></td><td>Whole numbers</td><td><code>int age = 21;</code></td></tr>
+          <tr><td><code>double</code></td><td>Decimal numbers</td><td><code>double price = 9.99;</code></td></tr>
+          <tr><td><code>char</code></td><td>Single character</td><td><code>char grade = 'A';</code></td></tr>
+          <tr><td><code>bool</code></td><td><code>true</code> / <code>false</code></td><td><code>bool ready = true;</code></td></tr>
+          <tr><td><code>std::string</code></td><td>Text</td><td><code>std::string name = "Ada";</code></td></tr>
+        </table>
+        <p><code>const</code> makes a value read‑only. Use it for anything that shouldn't change.</p>
+        <pre><code>const double PI = 3.14159;
+// PI = 3.14; // ❌ compile error</code></pre>
+        <div class="note">💡 <strong>Integer division trap:</strong> <code>int / int</code> throws away the decimal part. Cast one side to <code>double</code>: <code>(double)a / b</code>.</div>
+      </div>
+    </details>
 
-<p>"<$center"> </$center">" makes anything between it in the center of the page</p>
+    <!-- control flow -->
+    <details>
+      <summary>Control flow — if, switch, loops</summary>
+      <div class="details-content">
+        <h3>if / else if / else</h3>
+        <pre><code>if (score &gt;= 90)      std::cout &lt;&lt; "A";
+else if (score &gt;= 80) std::cout &lt;&lt; "B";
+else                   std::cout &lt;&lt; "C";</code></pre>
+        <h3>switch</h3>
+        <p>Best when comparing <em>one</em> variable against exact values. Always add <code>break;</code> unless you deliberately want fallthrough.</p>
+        <pre><code>switch (op) {
+  case '+': result = a + b; break;
+  case '-': result = a - b; break;
+  default:  std::cout &lt;&lt; "unknown";
+}</code></pre>
+        <h3>Loops</h3>
+        <pre><code>// while — checks first
+while (name.empty()) { std::getline(std::cin, name); }
 
+// do‑while — runs at least once
+do { std::cin &gt;&gt; num; } while (num &lt; 0);
 
-</body> 
-</html>
+// for — counted
+for (int i = 0; i &lt; 5; ++i) std::cout &lt;&lt; i &lt;&lt; ' ';</code></pre>
+      </div>
+    </details>
 
+    <!-- functions -->
+    <details>
+      <summary>Functions — parameters, return values, overloading</summary>
+      <div class="details-content">
+        <p>A function bundles reusable logic. <code>void</code> means “returns nothing”.</p>
+        <pre><code>// returns int
+int add(int a, int b) { return a + b; }
 
+// void — just prints
+void greet(std::string name) {
+  std::cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; '\n';
+}
 
+// overloaded — same name, different parameters
+double add(double a, double b) { return a + b; }</code></pre>
+        <div class="note">📌 <strong>Pass‑by‑value vs pass‑by‑reference:</strong> <code>int x</code> copies the value; <code>int&amp; x</code> lets the function modify the caller's original.</div>
+      </div>
+    </details>
 
+    <!-- arrays & strings -->
+    <details>
+      <summary>Arrays &amp; strings</summary>
+      <div class="details-content">
+        <h3>Arrays (fixed size)</h3>
+        <pre><code>int nums[5] = {10, 20, 30, 40, 50};
+for (int i = 0; i &lt; 5; ++i) std::cout &lt;&lt; nums[i] &lt;&lt; ' ';</code></pre>
+        <p>Indices start at 0. A 5‑element array has valid indices 0–4.</p>
+        <h3>std::string</h3>
+        <pre><code>std::string s = "hello";
+std::cout &lt;&lt; s.length();     // 5
+s += " world";               // append
+if (s.find("world") != std::string::npos) { /* found */ }</code></pre>
+        <div class="note">Use <code>std::getline(std::cin, s)</code> for full lines with spaces; <code>std::cin &gt;&gt; s</code> stops at the first space.</div>
+      </div>
+    </details>
 
+    <!-- pointers & references -->
+    <details>
+      <summary>Pointers &amp; references (a first look)</summary>
+      <div class="details-content">
+        <p>A <strong>pointer</strong> stores a memory address. A <strong>reference</strong> is an alias for an existing variable.</p>
+        <pre><code>int value = 42;
+int* ptr = &amp;value;     // ptr holds the address of value
+*ptr = 100;            // dereference → value is now 100
 
+int&amp; ref = value;      // ref is another name for value
+ref = 7;               // value is now 7</code></pre>
+        <div class="note">🔹 Pointers can be null or reassigned; references must be initialised and can't be reseated. Use references for function parameters when you want to modify the caller's variable.</div>
+      </div>
+    </details>
 
+    <!-- classes & objects -->
+    <details>
+      <summary>Classes, objects &amp; inheritance</summary>
+      <div class="details-content">
+        <p>A <strong>class</strong> groups data (attributes) and behaviour (methods). An <strong>object</strong> is an instance of a class.</p>
+        <pre><code>class Dog {
+public:
+  std::string name;
+  int age;
+
+  Dog(std::string n, int a) : name(n), age(a) {}  // constructor
+
+  void bark() const { std::cout &lt;&lt; name &lt;&lt; " says woof!\n"; }
+};
+
+int main() {
+  Dog rex("Rex", 3);
+  rex.bark();
+}</code></pre>
+        <h3>Inheritance</h3>
+        <pre><code>class Animal { public: void eat() { std::cout &lt;&lt; "eating\n"; } };
+class Cat : public Animal { public: void meow() { std::cout &lt;&lt; "meow\n"; } };</code></pre>
+      </div>
+    </details>
+
+    <!-- templates -->
+    <details>
+      <summary>Templates — generic code</summary>
+      <div class="details-content">
+        <p>Write a function or class once, use it with any type.</p>
+        <pre><code>template &lt;typename T&gt;
+T maxOf(T a, T b) { return (a &gt; b) ? a : b; }
+
+int main() {
+  std::cout &lt;&lt; maxOf(3, 7);       // int
+  std::cout &lt;&lt; maxOf(2.5, 1.8);   // double
+}</code></pre>
+      </div>
+    </details>
+
+    <!-- STL basics -->
+    <details>
+      <summary>STL basics — vector, map, algorithm</summary>
+      <div class="details-content">
+        <p>The Standard Template Library gives you ready‑made containers and algorithms.</p>
+        <pre><code>#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+
+std::vector&lt;int&gt; nums = {5, 2, 8, 1};
+nums.push_back(10);                 // add
+std::sort(nums.begin(), nums.end()); // sort
+
+std::map&lt;std::string, int&gt; ages;
+ages["Ada"] = 36;
+ages["Bob"] = 42;
+
+for (auto&amp; [name, age] : ages)
+  std::cout &lt;&lt; name &lt;&lt; " is " &lt;&lt; age &lt;&lt; '\n';</code></pre>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 2. SIX PROJECTS                                              -->
+  <!-- ============================================================ -->
+  <section id="projects">
+    <h2>🛠️ Six hands‑on projects</h2>
+    <p style="margin-bottom:1.5rem;">Ordered from easiest to most complex. Each one lists prerequisites, a sample skeleton, and a mini rubric.</p>
+
+    <!-- project 1 -->
+    <details>
+      <summary>Project 1 · Console calculator (beginner)</summary>
+      <div class="details-content">
+        <p><span class="tag">Console</span> <span class="tag">Control flow</span></p>
+        <h4>Objective</h4>
+        <p>Build a calculator that takes two numbers and an operator, then prints the result. Handle division by zero.</p>
+        <h4>Concepts needed</h4>
+        <ul><li>Variables, <code>std::cin</code> / <code>std::cout</code></li><li><code>switch</code> or <code>if/else</code></li><li>Type casting for division</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>#include &lt;iostream&gt;
+
+int main() {
+    double a, b; char op;
+    std::cout &lt;&lt; "Enter expression (e.g. 4 + 5): ";
+    std::cin &gt;&gt; a &gt;&gt; op &gt;&gt; b;
+
+    switch (op) {
+        case '+': std::cout &lt;&lt; a + b; break;
+        case '-': std::cout &lt;&lt; a - b; break;
+        case '*': std::cout &lt;&lt; a * b; break;
+        case '/':
+            if (b == 0) std::cout &lt;&lt; "Cannot divide by zero";
+            else        std::cout &lt;&lt; a / b;
+            break;
+        default: std::cout &lt;&lt; "Unknown operator";
+    }
+}</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ Compiles and runs without errors</li><li>✅ Handles all four operations</li><li>✅ Division‑by‑zero handled</li><li>✅ Clear prompts and output</li></ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- project 2 -->
+    <details>
+      <summary>Project 2 · Number guessing game (beginner+)</summary>
+      <div class="details-content">
+        <p><span class="tag">Console</span> <span class="tag">Loops</span> <span class="tag">Random</span></p>
+        <h4>Objective</h4>
+        <p>Generate a random number 1–100. Let the user guess until correct; give “too high / too low” hints and count tries.</p>
+        <h4>Concepts needed</h4>
+        <ul><li><code>do‑while</code> loop</li><li><code>srand</code> / <code>rand</code> from <code>&lt;cstdlib&gt;</code>, <code>&lt;ctime&gt;</code></li><li>Conditionals</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+int main() {
+    srand(time(0));
+    int secret = rand() % 100 + 1;
+    int guess, tries = 0;
+
+    do {
+        std::cout &lt;&lt; "Guess (1‑100): ";
+        std::cin &gt;&gt; guess;
+        ++tries;
+        if (guess &gt; secret)      std::cout &lt;&lt; "Too high\n";
+        else if (guess &lt; secret) std::cout &lt;&lt; "Too low\n";
+        else                     std::cout &lt;&lt; "Correct in " &lt;&lt; tries &lt;&lt; " tries!\n";
+    } while (guess != secret);
+}</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ Random number changes each run</li><li>✅ Hint messages correct</li><li>✅ Tries counted and displayed</li><li>✅ Loop ends only on correct guess</li></ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- project 3 -->
+    <details>
+      <summary>Project 3 · Text‑based adventure (text UI)</summary>
+      <div class="details-content">
+        <p><span class="tag">Text UI</span> <span class="tag">Functions</span> <span class="tag">State</span></p>
+        <h4>Objective</h4>
+        <p>Create a tiny “choose your own path” story. The player picks options (1, 2, 3) and the story branches. Track health or score.</p>
+        <h4>Concepts needed</h4>
+        <ul><li>Functions for each scene</li><li><code>while</code> loop for game loop</li><li><code>switch</code> on user choice</li><li><code>std::string</code> for prompts</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+void forest(int&amp; hp);
+void cave(int&amp; hp);
+
+int main() {
+    int hp = 100;
+    std::cout &lt;&lt; "You wake in a forest. (1) Enter cave (2) Stay\n";
+    int choice; std::cin &gt;&gt; choice;
+    if (choice == 1) cave(hp);
+    else             forest(hp);
+    std::cout &lt;&lt; "HP remaining: " &lt;&lt; hp &lt;&lt; '\n';
+}
+
+void cave(int&amp; hp) {
+    std::cout &lt;&lt; "A dragon! (1) Fight (2) Flee\n";
+    int c; std::cin &gt;&gt; c;
+    if (c == 1) hp -= 40;
+    else        hp -= 10;
+}
+void forest(int&amp; hp) { hp -= 5; }</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ At least 3 branching choices</li><li>✅ HP or score changes</li><li>✅ Functions used for scenes</li><li>✅ Readable prompts</li></ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- project 4 -->
+    <details>
+      <summary>Project 4 · Student grade manager (arrays / vectors)</summary>
+      <div class="details-content">
+        <p><span class="tag">STL</span> <span class="tag">Data processing</span></p>
+        <h4>Objective</h4>
+        <p>Store student names and grades in parallel <code>std::vector</code>s. Print the average, highest, and lowest grade, and list students above average.</p>
+        <h4>Concepts needed</h4>
+        <ul><li><code>std::vector</code></li><li>Loops and conditionals</li><li>Basic statistics</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::vector&lt;std::string&gt; names;
+    std::vector&lt;double&gt; grades;
+    // ... fill from input or hard‑code ...
+    double sum = 0, maxG = 0, minG = 100;
+    for (double g : grades) {
+        sum += g;
+        if (g &gt; maxG) maxG = g;
+        if (g &lt; minG) minG = g;
+    }
+    double avg = sum / grades.size();
+    std::cout &lt;&lt; "Average: " &lt;&lt; avg &lt;&lt; '\n';
+}</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ Uses <code>std::vector</code> correctly</li><li>✅ Average, max, min computed</li><li>✅ Above‑average list printed</li><li>✅ No out‑of‑bounds access</li></ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- project 5 -->
+    <details>
+      <summary>Project 5 · Bank account class (OOP design)</summary>
+      <div class="details-content">
+        <p><span class="tag">OOP</span> <span class="tag">Classes</span> <span class="tag">Encapsulation</span></p>
+        <h4>Objective</h4>
+        <p>Design a <code>BankAccount</code> class with <code>deposit</code>, <code>withdraw</code>, and <code>getBalance</code>. Prevent negative deposits and overdrafts. Create two accounts and simulate transactions.</p>
+        <h4>Concepts needed</h4>
+        <ul><li>Classes, constructors, <code>public</code>/<code>private</code></li><li>Member functions</li><li>Simple validation</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>class BankAccount {
+private:
+    double balance;
+public:
+    BankAccount(double initial) : balance(initial) {}
+    void deposit(double amt) {
+        if (amt &gt; 0) balance += amt;
+    }
+    bool withdraw(double amt) {
+        if (amt &gt; 0 &amp;&amp; amt &lt;= balance) { balance -= amt; return true; }
+        return false;
+    }
+    double getBalance() const { return balance; }
+};</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ Class with private data</li><li>✅ Deposit / withdraw logic correct</li><li>✅ Overdraft prevented</li><li>✅ Clear test in <code>main()</code></li></ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- project 6 -->
+    <details>
+      <summary>Project 6 · Inventory system with inheritance (intermediate)</summary>
+      <div class="details-content">
+        <p><span class="tag">OOP</span> <span class="tag">Inheritance</span> <span class="tag">Polymorphism</span></p>
+        <h4>Objective</h4>
+        <p>Create a base <code>Item</code> class and derived <code>Weapon</code>, <code>Potion</code> classes. Store them in a vector of pointers and print a description of each.</p>
+        <h4>Concepts needed</h4>
+        <ul><li>Inheritance, <code>virtual</code> functions</li><li><code>std::vector&lt;Item*&gt;</code></li><li>Dynamic memory (or smart pointers)</li></ul>
+        <h4>Sample skeleton</h4>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;memory&gt;
+
+class Item {
+public:
+    virtual void describe() const { std::cout &lt;&lt; "Generic item\n"; }
+    virtual ~Item() = default;
+};
+class Weapon : public Item {
+    int damage;
+public:
+    Weapon(int d) : damage(d) {}
+    void describe() const override { std::cout &lt;&lt; "Weapon, dmg " &lt;&lt; damage &lt;&lt; '\n'; }
+};
+
+int main() {
+    std::vector&lt;std::unique_ptr&lt;Item&gt;&gt; inventory;
+    inventory.push_back(std::make_unique&lt;Weapon&gt;(10));
+    for (auto&amp; item : inventory) item-&gt;describe();
+}</code></pre>
+        <div class="rubric">
+          <strong>Quick rubric</strong>
+          <ul><li>✅ Base + 2 derived classes</li><li>✅ Virtual function overridden</li><li>✅ Vector of pointers used safely</li><li>✅ Polymorphic call works</li></ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 3. WORKED SIMULATION                                         -->
+  <!-- ============================================================ -->
+  <section id="sim">
+    <h2>🎮 Worked simulation · “Coffee shop queue”</h2>
+    <p style="margin-bottom:1.5rem;">A complete, easy simulation that ties together variables, loops, functions, and basic OOP. Follow the steps; then run the full code.</p>
+
+    <details>
+      <summary>Scenario &amp; requirements</summary>
+      <div class="details-content">
+        <p><strong>Scenario:</strong> A small coffee shop opens for 10 minutes. Customers arrive randomly (0–2 per minute). Each customer orders a drink that takes 1–3 minutes to make. The barista serves one customer at a time. Simulate the queue and report how many customers were served and how many were left waiting.</p>
+        <p><strong>Requirements:</strong></p>
+        <ul>
+          <li>Use a <code>std::queue&lt;int&gt;</code> to store waiting customers (each customer = drink prep time).</li>
+          <li>Every simulated minute: new customers arrive, barista works on one drink.</li>
+          <li>Track total served and remaining queue at the end.</li>
+          <li>Print a minute‑by‑minute log.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Step‑by‑step implementation</summary>
+      <div class="details-content">
+        <h4>Step 1 — Set up the simulation loop</h4>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+int main() {
+    srand(time(0));
+    std::queue&lt;int&gt; waiting;   // each int = minutes needed for that drink
+    int served = 0;
+    int currentDrinkTime = 0;  // remaining time on the drink being made</code></pre>
+
+        <h4>Step 2 — Simulate 10 minutes</h4>
+        <pre><code>    for (int minute = 1; minute &lt;= 10; ++minute) {
+        // 1. New customers arrive (0, 1, or 2)
+        int arrivals = rand() % 3;
+        for (int i = 0; i &lt; arrivals; ++i)
+            waiting.push(rand() % 3 + 1);  // 1–3 minutes per drink
+
+        // 2. Barista works
+        if (currentDrinkTime == 0 &amp;&amp; !waiting.empty()) {
+            currentDrinkTime = waiting.front();
+            waiting.pop();
+        }
+        if (currentDrinkTime &gt; 0) {
+            --currentDrinkTime;
+            if (currentDrinkTime == 0) ++served;
+        }
+
+        // 3. Log
+        std::cout &lt;&lt; "Minute " &lt;&lt; minute
+                  &lt;&lt; " | queue: " &lt;&lt; waiting.size()
+                  &lt;&lt; " | serving time left: " &lt;&lt; currentDrinkTime
+                  &lt;&lt; " | served: " &lt;&lt; served &lt;&lt; '\n';
+    }</code></pre>
+
+        <h4>Step 3 — Final report</h4>
+        <pre><code>    std::cout &lt;&lt; "\n--- Closing time ---\n";
+    std::cout &lt;&lt; "Total served: " &lt;&lt; served &lt;&lt; '\n';
+    std::cout &lt;&lt; "Still waiting: " &lt;&lt; waiting.size() &lt;&lt; '\n';
+    return 0;
+}</code></pre>
+        <div class="note">💡 The queue holds drink times; the barista pulls the next drink only when free. This naturally models a single‑server queue.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>Full code (paste &amp; run)</summary>
+      <div class="details-content">
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+int main
